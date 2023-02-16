@@ -13,11 +13,13 @@
   <body>
     <div id="map" style="width: 600px; height: 400px; position: relative; outline: none;" tabindex="0"></div>
     <script>
-      const map = L.map('map').setView([2496,3343], -1);
+      const map = L.map('map', {
+        crs: L.CRS.Simple
+      });
+      const bounds = [[0,0, [1000,1000]]
+      const image = L.imageOverlay('images/osrs_world_map_january11_2023.png', bounds).addTo(map);
       
-      const tiles = L.tileLayer('https://maps.runescape.wiki/osrs/#{zoom}/{mapID}/{plane}/{x}/{y}.png', {
-        maxZoom: 5,
-      }).addTo(map);
+      map.fitbounds(bounds);
     </script>
   </body>
  </html>
