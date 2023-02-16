@@ -16,7 +16,7 @@
       const map = L.map('map', {
         crs: L.CRS.Simple
       });
-      const bounds = [[0,0, [1000,1000]];
+      const bounds = [[0,0], [1000,1000]];
       const image = L.imageOverlay('images/osrs_world_map_january11_2023.png', bounds).addTo(map);
       
       map.fitbounds(bounds);
