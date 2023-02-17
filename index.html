@@ -11,8 +11,6 @@
      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
      crossorigin=""></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <style>
     body {
       padding: 0;
@@ -26,9 +24,9 @@
   </head>
   <body>
     <div id="map"</div>
-	  <table id:"tablescopes"></table>
 	  <script src="coordinates.js"></script>
 	  <script>
+		  import json from "./stars.json";
 		  var Karamja = L.polygon([
 			  [1300,4855],
 			  [1215,4890],
@@ -58,28 +56,26 @@
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-		  var popup = "<table><tr><th>Location</th><th>World</th><th>MinTime</th><th>MaxTime</th><th>CalledLocation</th></tr></table>"
-		  Feldip.bindPopup((popup)=>{
-
+		  
+		  const onEachFeature = (feature, layer) => {
+			  let popupContent = `
+			  <table>
+			  <tr>
+			  <th>location:</th>
+			  <td>${feature.value.location}</td>
+			  </tr>
+		  </table>`;
+			   if (feature.value && feature.value.popupContent) {
+    popupContent += feature.value.popupContent;
+  }
+			   layer.bindPopup(popupContent);
+};
+		  const feature = L.geoJSON(json, {
+  onEachFeature
+}).addTo(map);
 			  
-			  var el = document.createElement('div');
-		  $.getJSON("//gimsjoelbak.com/stars.json",function(obj){
-			  var scopes = '';
-			  $.each(obj, function(key, value){
-				  scopes += '<tr>';
-				  scopes += '<td>'+value.location+'</td>';
-				  scopes += '<td>'+value.world+'</td>';
-				  scopes += '<td>'+value.minTime+'</td>';
-				  scopes += '<td>'+value.maxTime+'</td>';
-				  scopes += '<td>'+value.calledLocation+'</td>';
-				  scopes += '</tr>';
-			  });
-			  $('scopetable').append(scopes);
-			  console.log(scopes);
-		  el.innerHTML = popup;
-		  });
-		  return el;
-		  });
+			  
+
 	  </script>
   </body>
  </html>
