@@ -30,4 +30,5 @@
 
     });
 
-    L.Map.addInitHook('addHandler', 'cursor', L.CursorHandler);	  
+    L.Map.addInitHook('addHandler', 'cursor', L.CursorHandler);	 
+	  map.cursor.enable();
