@@ -55,19 +55,8 @@
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-		  Feldip.bindPopup((layer)=>{
-     var el = document.createElement('div');
-    $.getJSON("stars.json",function(data){
-	    var scopes = data;
-	    scopes = data.filter(function(obj) {
-		    return obj.location ==="2";
-	    });
-	    console.log(scopes);
-scopes.addData(data);
-  map.addLayer(scopesLayer);
-    });
+		  Feldip.bindPopup("test");
 
-     return el;
 		  });		  
 	  </script>
   </body>
