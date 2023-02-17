@@ -58,7 +58,7 @@
 		  Feldip.bindPopup((popup)=>{
      var el = document.createElement('div');
      el.classList.add("my-class");
-    $.getJSON("http://server.starminers.site/global",function(data){
+    $.getJSON("stars.json",function(data){
 	    var scopes = data;
 	    scopes = data.filter(function(obj) {
 		    return obj.location ==="2";
