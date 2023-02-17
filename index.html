@@ -56,12 +56,28 @@
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
 		  Feldip.bindPopup((layer)=>{
-		  var el = document.createElement('div');
+		  <div class="table-responsive">
+			  "<table class="table" id="scopetable">
+			  <tr>
+			  <th>Location</th>
+			  <th>World</th>
+			  <th>MinTime</th>
+			  <th>MaxTime</th>
+			  <th>CalledLocation</th>
+			  </tr>
+			  </table>
+			  </div>
+			  
+			  var el = document.createElement('div');
 		  $.getJSON("//gimsjoelbak.com/stars.json",function(obj){
 			  var scopes = '';
 			  $.each(obj, function(key, value){
 				  scopes += '<tr>';
 				  scopes += 'td'+value.location+'</td>';
+				  scopes += 'td'+value.world+'</td>';
+				  scopes += 'td'+value.minTime+'</td>';
+				  scopes += 'td'+value.maxTime+'</td>';
+				  scopes += 'td'+value.calledLocation+'</td>';
 				  scopes += '</tr>';
 			  });
 			  console.log(scopes);
