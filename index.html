@@ -67,11 +67,11 @@
 			  var scopes = '';
 			  $.each(obj, function(key, value){
 				  scopes += '<tr>';
-				  scopes += 'td'+value.location+'</td>';
-				  scopes += 'td'+value.world+'</td>';
-				  scopes += 'td'+value.minTime+'</td>';
-				  scopes += 'td'+value.maxTime+'</td>';
-				  scopes += 'td'+value.calledLocation+'</td>';
+				  scopes += '<td>'+value.location+'</td>';
+				  scopes += '<td>'+value.world+'</td>';
+				  scopes += '<td>'+value.minTime+'</td>';
+				  scopes += '<td>'+value.maxTime+'</td>';
+				  scopes += '<td>'+value.calledLocation+'</td>';
 				  scopes += '</tr>';
 			  });
 			  $('scopetable').append(scopes);
