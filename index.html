@@ -57,8 +57,12 @@
 		  Feldip.bindPopup((popup)=>{
      var el = document.createElement('div');
      el.classList.add("my-class");
-    $.getJSON("http://server.starminers.site/2priv84u",function(datapoint){
-      el.innerHTML = '<h2>' + datapoint[i].location + '</h2>';
+    $.getJSON("//server.starminers.site/2priv84u",function(data){
+	    var scopes = data;
+	    scopes = data.filter(function(obj) {
+		    return obj.location ==="2";
+	    });
+      el.innerHTML = '<h2>' + scopes.location + '</h2>';
     });
 
      return el;
