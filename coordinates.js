@@ -1,4 +1,5 @@
-      		  import json from "./stars.json";
+import L from "leaflet";      		  
+import json from "./stars.json";
 
 L.CursorHandler = L.Handler.extend({
 
