@@ -55,10 +55,14 @@
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-		  Feldip.bindPopup("test");
+		  Feldip.bindPopup((layer)=>{
+		  var el = document.createElement('div');
+		  $.getJSON("gimsjoelbak.com/stars.json",function(data){
+		  el.innerHTML = data.text;
+		  });
+		  return el;
+		  });
 
-		  });		  
-	  </script>
   </body>
  </html>
   
