@@ -14,7 +14,8 @@
     <div id="map" style="width: 600px; height: 400px; position: relative; outline: none;" tabindex="0"></div>
     <script>
       const map = L.map('map', {
-        crs: L.CRS.Simple
+        crs: L.CRS.Simple,
+        minZoom: -5
       });
       const bounds = [[0,0], [4881,8337]];
       const image = L.imageOverlay('images/osrs_world_map_january11_2023.png', bounds).addTo(map);
