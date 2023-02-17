@@ -58,11 +58,14 @@
 		  Feldip.bindPopup((layer)=>{
 		  var el = document.createElement('div');
 		  $.getJSON("//gimsjoelbak.com/stars.json",function(obj){
-			 let key="location";
-			  let value="2";
-			  const result = obj.filter(location => location[key] === value);
+			  var scopes = '';
+			  $.each(obj, function(key, value){
+				  scopes += '<tr>';
+				  scopes += 'td'+value.location+'</td>';
+				  scopes += '</tr>';
+			  });
 			  console.log(result);
-		  el.innerHTML = obj;
+		  el.innerHTML = scopes;
 		  });
 		  return el;
 		  });
