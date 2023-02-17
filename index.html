@@ -25,58 +25,6 @@
   <body>
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
-	  <script>
-		  import json from "./stars.json";
-		  var Karamja = L.polygon([
-			  [1300,4855],
-			  [1215,4890],
-			  [1200,5530],
-			  [1855,5410],
-			  [2020,5425],
-			  [2130,5190],
-			  [2430,5180],
-			  [2485,5145],
-			  [2470,5085],
-			  [2292,4810],
-			  [2190,4705],
-			  [2020,4695],
-			  [1960,4805],
-			  [1915,4840]
-			  ]).addTo(map);
-		  
-		  var Feldip = L.polygon([
-			  [1582,4502],
-			  [1565,2965],
-			  [1420,2865],
-			  [1135,2838],
-			  [900,3065],
-			  [855,3280],
-			  [1107,4394],
-			  [1435,4550],
-			  [1550,4538]
-			  ]).addTo(map);
-		  Feldip.setStyle({color: 'red'});
-		  
-		  const onEachFeature = (feature, layer) => {
-			  let popupContent = `
-			  <table>
-			  <tr>
-			  <th>location:</th>
-			  <td>${feature.value.location}</td>
-			  </tr>
-		  </table>`;
-			   if (feature.value && feature.value.popupContent) {
-    popupContent += feature.value.popupContent;
-  }
-			   layer.bindPopup(popupContent);
-};
-		  const feature = L.geoJSON(json, {
-  onEachFeature
-}).addTo(map);
-			  
-			  
-
-	  </script>
   </body>
  </html>
   
