@@ -57,12 +57,11 @@
 		  Feldip.setStyle({color: 'red'});
 		  Feldip.bindPopup((layer)=>{
 		  var el = document.createElement('div');
-		  $.getJSON("//gimsjoelbak.com/stars.json",function(data){
-			  var loc2 = data;
-			  loc2 = data.filter(function(obj){
-				  return obj.location ==="2";
-			  });
-			  console.log(loc2);
+		  $.getJSON("//gimsjoelbak.com/stars.json",function(obj){
+			 let key="location";
+			  let value="2";
+			  const result = obj.filter(location => location[key] === value);
+			  console.log(result);
 		  el.innerHTML = data;
 		  });
 		  return el;
