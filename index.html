@@ -41,10 +41,7 @@
 			  [1915,4840]
 			  ]).addTo(map);
 		  
-		  var Feldip = L.polygon({
-			  color: 'red',
-		  }
-			  [
+		  var Feldip = L.polygon([
 			  [1582,4502],
 			  [1565,2965],
 			  [1420,2865],
@@ -55,6 +52,7 @@
 			  [1435,4550],
 			  [1550,4538]
 			  ]).addTo(map);
+		  Feldip.setStyle({color: 'red'});
 			  
 	  </script>
   </body>
