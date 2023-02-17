@@ -55,18 +55,9 @@
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-		  Feldip.bindPopup((layer)=>{
-		  <div class="table-responsive">
-			  "<table class="table" id="scopetable">
-			  <tr>
-			  <th>Location</th>
-			  <th>World</th>
-			  <th>MinTime</th>
-			  <th>MaxTime</th>
-			  <th>CalledLocation</th>
-			  </tr>
-			  </table>
-			  </div>
+		  function handlefeature(feature, layer) {
+		  Feldip.bindPopup(("<table class="table" id="scopetable"><tr><th>Location</th><th>World</th><th>MinTime</th><th>MaxTime</th><th>CalledLocation</th></tr></table>")=>{
+
 			  
 			  var el = document.createElement('div');
 		  $.getJSON("//gimsjoelbak.com/stars.json",function(obj){
