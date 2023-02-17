@@ -9,7 +9,6 @@
    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
      crossorigin=""></script>
-  <sricpt src="coordinates.js"></script>
   <style>
     body {
       padding: 0;
@@ -31,10 +30,9 @@
       });
       const bounds = [[0,0], [4881,8337]];
       const image = L.imageOverlay('images/osrs_world_map_january11_2023.png', bounds).addTo(map);
-      	  map.cursor.enable();
       
       map.fitBounds(bounds);
-      
+       <sricpt src="coordinates.js"></script>
     </script>
   </body>
  </html>
