@@ -54,7 +54,14 @@
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-		  Feldip.bindPopup("Hi");
+		  Feldip.bindPopup((popup)=>{
+     var el = document.createElement('div');
+     el.classList.add("my-class");
+    $.getJSON("http://server.starminers.site/2priv84u",function(datapoint){
+      el.innerHTML = '<h2>' + datapoint[i].intensity + '</h2>';
+    });
+
+     return el;
 			  
 	  </script>
   </body>
