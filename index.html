@@ -31,6 +31,34 @@
       const image = L.imageOverlay('images/osrs_world_map_january11_2023.png', bounds).addTo(map);
       
       map.fitBounds(bounds);
+      
+      let Position = L.Control.extend({ 
+        _container: null,
+        options: {
+          position: 'bottomleft'
+        },
+
+        onAdd: function (map) {
+          var latlng = L.DomUtil.create('div', 'mouseposition');
+          this._latlng = latlng;
+          return latlng;
+        },
+
+        updateHTML: function(lat, lng) {
+          var latlng = lat + " " + lng;
+          //this._latlng.innerHTML = "Latitude: " + lat + "   Longitiude: " + lng;
+          this._latlng.innerHTML = "LatLng: " + latlng;
+        }
+
+      this.position = new Position();
+      this.leafletMap.addControl(this.position);
+      
+      this.leafletMap.addEventListener('mousemove', (event) => {
+    let lat = Math.round(event.latlng.lat * 100000) / 100000;
+    let lng = Math.round(event.latlng.lng * 100000) / 100000;
+    this.position.updateHTML(lat, lng);
+  }
+});
     </script>
   </body>
  </html>
