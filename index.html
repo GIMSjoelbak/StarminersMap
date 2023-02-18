@@ -81,7 +81,7 @@ table td{
 			  <th>minTime</th>\
 			  <th>maxTime</th>\
 			  <th>calledLocation</th>\
-			  </tr>\
+			  </tr">\
 			  </thead>\
 			  <tbody id="data-output">\
 			  </tbody>\
@@ -107,7 +107,14 @@ fetch("./stars.json")
 		<td>${product.calledLocation}</td>\
 		</tr>`;
 	}
-	
+	var dataoutput = document.getElementById('data-output')
+	out.forEach(element => dataoutput.insertAdjacentHTML(`<tr>\
+		<td>${product.location}</td>\
+		<td>${product.world}</td>\
+		<td>${product.minTime}</td>\
+		<td>${product.maxTime}</td>\
+		<td>${product.calledLocation}</td>\
+		</tr>`));
  Feldip.bindPopup(popuptable + out, {
 	 maxWidth: 1000
  });
