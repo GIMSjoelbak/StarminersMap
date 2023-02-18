@@ -73,7 +73,7 @@ table td{
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-		Feldip.bindPopup('<table id="popup-table"></table>').openPopup()
+		Feldip.bindPopup('<table id="popup-table"></table>')
 			  fetch('stars.json')
 			.then(response => response.json())
 			.then(data => {
@@ -90,8 +90,9 @@ table td{
 				header4.innerHTML = 'Max Time';
 				var header5 = headerRow.insertCell(4);
 				header5.innerHTML = 'Called Location';
-				// Add table rows
+				// Add table rows where location = 2
 				for (var i = 0; i < data.length; i++) {
+					if (data[i].location == 2) {
 					var row = table.insertRow(i+1);
 					var cell1 = row.insertCell(0);
 					var cell2 = row.insertCell(1);
@@ -103,6 +104,7 @@ table td{
 					cell3.innerHTML = data[i].minTime;
 					cell4.innerHTML = data[i].maxTime;
 					cell5.innerHTML = data[i].calledLocation;
+				}
 				}
 			})
 		.catch(error => console.error(error));
