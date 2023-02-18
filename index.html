@@ -87,26 +87,25 @@ table td{
 			  </tbody>\
 			  </table>`;		  
 fetch("./stars.json")
-
 			  .then(function(response){
 	return response.json();
-	
-});
-			
+})
 			  .then(function(products){
 	let placeholder = document.querySelector("#data-output");
-	var out = "";
+	let out = "";
 	for (let product of products){
-		out += `<tr>\
+		out += `
+		<tr>
 		<td>${product.location}</td>
 		<td>${product.world}</td>
 		<td>${product.minTime}</td>
 		<td>${product.maxTime}</td>
 		<td>${product.calledLocation}</td>
-		</tr>;
+		</tr>
+		`;
+	}
 
-
-	)};
+})
 	
  Feldip.bindPopup(popuptable + out, {
 	 maxWidth: 1000
