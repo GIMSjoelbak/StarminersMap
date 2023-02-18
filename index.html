@@ -44,8 +44,7 @@ table td{
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
 	  	  <script>
-		  var locations = [
-			  {location: 1, coords:[
+		  var Karamja = L.polygon([
 			  [1300,4855],
 			  [1215,4890],
 			  [1200,5530],
@@ -59,8 +58,10 @@ table td{
 			  [2190,4705],
 			  [2020,4695],
 			  [1960,4805],
-			  [1915,4840]]},
-			  {location: 2, coords:[ 
+			  [1915,4840]
+			  ]).addTo(map);
+		  
+		  var Feldip = L.polygon([
 			  [1582,4502],
 			  [1565,2965],
 			  [1420,2865],
@@ -69,27 +70,30 @@ table td{
 			  [855,3280],
 			  [1107,4394],
 			  [1435,4550],
-			  [1550,4538]]},
-			  ];
-// loop through the locations array to create the polygons and their associated popup tables
-			  for (var i = 0; i < locations.length; i++) {
-				// create the marker and add it to the map
-				var polygon = L.polygon(locations[i].coords).addTo(map);			  
-  // define a function to create the popup table for the current marker
-  var createTable = new Function(`return function createTable${locations[i].location}() {
+			  [1550,4538]
+			  ]).addTo(map);
+function addPopup(polygon, location) {
+  // create a popup and attach it to the polygon
+  var popup = L.popup();
+  popup.setContent("<table id='popup-table'></table>");
+  polygon.bindPopup(popup);
+
+  // add the table data to the popup
+  function createTable() {
     var table = document.getElementById("popup-table");
-  // add the header row to the table
-  var headerRow = table.insertRow();
-  var header1 = headerRow.insertCell(0);
-  var header2 = headerRow.insertCell(1);
-  var header3 = headerRow.insertCell(2);
-  var header4 = headerRow.insertCell(3);
-  var header5 = headerRow.insertCell(4);
-  header1.innerHTML = "<b>Location</b>";
-  header2.innerHTML = "<b>World</b>";
-  header3.innerHTML = "<b>Min Time</b>";
-  header4.innerHTML = "<b>Max Time</b>";
-  header5.innerHTML = "<b>Called Location</b>";
+
+    // add the header row to the table
+    var headerRow = table.insertRow();
+    var header1 = headerRow.insertCell(0);
+    var header2 = headerRow.insertCell(1);
+    var header3 = headerRow.insertCell(2);
+    var header4 = headerRow.insertCell(3);
+    var header5 = headerRow.insertCell(4);
+    header1.innerHTML = "<b>Location</b>";
+    header2.innerHTML = "<b>World</b>";
+    header3.innerHTML = "<b>Min Time</b>";
+    header4.innerHTML = "<b>Max Time</b>";
+    header5.innerHTML = "<b>Called Location</b>";
 
   // make a request to the JSON file
   fetch("stars.json")
@@ -112,16 +116,14 @@ for (var i = 0; i < data.length; i++) {
 }
 			})
 		.catch(error => console.error(error));
-	}`)();
+	}
+// Add popup tables to each polygon
+addPopup(Karamja, 1);
+addPopup(Feldip, 2);
 
-  // add a click event to the marker to open the popup and create the table
-  polygon.on("click", function () {
-    L.popup()
-      .setLatLng(this.getLatLng())
-      .setContent(document.getElementById("popup"))
-      .openOn(map);
-    createTable();
-  });
+
+  // create the table when the popup is opened
+  popup.on("popupopen", createTable);
 }
 	  </script>
   </body>
