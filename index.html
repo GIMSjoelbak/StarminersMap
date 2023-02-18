@@ -100,14 +100,13 @@ fetch("./stars.json")
 	let out = "";
 	for (let product of products){
 		out += `
-		<tr>
-		<td>${product.location}</td>
-		<td>${product.world}</td>
-		<td>${product.minTime}</td>
-		<td>${product.maxTime}</td>
-		<td>${product.calledLocation}</td>
-		</tr>
-		`;
+		<tr>\
+		<td>${product.location}</td>\
+		<td>${product.world}</td>\
+		<td>${product.minTime}</td>\
+		<td>${product.maxTime}</td>\
+		<td>${product.calledLocation}</td>\
+		</tr>`;
 	}
 	
  Feldip.bindPopup(popuptable + out {
