@@ -73,7 +73,7 @@ table td{
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-	var popuptable = `<table id="popuptable">\
+	var popuptable = "<table id="popuptable">\
 			  <thead>\
 			      <tr>\
 			      <th>location</th>\
@@ -81,13 +81,13 @@ table td{
 			  <th>minTime</th>\
 			  <th>maxTime</th>\
 			  <th>calledLocation</th>\
-			  </tr">\
+			  </tr>\
 			  </thead>\
 			  <tbody id="data-output">\
 			  </tbody>\
 			  </table>\
-<script>\			  
-fetch("./stars.json")\
+			<script>\			  
+			fetch("./stars.json")\
 \
 			  .then(function(response){\
 	return response.json();\
@@ -104,7 +104,7 @@ fetch("./stars.json")\
 		<td>${product.minTime}</td>\
 		<td>${product.maxTime}</td>\
 		<td>${product.calledLocation}</td>\
-		</tr></script>`;
+		</tr></script>";
 
 
 	}
