@@ -71,8 +71,9 @@
 fetch("./stars.json")
 			  .then(function(response){
 	return response.json();
-	console.log(response);
+	
 })
+			console.log(response)
 			  .then(function(products){
 	let placeholder = document.querySelector("#data-output");
 	let out = "";
