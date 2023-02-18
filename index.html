@@ -86,9 +86,11 @@ table td{
 			  <tbody id="data-output">\
 			  </tbody>\
 			  </table>`;		  
+			  
 fetch("./stars.json")
 			  .then(function(response){
 	return response.json();
+	console.log(response);
 })
 			  .then(function(products){
 	let placeholder = document.querySelector("#data-output");
@@ -106,7 +108,7 @@ fetch("./stars.json")
 	}
 
 })
-	
+		
  Feldip.bindPopup(popuptable + out, {
 	 maxWidth: 1000
  });
