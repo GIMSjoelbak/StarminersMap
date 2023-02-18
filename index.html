@@ -75,17 +75,17 @@
 	var placeholder = document.getElementById("#data-output");
 	let out = "";
 	for (let product of products){
-		out += `
-		<tr>
-		<td>${product.location}</td>
-		<td>${product.world}</td>
-		<td>${product.minTime}</td>
-		<td>${product.maxTime}</td>
-		<td>${product.calledLocation}</td>
+		placeholder.innerHTML =
+		<tr> +
+		<td>${product.location}</td> +
+		<td>${product.world}</td> +
+		<td>${product.minTime}</td> +
+		<td>${product.maxTime}</td> +
+		<td>${product.calledLocation}</td> +
 		</tr>
-		`;
+		;
 	}
-	placeholder.innerHTML = out;
+
 });
 			  Feldip.bindPopup(popupcontent);
 
