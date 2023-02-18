@@ -45,7 +45,7 @@ table td{
 	  <script src="coordinates.js"></script>
 	  	  <script>
 		  var locations = [
-			  {location: 1, coords: 
+			  {location: 1, coords:[
 			  [1300,4855],
 			  [1215,4890],
 			  [1200,5530],
@@ -59,8 +59,9 @@ table td{
 			  [2190,4705],
 			  [2020,4695],
 			  [1960,4805],
-			  [1915,4840]},
-			  {location: 2, coords: [1582,4502],
+			  [1915,4840]]},
+			  {location: 2, coords:[ 
+			  [1582,4502],
 			  [1565,2965],
 			  [1420,2865],
 			  [1135,2838],
@@ -68,7 +69,7 @@ table td{
 			  [855,3280],
 			  [1107,4394],
 			  [1435,4550],
-			  [1550,4538]},
+			  [1550,4538]]},
 			  ];
 // loop through the locations array to create the polygons and their associated popup tables
 			  for (var i = 0; i < locations.length; i++) {
