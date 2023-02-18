@@ -73,7 +73,7 @@ table td{
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-	var popuptable = "(<table>\
+	var popuptable = `<table>\
 			  <thead>\
 			      <tr>\
 			      <th>location</th>\
@@ -85,31 +85,30 @@ table td{
 			  </thead>\
 			  <tbody id="data-output">\
 			  </tbody>\
-			  </table>\
-			<script>\			  
-			fetch("./stars.json")\
-\
-			  .then(function(response){\
-	return response.json();\
-	\
-})\
+			  </table>';		  
+fetch("./stars.json")
+
+			  .then(function(response){
+	return response.json();
+	
+})
 			
-			  .then(function(products){\
-	let placeholder = document.querySelector("#data-output");\
-	var out = "";\
-	for (let product of products){\
+			  .then(function(products){
+	let placeholder = document.querySelector("#data-output");
+	var out = "";
+	for (let product of products){
 		out += `<tr>\
-		<td>${product.location}</td>\
-		<td>${product.world}</td>\
-		<td>${product.minTime}</td>\
-		<td>${product.maxTime}</td>\
-		<td>${product.calledLocation}</td>\
-		</tr></script>)";
+		<td>${product.location}</td>
+		<td>${product.world}</td>
+		<td>${product.minTime}</td>
+		<td>${product.maxTime}</td>
+		<td>${product.calledLocation}</td>
+		</tr>;
 
 
 	}
 	
- Feldip.bindPopup(popuptable, {
+ Feldip.bindPopup(popuptable + out, {
 	 maxWidth: 1000
  });
 })
