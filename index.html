@@ -73,11 +73,13 @@ table td{
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-		Feldip.bindPopup('<table id="popupTable"></table>');
-			  fetch('stars.json')
+		// define the function to create the table
+			  function createTable() {
+				  var table = document.getElementById('popup-table');
+			   // make a request to the JSON file
+				  fetch('stars.json')
 			.then(response => response.json())
 			.then(data => {
-				var table = document.getElementById('popupTable');
 				// Add table headers
 				var headerRow = table.insertRow(0);
 				var header1 = headerRow.insertCell(0);
@@ -108,6 +110,8 @@ table td{
 				}
 			})
 		.catch(error => console.error(error));
+	}
+			  Feldip.bindPopup("<table id='popup-table'></table>").on("popupopen", createTable);
 	  </script>
   </body>
  </html>
