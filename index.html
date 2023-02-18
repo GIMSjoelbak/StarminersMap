@@ -55,7 +55,19 @@
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-			  fetch("./stars.json")
+
+			  var popupcontent = '<table>\
+			  <thead>\
+			      <tr>\
+			      <th>location</th>\
+			  <th>world</th>\
+			  <th>minTime</th>\
+			  <th>maxTime</th>\
+			  <th>calledLocation</th>\
+			  </tr>\
+			  </thead>\
+				  <tbody id="data-output"></tbody></table>'
+			  			  fetch("./stars.json")
 			  .then(function(response){
 	return response.json();
 })
@@ -74,18 +86,7 @@
 		`;
 	}
 	placeholder.innerHTML = out;
-})
-			  var popupcontent = '<table>\
-			  <thead>\
-			      <tr>\
-			      <th>location</th>\
-			  <th>world</th>\
-			  <th>minTime</th>\
-			  <th>maxTime</th>\
-			  <th>calledLocation</th>\
-			  </tr>\
-			  </thead>\
-				  <tbody id="data-output"></tbody></table>';
+});
 			  Feldip.bindPopup(popupcontent);
 
 
