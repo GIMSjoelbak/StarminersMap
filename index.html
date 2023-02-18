@@ -41,6 +41,19 @@ table td{
   </style>
   </head>
   <body>
+	  			 <table id="popuptable">
+			  <thead>
+			      <tr>
+			      <th>location</th>
+			  <th>world</th>
+			  <th>minTime</th>
+			  <th>maxTime</th>
+			  <th>calledLocation</th>
+			  </tr>
+			  </thead>
+			  <tbody id="data-output">
+			  </tbody>
+			  </table>
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
 	  	  <script>
@@ -74,19 +87,7 @@ table td{
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
 
-			 <table id="popuptable">
-			  <thead>
-			      <tr>
-			      <th>location</th>
-			  <th>world</th>
-			  <th>minTime</th>
-			  <th>maxTime</th>
-			  <th>calledLocation</th>
-			  </tr>
-			  </thead>
-			  <tbody id="data-output">
-			  </tbody>
-			  </table>
+
 			  
 fetch("./stars.json")
 
