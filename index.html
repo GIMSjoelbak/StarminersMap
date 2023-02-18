@@ -69,11 +69,12 @@
 				  <tbody id="data-output"></tbody></table>';
 			  
 fetch("./stars.json")
+			  console.log
 			  .then(function(response){
 	return response.json();
 	
 })
-			console.log(response.json)
+			
 			  .then(function(products){
 	let placeholder = document.querySelector("#data-output");
 	let out = "";
