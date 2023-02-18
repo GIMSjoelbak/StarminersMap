@@ -84,7 +84,9 @@ table td{
 			  <th>calledLocation</th>\
 			  </tr>\
 			  </thead>\
-				  <tbody id="data-output"></tbody></table>';
+			  <tbody id="data-output">\
+			  </tbody>\
+			  </table>';
 			  
 fetch("./stars.json")
 
@@ -94,7 +96,8 @@ fetch("./stars.json")
 })
 			
 			  .then(function(products){
-	let out = document.querySelector("#data-output");
+	let placeholder = document.querySelector("#data-output");
+	let out = "";
 	for (let product of products){
 		out += `
 		<tr>
@@ -107,7 +110,7 @@ fetch("./stars.json")
 		`;
 	}
 	
- Feldip.bindPopup(popupcontent + out, {
+ Feldip.bindPopup(popupcontent + placeholder.innerHTML = out, {
 	 maxWidth: 1000
  });
 })
