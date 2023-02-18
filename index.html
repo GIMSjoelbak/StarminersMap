@@ -72,7 +72,7 @@
 	return response.json();
 })
 			  .then(function(products){
-	let placeholder = document.querySelector("#data-output");
+	var placeholder = document.getElementById("#data-output");
 	let out = "";
 	for (let product of products){
 		out += `
