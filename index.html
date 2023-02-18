@@ -73,42 +73,39 @@ table td{
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-		// define the function to create the table
-			  function createTable() {
-				  var table = document.getElementById('popup-table');
-				  // add the header row to the table
- 				 	var headerRow = table.insertRow();
- 				 	var header1 = headerRow.insertCell(0);
-  					var header2 = headerRow.insertCell(1);
-  					var header3 = headerRow.insertCell(2);
-  					var header4 = headerRow.insertCell(3);
-  					var header5 = headerRow.insertCell(4);
-  					header1.innerHTML = "<b>Location</b>";
-  					header2.innerHTML = "<b>World</b>";
-  					header3.innerHTML = "<b>Min Time</b>";
-  					header4.innerHTML = "<b>Max Time</b>";
-  					header5.innerHTML = "<b>Called Location</b>";
-			   // make a request to the JSON file
-				  fetch('stars.json')
-			.then(response => response.json())
-			.then(data => {
+function createTable() {
+  var table = document.getElementById("popup-table");
 
-				// Add table rows where location = 2
-				for (var i = 0; i < data.length; i++) {
-					if (data[i].location === 2) {
-					var row = table.insertRow(i+1);
-					var cell1 = row.insertCell(0);
-					var cell2 = row.insertCell(1);
-					var cell3 = row.insertCell(2);
-					var cell4 = row.insertCell(3);
-					var cell5 = row.insertCell(4);
-					cell1.innerHTML = data[i].location;
-					cell2.innerHTML = data[i].world;
-					cell3.innerHTML = data[i].minTime;
-					cell4.innerHTML = data[i].maxTime;
-					cell5.innerHTML = data[i].calledLocation;
-				}
-				}
+  // add the header row to the table
+  var headerRow = table.insertRow();
+  var header1 = headerRow.insertCell(0);
+  var header2 = headerRow.insertCell(1);
+  var header3 = headerRow.insertCell(2);
+  var header4 = headerRow.insertCell(3);
+  var header5 = headerRow.insertCell(4);
+  header1.innerHTML = "<b>Location</b>";
+  header2.innerHTML = "<b>World</b>";
+  header3.innerHTML = "<b>Min Time</b>";
+  header4.innerHTML = "<b>Max Time</b>";
+  header5.innerHTML = "<b>Called Location</b>";
+
+  // make a request to the JSON file
+  fetch("stars.json")
+    .then(response => response.json())
+    .then(data => {
+      for (var i = 0; i < data.length; i++) {
+        var row = table.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        cell1.innerHTML = data[i].location;
+        cell2.innerHTML = data[i].world;
+        cell3.innerHTML = data[i].minTime;
+        cell4.innerHTML = data[i].maxTime;
+        cell5.innerHTML = data[i].calledLocation;
+      }
 			})
 		.catch(error => console.error(error));
 	}
