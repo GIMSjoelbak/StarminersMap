@@ -76,12 +76,8 @@ table td{
 		// define the function to create the table
 			  function createTable() {
 				  var table = document.getElementById('popup-table');
-			   // make a request to the JSON file
-				  fetch('stars.json')
-			.then(response => response.json())
-			.then(data => {
-				// Add table headers
-				var headerRow = table.insertRow(0);
+				  // add the header row to the table
+				  var headerRow = table.insertRow(0);
 				var header1 = headerRow.insertCell(0);
 				header1.innerHTML = 'Location';
 				var header2 = headerRow.insertCell(1);
@@ -92,6 +88,11 @@ table td{
 				header4.innerHTML = 'Max Time';
 				var header5 = headerRow.insertCell(4);
 				header5.innerHTML = 'Called Location';
+			   // make a request to the JSON file
+				  fetch('stars.json')
+			.then(response => response.json())
+			.then(data => {
+
 				// Add table rows where location = 2
 				for (var i = 0; i < data.length; i++) {
 					if (data[i].location == 2) {
