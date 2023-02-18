@@ -73,48 +73,39 @@ table td{
 			  [1550,4538]
 			  ]).addTo(map);
 		  Feldip.setStyle({color: 'red'});
-	var popuptable = `<table>\
-			  <thead>\
-			      <tr>\
-			      <th>location</th>\
-			  <th>world</th>\
-			  <th>minTime</th>\
-			  <th>maxTime</th>\
-			  <th>calledLocation</th>\
-			  </tr>\
-			  </thead>\
-			  <tbody id="data-output">\
-			  </tbody>\
-			  </table>`;		  
-			  
-
-			  
-fetch("./stars.json")
-
-			  .then(function(response){
-	return response.json();
-	
-})
-			
-			  .then(function(products){
-	let placeholder = document.querySelector("#data-output");
-	let out = "";
-	for (let product of products){
-		out += `<tr>\
-		<td>${product.location}</td>\
-		<td>${product.world}</td>\
-		<td>${product.minTime}</td>\
-		<td>${product.maxTime}</td>\
-		<td>${product.calledLocation}</td>\
-		</tr>`;
-	}
-	
- Feldip.bindPopup(popuptable + out, {
-	 maxWidth: 1000
- });
-})
-			 
-
+		Feldip.bindPopup('<table id="popup-table"></table>').openPopup()
+			  fetch('stars.json')
+			.then(response => response.json())
+			.then(data => {
+				var table = document.getElementById('popup-table');
+				// Add table headers
+				var headerRow = table.insertRow(0);
+				var header1 = headerRow.insertCell(0);
+				header1.innerHTML = 'Location';
+				var header2 = headerRow.insertCell(1);
+				header2.innerHTML = 'World';
+				var header3 = headerRow.insertCell(2);
+				header3.innerHTML = 'Min Time';
+				var header4 = headerRow.insertCell(3);
+				header4.innerHTML = 'Max Time';
+				var header5 = headerRow.insertCell(4);
+				header5.innerHTML = 'Called Location';
+				// Add table rows
+				for (var i = 0; i < data.length; i++) {
+					var row = table.insertRow(i+1);
+					var cell1 = row.insertCell(0);
+					var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+					var cell4 = row.insertCell(3);
+					var cell5 = row.insertCell(4);
+					cell1.innerHTML = data[i].location;
+					cell2.innerHTML = data[i].world;
+					cell3.innerHTML = data[i].minTime;
+					cell4.innerHTML = data[i].maxTime;
+					cell5.innerHTML = data[i].calledLocation;
+				}
+			})
+		.catch(error => console.error(error));
 	  </script>
   </body>
  </html>
