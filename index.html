@@ -66,29 +66,28 @@
 			  <th>calledLocation</th>\
 			  </tr>\
 			  </thead>\
-				  <tbody id="data-output"></tbody></table>'
-			  			  fetch("./stars.json")
+				  <tbody id="data-output"></tbody></table>';
+			  Feldip.bindPopup(popupcontent);
+fetch("./stars.json")
 			  .then(function(response){
 	return response.json();
 })
 			  .then(function(products){
-	var placeholder = document.getElementById("#data-output");
+	let placeholder = document.querySelector("#data-output");
 	let out = "";
 	for (let product of products){
-		placeholder.innerHTML += `
+		out += `
 		<tr>
 		<td>${product.location}</td>
 		<td>${product.world}</td>
 		<td>${product.minTime}</td>
 		<td>${product.maxTime}</td>
 		<td>${product.calledLocation}</td>
-		</tr>`
-		;
+		</tr>
+		`;
 	}
-
-});
-			  Feldip.bindPopup(popupcontent);
-
+	placeholder.innerHTML = out;
+})
 
 	  </script>
   </body>
