@@ -77,17 +77,17 @@ table td{
 			  function createTable() {
 				  var table = document.getElementById('popup-table');
 				  // add the header row to the table
-				  var headerRow = table.insertRow(0);
-				var header1 = headerRow.insertCell(0);
-				header1.innerHTML = 'Location';
-				var header2 = headerRow.insertCell(1);
-				header2.innerHTML = 'World';
-				var header3 = headerRow.insertCell(2);
-				header3.innerHTML = 'Min Time';
-				var header4 = headerRow.insertCell(3);
-				header4.innerHTML = 'Max Time';
-				var header5 = headerRow.insertCell(4);
-				header5.innerHTML = 'Called Location';
+ 				 	var headerRow = table.insertRow();
+ 				 	var header1 = headerRow.insertCell(0);
+  					var header2 = headerRow.insertCell(1);
+  					var header3 = headerRow.insertCell(2);
+  					var header4 = headerRow.insertCell(3);
+  					var header5 = headerRow.insertCell(4);
+  					header1.innerHTML = "<b>Location</b>";
+  					header2.innerHTML = "<b>World</b>";
+  					header3.innerHTML = "<b>Min Time</b>";
+  					header4.innerHTML = "<b>Max Time</b>";
+  					header5.innerHTML = "<b>Called Location</b>";
 			   // make a request to the JSON file
 				  fetch('stars.json')
 			.then(response => response.json())
