@@ -108,7 +108,7 @@ fetch("./stars.json")
 		</tr>`;
 	}
 	var dataoutput = document.getElementById('data-output')
-	data.forEach(element => dataoutput.insertAdjacentHTML(`<tr>\
+	dataoutput.forEach(element => dataoutput.insertAdjacentHTML(`<tr>\
 		<td>${product.location}</td>\
 		<td>${product.world}</td>\
 		<td>${product.minTime}</td>\
