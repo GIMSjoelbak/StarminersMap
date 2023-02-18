@@ -67,7 +67,7 @@
 			  </tr>\
 			  </thead>\
 				  <tbody id="data-output"></tbody></table>';
-			  Feldip.bindPopup(popupcontent, out);
+			  
 fetch("./stars.json")
 			  .then(function(response){
 	return response.json();
@@ -89,6 +89,7 @@ fetch("./stars.json")
 	}
 	placeholder.innerHTML = out;
 })
+			  Feldip.bindPopup(popupcontent, out);
 
 	  </script>
   </body>
