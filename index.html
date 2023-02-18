@@ -71,7 +71,6 @@
 fetch("./stars.json")
 
 			  .then(function(response){
-  .then((data) => console.log(data));
 	return response.json();
 	
 })
@@ -92,7 +91,7 @@ fetch("./stars.json")
 	}
 	placeholder.innerHTML = out;
 })
-			  Feldip.bindPopup(popupcontent, out);
+			  Feldip.bindPopup(popupcontent + out);
 
 	  </script>
   </body>
