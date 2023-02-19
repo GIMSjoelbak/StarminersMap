@@ -77,7 +77,7 @@ function createPopup(polygon, location) {
   var prevData = [];
 
   function updateTable() {
-    fetch("stars.json")
+    fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
 	    console.log(data); // log the retrieved data
