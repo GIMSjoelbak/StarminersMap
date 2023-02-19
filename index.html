@@ -107,6 +107,7 @@ function updateTable() {
     fetch("stars.json")
       .then(response => response.json())
       .then(data => {
+	console.log(data); // log the retrieved data
     // clear the existing table rows
         while (table.rows.length > 1) {
           table.deleteRow(-1);
