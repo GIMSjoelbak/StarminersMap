@@ -71,7 +71,12 @@ td:last-child {
 			  [2020,4695],
 			  [1960,4805],
 			  [1915,4840]
-			  ]).addTo(map);
+			  ], {
+			   fillColor: '#ff0000', // set the fill color to red
+  fillOpacity: 0.5, // set the fill opacity to 50%
+  weight: 2, // set the border weight to 2 pixels
+  color: '#000000' // set the border color to black
+		  }).addTo(map);
 		  
 		  var polygon2 = L.polygon([
 			  [1582,4502],
