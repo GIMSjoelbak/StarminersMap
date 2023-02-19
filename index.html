@@ -89,18 +89,6 @@ td:last-child {
 			  [1435,4550],
 			  [1550,4538]
 			  ]).addTo(map);
-// Define an empty object to store the previous data for each polygon
-var previousData = {};
-// Check if the data has changed
-  var hasChanged = JSON.stringify(previousData[polygon._leaflet_id]) !== JSON.stringify(data);
-// Trigger the flashing effect if the data has changed
-  if (hasChanged) {
-    polygon.flash({
-      duration: 1000,
-      easing: 'linear',
-      repeat: 3
-    });
-  }
   // add the table data to the popup
   function createPopup(polygon, location) {
     var table = document.createElement("table");
@@ -120,10 +108,6 @@ var previousData = {};
 	  
 // define a function to update the table contents from the JSON data
 function updateTable() {
-    fetch("stars.json")
-      .then(response => response.json())
-      .then(data => {
-	console.log(data); // log the retrieved data
     // clear the existing table rows
         while (table.rows.length > 1) {
           table.deleteRow(-1);
@@ -145,15 +129,36 @@ function updateTable() {
         cell4.innerHTML = d.maxTime;
         cell5.innerHTML = d.calledLocation;
        }); 
-// listen for the popupopen event on the polygon
-  polygon.on('popupopen', function() {	  
-  // call the updateTable function once to initially populate the table
-  updateTable();
-  });
-			  
-  // update the table every minute
-  setInterval(updateTable, 60000);
+  // define a function to check for updates and update the table
+  function checkForUpdates() {
+    fetch("stars.json")
+      .then(response => response.json())
+      .then(data => {
+        // check if the data has changed
+        if (JSON.stringify(data) !== JSON.stringify(table.data)) {
+          // flash the polygon if the data has changed and it's not the first open
+          if (table.isOpen) {
+            polygon.flash();
+          }
+          // update the table with the latest data
+          updateTable(data);
+          // store the latest data in a property of the table for comparison
+          table.data = data;
+        }
+      })
+      .catch(error => console.error(error));
+  }
 
+  // add an event listener to the polygon to update the data when the popup is opened
+  polygon.on("popupopen", function() {
+    // mark the table as open
+    table.isOpen = true;
+    // update the table with the latest data
+    checkForUpdates();
+  });
+
+  // set an interval to check for updates every minute
+  setInterval(checkForUpdates, 60000);
      // create the popup and add the table to it
       var popup = L.popup({
 	      maxWidth: 700
