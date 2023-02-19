@@ -101,34 +101,39 @@ td:last-child {
     header3.innerHTML = "<b>Min Time</b>";
     header4.innerHTML = "<b>Max Time</b>";
     header5.innerHTML = "<b>Called Location</b>";
-
+	  
+// define a function to update the table contents from the JSON data
 function updateTable() {
-    // make a request to the JSON file
     fetch("stars.json")
       .then(response => response.json())
       .then(data => {
-        // clear the existing rows from the table
-        table.innerHTML = "";
+    // clear the existing table rows
+        while (table.rows.length > 1) {
+          table.deleteRow(-1);
+        }
         // filter the data by the specified location value
-        var filteredData = data.filter(item => item.location === location);	
+        var filteredData = data.filter(d => d.location === location);	
 	    
         // add the rows to the table
-        filteredData.forEach(item => {
+        filteredData.forEach(d => {
         var row = table.insertRow();
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
         var cell5 = row.insertCell(4);
-        cell1.innerHTML = item.location;
-        cell2.innerHTML = item.world;
-        cell3.innerHTML = item.minTime;
-        cell4.innerHTML = item.maxTime;
-        cell5.innerHTML = item.calledLocation;
+        cell1.innerHTML = d.location;
+        cell2.innerHTML = d.world;
+        cell3.innerHTML = d.minTime;
+        cell4.innerHTML = d.maxTime;
+        cell5.innerHTML = d.calledLocation;
        });
       })
       .catch(error => console.error(error));
 }
+	  
+  // call the updateTable function once to initially populate the table
+  updateTable();
 			  
   // update the table every minute
   setInterval(updateTable, 60000);
