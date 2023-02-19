@@ -56,45 +56,11 @@ td:last-child {
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
 	  	  <script>
-		  var polygon1 = L.polygon([
-			  [1300,4855],
-			  [1215,4890],
-			  [1200,5530],
-			  [1855,5410],
-			  [2020,5425],
-			  [2130,5190],
-			  [2430,5180],
-			  [2485,5145],
-			  [2470,5085],
-			  [2292,4810],
-			  [2190,4705],
-			  [2020,4695],
-			  [1960,4805],
-			  [1915,4840]
-			  ], {
-			   fillColor: '#ff0000', // set the fill color to red
-  fillOpacity: 0.5, // set the fill opacity to 50%
-  weight: 2, // set the border weight to 2 pixels
-  color: '#000000' // set the border color to black
-		  }).addTo(map);
-		  
-		  var polygon2 = L.polygon([
-			  [1582,4502],
-			  [1565,2965],
-			  [1420,2865],
-			  [1135,2838],
-			  [900,3065],
-			  [855,3280],
-			  [1107,4394],
-			  [1435,4550],
-			  [1550,4538]
-			  ]).addTo(map);
+		  var polygon1 = L.polygon([[1300,4855],[1215,4890],[1200,5530],[1855,5410],[2020,5425],[2130,5190],[2430,5180],[2485,5145],[2470,5085],[2292,4810],[2190,4705],[2020,4695],[1960,4805],[1915,4840]],{fillColor: '#ff0000',fillOpacity: 0.5,weight: 2,color: '#000000'}).addTo(map);
+		  var polygon2 = L.polygon([[1582,4502],[1565,2965],[1420,2865],[1135,2838],[900,3065],[855,3280],[1107,4394],[1435,4550],[1550,4538]]).addTo(map);
 
-  // add the table data to the popup
   function createPopup(polygon, location) {
     var table = document.createElement("table");
-
-    // add the header row to the table
     var headerRow = table.insertRow();
     var header1 = headerRow.insertCell(0);
     var header2 = headerRow.insertCell(1);
@@ -106,22 +72,13 @@ td:last-child {
     header3.innerHTML = "<b>Min Time</b>";
     header4.innerHTML = "<b>Max Time</b>";
     header5.innerHTML = "<b>Called Location</b>";
-	  
-// define a function to update the table contents from the JSON data
-function updateTable() {
-    fetch("stars.json")
-      .then(response => response.json())
-      .then(data => {
-	console.log(data); // log the retrieved data
-    // clear the existing table rows
-        while (table.rows.length > 1) {
-          table.deleteRow(-1);
-        }
-        // filter the data by the specified location value
-        var filteredData = data.filter(d => d.location === location);	
-	    
-        // add the rows to the table
-        filteredData.forEach(d => {
+  function updateTable() {
+    fetch("stars.json").then(response => response.json()).then(data => {
+      while (table.rows.length > 1) {
+        table.deleteRow(-1);
+      }
+      var filteredData = data.filter(d => d.location === location);
+      filteredData.forEach(d => {
         var row = table.insertRow();
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -134,22 +91,13 @@ function updateTable() {
         cell4.innerHTML = d.maxTime;
         cell5.innerHTML = d.calledLocation;
        });
-      })
-      .catch(error => console.error(error));
-}
-	  
-  // call the updateTable function once to initially populate the table
-  updateTable();
-			  
-  // update the table every minute
-  setInterval(updateTable, 60000);
-
-     // create the popup and add the table to it
-      var popup = L.popup({
-	      maxWidth: 700
-      }).setContent(table);
-      polygon.bindPopup(popup);
+    }).catch(error => console.error(error));
   }
+  updateTable();
+  setInterval(updateTable, 60000);
+  var popup = L.popup({maxWidth: 700}).setContent(table);
+  polygon.bindPopup(popup);
+}
 
 // Add popup tables to each polygon
 createPopup(polygon1, 8);
