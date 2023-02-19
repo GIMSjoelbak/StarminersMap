@@ -56,64 +56,8 @@ td:last-child {
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
 	  	  <script>
-var polygons = {}; // dictionary to store polygons
-var data = null; // variable to store data from json
-
-function loadData() {
-  fetch('stars.json')
-    .then(response => response.json())
-    .then(json => {
-      data = json;
-      updatePolygons();
-    })
-    .catch(error => console.error(error));
-}
-
-function updatePolygons() {
-  for (var i in polygons) {
-    var polygon = polygons[i];
-    var filteredData = data.filter(item => item.location === parseInt(i));
-    var tableBody = polygon._popup.getContent().querySelector('tbody');
-    tableBody.innerHTML = '';
-    filteredData.forEach(item => {
-      var row = tableBody.insertRow();
-      row.insertCell().textContent = item.location;
-      row.insertCell().textContent = item.world;
-      row.insertCell().textContent = item.minTime;
-      row.insertCell().textContent = item.maxTime;
-      row.insertCell().textContent = item.calledLocation;
-    });
-  }
-}
-
-function addPolygon(location, coordinates) {
-  var polygon = L.polygon(coordinates, {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5
-  }).addTo(map);
-
-  var popupContent = `
-    <table>
-      <thead>
-        <tr>
-          <th>Location</th>
-          <th>World</th>
-          <th>Min Time</th>
-          <th>Max Time</th>
-          <th>Called Location</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  `;
-  
-  polygon.bindPopup(popupContent);
-  polygons[location] = polygon;
-}
-
-addPolygon(1, [[1300,4855],
+			  		  const polygon1 = L.polygon([
+			  [1300,4855],
 			  [1215,4890],
 			  [1200,5530],
 			  [1855,5410],
@@ -126,8 +70,16 @@ addPolygon(1, [[1300,4855],
 			  [2190,4705],
 			  [2020,4695],
 			  [1960,4805],
-			  [1915,4840]]);
-addPolygon(2, [[1582,4502],
+			  [1915,4840]
+			  ], {
+			   fillColor: '#ff0000', // set the fill color to red
+  fillOpacity: 0.5, // set the fill opacity to 50%
+  weight: 2, // set the border weight to 2 pixels
+  color: '#000000' // set the border color to black
+		  }).addTo(map);
+		  
+		  const polygon2 = L.polygon([
+			  [1582,4502],
 			  [1565,2965],
 			  [1420,2865],
 			  [1135,2838],
@@ -135,11 +87,40 @@ addPolygon(2, [[1582,4502],
 			  [855,3280],
 			  [1107,4394],
 			  [1435,4550],
-			  [1550,4538]]);
+			  [1550,4538]
+			  ]).addTo(map);
+// Define a function to update the popup table
+function updatePopupTable(popup) {
+  const table = popup.getContent().querySelector('table');
+  fetch('stars.json')
+    .then(response => response.json())
+    .then(data => {
+      const filteredData = data.filter(star => star.location === popup.location);
+      table.innerHTML = '';
+      filteredData.forEach(star => {
+        const row = table.insertRow();
+        row.insertCell().textContent = star.location;
+        row.insertCell().textContent = star.world;
+        row.insertCell().textContent = star.minTime;
+        row.insertCell().textContent = star.maxTime;
+        row.insertCell().textContent = star.calledLocation;
+      });
+    });
+}
 
+// Add popup to polygon1
+polygon1.bindPopup('<table></table>').on('popupopen', function(event) {
+  const popup = event.popup;
+  popup.location = 5; // Set the location value for filtering
+  updatePopupTable(popup);
+});
 
-loadData();
-setInterval(loadData, 60 * 1000);
+// Add popup to polygon2
+polygon2.bindPopup('<table></table>').on('popupopen', function(event) {
+  const popup = event.popup;
+  popup.location = 7; // Set the location value for filtering
+  updatePopupTable(popup);
+});
 	  </script>
   </body>
  </html>
