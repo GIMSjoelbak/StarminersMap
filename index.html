@@ -28,6 +28,7 @@ table {
 
 td {
   padding: 4px;
+font-size: 10px;
 }
 
 /* Set a fixed width for the table cells */
@@ -118,7 +119,9 @@ for (var i = 0; i < data.length; i++) {
       }
 }
      // create the popup and add the table to it
-      var popup = L.popup().setContent(table);
+      var popup = L.popup({
+	      maxWidth: auto
+      }).setContent(table);
       polygon.bindPopup(popup);
   })
 		.catch(error => console.error(error));
