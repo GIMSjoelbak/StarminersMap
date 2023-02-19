@@ -97,13 +97,7 @@ var table2 = L.DomUtil.create('table', 'popup-table');
 polygon1.bindPopup(table1);
 polygon2.bindPopup(table2);
 
-// Function to update table data from JSON
-function updateTable(polygon, table) {
-  fetch('stars.json')
-    .then(response => response.json())
-    .then(data => {
-      // Filter data for location of the polygon
-      var filteredData = data.filter(d => d.location === polygon.location);
+
       
       // Clear table rows
       table.innerHTML = '';
@@ -128,6 +122,13 @@ function updateTable(polygon, table) {
     })
     .catch(error => console.error('Error:', error));
 }
+// Function to update table data from JSON
+function updateTable(polygon, table) {
+  fetch('stars.json')
+    .then(response => response.json())
+    .then(data => {
+      // Filter data for location of the polygon
+      var filteredData = data.filter(d => d.location === polygon.location);
 
 // Update table data for each polygon when popup is opened
 polygon1.on('popupopen', function() {
