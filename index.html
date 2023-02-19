@@ -139,12 +139,12 @@ var currentLocation;
 // Add the click event listeners to the polygons
 polygon1.on('click', function(e) {
   currentLocation = 1;
-  updatePopupContent(this.getPopup(), 'https://example.com/stars.json');
+  updatePopupContent(this.getPopup(), '.\stars.json');
 });
 
 polygon2.on('click', function(e) {
   currentLocation = 2;
-  updatePopupContent(this.getPopup(), 'https://example.com/stars.json');
+  updatePopupContent(this.getPopup(), '.\stars.json');
 });
 			  // Call the updatePopupContent function every minute
 setInterval(function() {
