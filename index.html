@@ -20,28 +20,28 @@ html, body, #map {
       height: 100%;
       width: 100%;
     }
+/* Make the table cells have padding */
 table {
-	border-collapse: collapse;
-	font-size: 12px;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-td, th {
-	padding: 2px;
-	border: 1px solid black;
+td {
+  padding: 4px;
 }
-.popup table td:nth-child(5) {
+
+/* Set a fixed width for the table cells */
+td {
+  width: 20%;
+  max-width: 100px;
+}
+
+/* Prevent text from wrapping */
+td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-}	  
-.popup {
-	width: auto;
-	height: auto;
-	max-width: 300px;
-	max-height: 200px;
-	overflow: auto;
-	  }
   </style>
   </head>
   <body>	  			
