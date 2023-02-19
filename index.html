@@ -133,13 +133,27 @@ function updateTable() {
         cell3.innerHTML = d.minTime;
         cell4.innerHTML = d.maxTime;
         cell5.innerHTML = d.calledLocation;
-       });
+       } 
+	// check if the updated data is different from the previous one
+        // and flash the polygon if necessary
+        var newContent = table.innerHTML;
+        if (newContent !== oldContent) {
+          polygon.setStyle({ fillColor: 'red' });
+          setTimeout(function() {
+            polygon.setStyle({ fillColor: 'blue' });
+          }, 500);
+        }
+        oldContent = newContent;
       })
       .catch(error => console.error(error));
-}
-	  
+  }  
+  // define a variable to store the old content of the table
+  var oldContent = '';
+// listen for the popupopen event on the polygon
+  polygon.on('popupopen', function() {	  
   // call the updateTable function once to initially populate the table
   updateTable();
+  });
 			  
   // update the table every minute
   setInterval(updateTable, 60000);
