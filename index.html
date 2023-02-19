@@ -27,8 +27,9 @@ table {
 }
 
 td {
-  padding: 4px;
-font-size: 10px;
+  padding: 3px;
+font-size: 12px;
+border: 1px solid black;
 }
 
 /* Set a fixed width for the table cells */
@@ -41,7 +42,7 @@ td {
 td {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+
 }
 .leaflet-popup-content-wrapper {
   width: auto !important;
@@ -120,7 +121,7 @@ for (var i = 0; i < data.length; i++) {
 }
      // create the popup and add the table to it
       var popup = L.popup({
-	      maxWidth: 500
+	      maxWidth: 700
       }).setContent(table);
       polygon.bindPopup(popup);
   })
