@@ -56,7 +56,7 @@ td:last-child {
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
 	  	  <script>
-			  		  const polygon1 = L.polygon([
+			  		  var polygon1 = L.polygon([
 			  [1300,4855],
 			  [1215,4890],
 			  [1200,5530],
@@ -78,7 +78,7 @@ td:last-child {
   color: '#000000' // set the border color to black
 		  }).addTo(map);
 		  
-		  const polygon2 = L.polygon([
+		  var polygon2 = L.polygon([
 			  [1582,4502],
 			  [1565,2965],
 			  [1420,2865],
@@ -89,38 +89,60 @@ td:last-child {
 			  [1435,4550],
 			  [1550,4538]
 			  ]).addTo(map);
-// Define function to fetch and update data
-function updateData() {
+// Create empty tables for each polygon
+var table1 = L.DomUtil.create('table', 'popup-table');
+var table2 = L.DomUtil.create('table', 'popup-table');
+
+// Create popups for each polygon
+polygon1.bindPopup(table1);
+polygon2.bindPopup(table2);
+
+// Function to update table data from JSON
+function updateTable(polygon, table) {
   fetch('stars.json')
     .then(response => response.json())
-    .then(function(data) {
-      // Update data for each polygon
-      locations.forEach(function(location) {
-        // Filter data for current location
-        var filteredData = data.filter(function(star) {
-          return star.location === location;
-        });
-
-        // Generate HTML table
-        var htmlTable = '<table>';
-        htmlTable += '<tr><th>World</th><th>Min Time</th><th>Max Time</th><th>Called Location</th></tr>';
-        filteredData.forEach(function(star) {
-          htmlTable += '<tr><td>' + star.world + '</td><td>' + star.minTime + '</td><td>' + star.maxTime + '</td><td>' + star.calledLocation + '</td></tr>';
-        });
-        htmlTable += '</table>';
-
-        // Update popup content
-        polygons[location].bindPopup(htmlTable);
+    .then(data => {
+      // Filter data for location of the polygon
+      var filteredData = data.filter(d => d.location === polygon.location);
+      
+      // Clear table rows
+      table.innerHTML = '';
+      
+      // Create table header row
+      var headerRow = table.insertRow();
+      headerRow.insertCell().innerHTML = 'Location';
+      headerRow.insertCell().innerHTML = 'World';
+      headerRow.insertCell().innerHTML = 'Min Time';
+      headerRow.insertCell().innerHTML = 'Max Time';
+      headerRow.insertCell().innerHTML = 'Called Location';
+      
+      // Add data rows to table
+      filteredData.forEach(d => {
+        var dataRow = table.insertRow();
+        dataRow.insertCell().innerHTML = d.location;
+        dataRow.insertCell().innerHTML = d.world;
+        dataRow.insertCell().innerHTML = new Date(d.minTime * 1000).toLocaleString();
+        dataRow.insertCell().innerHTML = new Date(d.maxTime * 1000).toLocaleString();
+        dataRow.insertCell().innerHTML = d.calledLocation;
       });
     })
-    .catch(function(error) {
-      console.log(error);
-    });
+    .catch(error => console.error('Error:', error));
 }
 
-// Update data on map load and every minute
-updateData();
-setInterval(updateData, 60000);
+// Update table data for each polygon when popup is opened
+polygon1.on('popupopen', function() {
+  updateTable(polygon1, table1);
+});
+
+polygon2.on('popupopen', function() {
+  updateTable(polygon2, table2);
+});
+
+// Update table data for each polygon every 60 seconds
+setInterval(function() {
+  updateTable(polygon1, table1);
+  updateTable(polygon2, table2);
+}, 60000);
 	  </script>
   </body>
  </html>
