@@ -89,7 +89,18 @@ td:last-child {
 			  [1435,4550],
 			  [1550,4538]
 			  ]).addTo(map);
-
+// Define an empty object to store the previous data for each polygon
+var previousData = {};
+// Check if the data has changed
+  var hasChanged = JSON.stringify(previousData[polygon._leaflet_id]) !== JSON.stringify(data);
+// Trigger the flashing effect if the data has changed
+  if (hasChanged) {
+    polygon.flash({
+      duration: 1000,
+      easing: 'linear',
+      repeat: 3
+    });
+  }
   // add the table data to the popup
   function createPopup(polygon, location) {
     var table = document.createElement("table");
@@ -134,21 +145,6 @@ function updateTable() {
         cell4.innerHTML = d.maxTime;
         cell5.innerHTML = d.calledLocation;
        }); 
-	// check if the updated data is different from the previous one
-        // and flash the polygon if necessary
-        var newContent = table.innerHTML;
-        if (newContent !== oldContent) {
-          polygon.setStyle({ fillColor: 'red' });
-          setTimeout(function() {
-            polygon.setStyle({ fillColor: 'blue' });
-          }, 500);
-        }
-        oldContent = newContent;
-      })
-      .catch(error => console.error(error));
-  }  
-  // define a variable to store the old content of the table
-  var oldContent = '';
 // listen for the popupopen event on the polygon
   polygon.on('popupopen', function() {	  
   // call the updateTable function once to initially populate the table
