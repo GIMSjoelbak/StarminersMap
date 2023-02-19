@@ -91,6 +91,8 @@ td:last-child {
 			  ]).addTo(map);
 // Define a function to update the popup table
 function updatePopupTable(popup) {
+	 const content = popup.getContent();
+  console.log(content); // Check the value of content
   const table = popup.getContent().querySelector('table');
   fetch('stars.json')
     .then(response => response.json())
