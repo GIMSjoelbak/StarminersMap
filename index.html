@@ -89,87 +89,71 @@ td:last-child {
 			  [1435,4550],
 			  [1550,4538]
 			  ]).addTo(map);
-  // add the table data to the popup
-  function createPopup(polygon, location) {
-    var table = document.createElement("table");
-
-    // add the header row to the table
-    var headerRow = table.insertRow();
-    var header1 = headerRow.insertCell(0);
-    var header2 = headerRow.insertCell(1);
-    var header3 = headerRow.insertCell(2);
-    var header4 = headerRow.insertCell(3);
-    var header5 = headerRow.insertCell(4);
-    header1.innerHTML = "<b>Location</b>";
-    header2.innerHTML = "<b>World</b>";
-    header3.innerHTML = "<b>Min Time</b>";
-    header4.innerHTML = "<b>Max Time</b>";
-    header5.innerHTML = "<b>Called Location</b>";
-	  
-// define a function to update the table contents from the JSON data
-function updateTable() {
-    // clear the existing table rows
-        while (table.rows.length > 1) {
-          table.deleteRow(-1);
-        }
-        // filter the data by the specified location value
-        var filteredData = data.filter(d => d.location === location);	
-	    
-        // add the rows to the table
-        filteredData.forEach(d => {
-        var row = table.insertRow();
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        cell1.innerHTML = d.location;
-        cell2.innerHTML = d.world;
-        cell3.innerHTML = d.minTime;
-        cell4.innerHTML = d.maxTime;
-        cell5.innerHTML = d.calledLocation;
-       }); 
+ // Define a function to create the table content
+function createTableContent(data) {
+  var tableContent = "<thead><tr><th>Location</th><th>World</th><th>Min Time</th><th>Max Time</th><th>Called Location</th></tr></thead><tbody>";
+  for (var i = 0; i < data.length; i++) {
+    tableContent += "<tr><td>" + data[i].location + "</td><td>" + data[i].world + "</td><td>" + data[i].minTime + "</td><td>" + data[i].maxTime + "</td><td>" + data[i].calledLocation + "</td></tr>";
+  }
+  tableContent += "</tbody>";
+  return tableContent;
 }
-  // define a function to check for updates and update the table
-  function checkForUpdates() {
-    fetch("stars.json")
-      .then(response => response.json())
-      .then(data => {
-        // check if the data has changed
-        if (JSON.stringify(data) !== JSON.stringify(table.data)) {
-          // flash the polygon if the data has changed and it's not the first open
-          if (table.isOpen) {
-            polygon.flash();
-          }
-          // update the table with the latest data
-          updateTable(data);
-          // store the latest data in a property of the table for comparison
-          table.data = data;
-        }
-      })
-      .catch(error => console.error(error));
-  }
 
-  // add an event listener to the polygon to update the data when the popup is opened
-  polygon.on("popupopen", function() {
-    // mark the table as open
-    table.isOpen = true;
-    // update the table with the latest data
-    checkForUpdates();
-  });
+// Define a function to update the popup content
+function updatePopupContent(popup, url) {
+  // Send a GET request to the URL
+  fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      // Filter the data by location
+      var filteredData = data.filter(function(d) {
+        return d.location === currentLocation;
+      });
+      // Create the table content
+      var tableContent = createTableContent(filteredData);
+      // Check if the table content has changed from previous
+      var prevTableContent = popup.getContent();
+      if (tableContent !== prevTableContent) {
+        // Set the popup content with new table content
+        popup.setContent(tableContent);
+        // Flash the polygon
+        polygon.setStyle({fillColor: "red"});
+        setTimeout(function() {
+          polygon.setStyle({fillColor: "blue"});
+        }, 500);
+      }
+    });
+}
 
-  // set an interval to check for updates every minute
-  setInterval(checkForUpdates, 60000);
-     // create the popup and add the table to it
-      var popup = L.popup({
-	      maxWidth: 700
-      }).setContent(table);
-      polygon.bindPopup(popup);
-  }
+// Define the popup options
+var popupOptions = {
+  maxHeight: 200,
+  maxWidth: 300
+};
 
-// Add popup tables to each polygon
-createPopup(polygon1, 8);
-createPopup(polygon2, 2);
+// Define a variable to store the current location
+var currentLocation;
+
+// Add the click event listeners to the polygons
+polygon1.on('click', function(e) {
+  currentLocation = 1;
+  updatePopupContent(this.getPopup(), 'https://example.com/stars.json');
+});
+
+polygon2.on('click', function(e) {
+  currentLocation = 2;
+  updatePopupContent(this.getPopup(), 'https://example.com/stars.json');
+});
+			  // Call the updatePopupContent function every minute
+setInterval(function() {
+  polygon1.getPopup().update();
+  polygon2.getPopup().update();
+  // ... update the rest of the popups
+}, 60000);
+
+// ... add the click event listeners to the rest of the polygons
 	  </script>
   </body>
  </html>
