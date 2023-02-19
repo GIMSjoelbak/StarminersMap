@@ -59,6 +59,7 @@ td:last-child {
 		  var polygon1 = L.polygon([[1300,4855],[1215,4890],[1200,5530],[1855,5410],[2020,5425],[2130,5190],[2430,5180],[2485,5145],[2470,5085],[2292,4810],[2190,4705],[2020,4695],[1960,4805],[1915,4840]],{fillColor: '#ff0000',fillOpacity: 0.5,weight: 2,color: '#000000'}).addTo(map);
 		  var polygon2 = L.polygon([[1582,4502],[1565,2965],[1420,2865],[1135,2838],[900,3065],[855,3280],[1107,4394],[1435,4550],[1550,4538]]).addTo(map);
 
+var previousData = null;
   function createPopup(polygon, location) {
     var table = document.createElement("table");
     var headerRow = table.insertRow();
@@ -72,12 +73,19 @@ td:last-child {
     header3.innerHTML = "<b>Min Time</b>";
     header4.innerHTML = "<b>Max Time</b>";
     header5.innerHTML = "<b>Called Location</b>";
-  function updateTable() {
-    fetch("stars.json").then(response => response.json()).then(data => {
-      while (table.rows.length > 1) {
-        table.deleteRow(-1);
-      }
-      var filteredData = data.filter(d => d.location === location);
+function updateTable() {
+  fetch("stars.json").then(response => response.json()).then(data => {
+    var filteredData = data.filter(d => d.location === location);
+    if (JSON.stringify(filteredData) !== JSON.stringify(previousData)) {
+      // Data has changed, apply flashing effect
+      polygon.setStyle({fillColor: '#ff0000', fillOpacity: 1});
+      setTimeout(function() {
+        polygon.setStyle({fillColor: '#ff0000', fillOpacity: 0.5});
+      }, 500);
+    }
+    while (table.rows.length > 1) {
+      table.deleteRow(-1);
+    }
       filteredData.forEach(d => {
         var row = table.insertRow();
         var cell1 = row.insertCell(0);
@@ -91,6 +99,7 @@ td:last-child {
         cell4.innerHTML = d.maxTime;
         cell5.innerHTML = d.calledLocation;
        });
+	previousData = filteredData;
     }).catch(error => console.error(error));
   }
   updateTable();
