@@ -56,7 +56,7 @@ td:last-child {
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
 	  	  <script>
-			  		  var polygon1 = L.polygon([
+		  var polygon1 = L.polygon([
 			  [1300,4855],
 			  [1215,4890],
 			  [1200,5530],
@@ -89,61 +89,71 @@ td:last-child {
 			  [1435,4550],
 			  [1550,4538]
 			  ]).addTo(map);
-// Create empty tables for each polygon
-var table1 = L.DomUtil.create('table', 'popup-table');
-var table2 = L.DomUtil.create('table', 'popup-table');
 
-// Create popups for each polygon
-polygon1.bindPopup(table1);
-polygon2.bindPopup(table2);
+  // add the table data to the popup
+  function createPopup(polygon, location) {
+    var table = document.createElement("table");
 
-
-      
-      // Clear table rows
-      table.innerHTML = '';
-      
-      // Create table header row
-      var headerRow = table.insertRow();
-      headerRow.insertCell().innerHTML = 'Location';
-      headerRow.insertCell().innerHTML = 'World';
-      headerRow.insertCell().innerHTML = 'Min Time';
-      headerRow.insertCell().innerHTML = 'Max Time';
-      headerRow.insertCell().innerHTML = 'Called Location';
-      
-      // Add data rows to table
-      filteredData.forEach(d => {
-        var dataRow = table.insertRow();
-        dataRow.insertCell().innerHTML = d.location;
-        dataRow.insertCell().innerHTML = d.world;
-        dataRow.insertCell().innerHTML = new Date(d.minTime * 1000).toLocaleString();
-        dataRow.insertCell().innerHTML = new Date(d.maxTime * 1000).toLocaleString();
-        dataRow.insertCell().innerHTML = d.calledLocation;
-      });
-    })
-    .catch(error => console.error('Error:', error));
+    // add the header row to the table
+    var headerRow = table.insertRow();
+    var header1 = headerRow.insertCell(0);
+    var header2 = headerRow.insertCell(1);
+    var header3 = headerRow.insertCell(2);
+    var header4 = headerRow.insertCell(3);
+    var header5 = headerRow.insertCell(4);
+    header1.innerHTML = "<b>Location</b>";
+    header2.innerHTML = "<b>World</b>";
+    header3.innerHTML = "<b>Min Time</b>";
+    header4.innerHTML = "<b>Max Time</b>";
+    header5.innerHTML = "<b>Called Location</b>";
+	  
+// define a function to update the table contents from the JSON data
+function updateTable() {
+    fetch("stars.json")
+      .then(response => response.json())
+      .then(data => {
+	console.log(data); // log the retrieved data
+    // clear the existing table rows
+        while (table.rows.length > 1) {
+          table.deleteRow(-1);
+        }
+        // filter the data by the specified location value
+        var filteredData = data.filter(d => d.location === location);	
+	    
+        // add the rows to the table
+        filteredData.forEach(d => {
+        var row = table.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        cell1.innerHTML = d.location;
+        cell2.innerHTML = d.world;
+        cell3.innerHTML = d.minTime;
+        cell4.innerHTML = d.maxTime;
+        cell5.innerHTML = d.calledLocation;
+       });
+      })
+      .catch(error => console.error(error));
 }
-// Function to update table data from JSON
-function updateTable(polygon, table) {
-  fetch('stars.json')
-    .then(response => response.json())
-    .then(data => {
-      // Filter data for location of the polygon
-      var filteredData = data.filter(d => d.location === polygon.location);
+	  
+  // call the updateTable function once to initially populate the table
+  updateTable();
+			  
+  // update the table every minute
+  setInterval(updateTable, 60000);
 
-// Update table data for each polygon when popup is opened
-polygon1.on('popupopen', function() {
-  updateTable(polygon1, table1);
-});
+     // create the popup and add the table to it
+      var popup = L.popup({
+	      maxWidth: 700
+      }).setContent(table);
+      polygon.bindPopup(popup);
+  }
 
-polygon2.on('popupopen', function() {
-  updateTable(polygon2, table2);
-});
-
-// Update table data for each polygon every 60 seconds
-setInterval(function() {
-  updateTable(polygon1, table1);
-  updateTable(polygon2, table2);
-}, 60000);
+// Add popup tables to each polygon
+createPopup(polygon1, 8);
+createPopup(polygon2, 2);
 	  </script>
   </body>
  </html>
