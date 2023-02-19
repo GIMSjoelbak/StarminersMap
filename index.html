@@ -89,40 +89,38 @@ td:last-child {
 			  [1435,4550],
 			  [1550,4538]
 			  ]).addTo(map);
-// Define a function to update the popup table
-function updatePopupTable(popup) {
-	 const content = popup.getContent();
-  console.log(content); // Check the value of content
-  const table = popup.getContent().querySelector('table');
+// Define function to fetch and update data
+function updateData() {
   fetch('stars.json')
     .then(response => response.json())
-    .then(data => {
-      const filteredData = data.filter(star => star.location === popup.location);
-      table.innerHTML = '';
-      filteredData.forEach(star => {
-        const row = table.insertRow();
-        row.insertCell().textContent = star.location;
-        row.insertCell().textContent = star.world;
-        row.insertCell().textContent = star.minTime;
-        row.insertCell().textContent = star.maxTime;
-        row.insertCell().textContent = star.calledLocation;
+    .then(function(data) {
+      // Update data for each polygon
+      locations.forEach(function(location) {
+        // Filter data for current location
+        var filteredData = data.filter(function(star) {
+          return star.location === location;
+        });
+
+        // Generate HTML table
+        var htmlTable = '<table>';
+        htmlTable += '<tr><th>World</th><th>Min Time</th><th>Max Time</th><th>Called Location</th></tr>';
+        filteredData.forEach(function(star) {
+          htmlTable += '<tr><td>' + star.world + '</td><td>' + star.minTime + '</td><td>' + star.maxTime + '</td><td>' + star.calledLocation + '</td></tr>';
+        });
+        htmlTable += '</table>';
+
+        // Update popup content
+        polygons[location].bindPopup(htmlTable);
       });
+    })
+    .catch(function(error) {
+      console.log(error);
     });
 }
 
-// Add popup to polygon1
-polygon1.bindPopup('<table></table>').on('popupopen', function(event) {
-  const popup = event.popup;
-  popup.location = 5; // Set the location value for filtering
-  updatePopupTable(popup);
-});
-
-// Add popup to polygon2
-polygon2.bindPopup('<table></table>').on('popupopen', function(event) {
-  const popup = event.popup;
-  popup.location = 7; // Set the location value for filtering
-  updatePopupTable(popup);
-});
+// Update data on map load and every minute
+updateData();
+setInterval(updateData, 60000);
 	  </script>
   </body>
  </html>
