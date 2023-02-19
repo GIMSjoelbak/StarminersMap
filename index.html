@@ -148,8 +148,8 @@ polygon2.on('click', function(e) {
 });
 			  // Call the updatePopupContent function every minute
 setInterval(function() {
-  polygon1.getPopup().update();
-  polygon2.getPopup().update();
+  polygon1.getPopup().updatePopupContent();
+  polygon2.getPopup().updatePopupContent();
   // ... update the rest of the popups
 }, 60000);
 
