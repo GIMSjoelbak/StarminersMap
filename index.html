@@ -60,7 +60,7 @@ var polygons = {}; // dictionary to store polygons
 var data = null; // variable to store data from json
 
 function loadData() {
-  fetch('https://example.com/stars.json')
+  fetch('stars.json')
     .then(response => response.json())
     .then(json => {
       data = json;
