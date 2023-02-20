@@ -110,8 +110,10 @@ function createPopup(polygon, location) {
 		  var locationWord;
   if (d.location === 2) {
     locationWord = "Feldip/Isle of Souls";
-  } else if (d.location === 3) {
+  } else if (d.location === 1) {
     locationWord = "Karamja/Crandor";
+} else if (d.location === 0) {
+    locationWord = "Asgarnia";
   } else {
     locationWord = d.location;
   }
