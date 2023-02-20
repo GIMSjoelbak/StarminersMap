@@ -131,8 +131,8 @@ function createPopup(polygon, location) {
         if (isDataChanged && prevData.length > 0) {
           polygon.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
           setTimeout(function () {
-            polygon.setStyle(polygon.originalOptions);
-          }, 500);
+	polygon.setStyle({ fillColor: polygon.options.fillColor, fillOpacity: polygon.options.fillOpacity });
+  }, 500);
         }
       })
       .catch((error) => console.error(error));
