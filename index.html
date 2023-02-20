@@ -77,7 +77,7 @@ function createPopup(polygon, location) {
   header6.innerHTML = "<b>Called Location</b>";
 
   // Keep track of the previous data
-  var prevData = [];
+  var prevData = null;
 
   function updateTable() {
     fetch("stars.json?timestamp=" + Date.now())
@@ -91,7 +91,10 @@ function createPopup(polygon, location) {
         var filteredData = data.filter((d) => d.location === location);
 
         // Compare the previous data with the new data
+	var isDataChanged = false;
+      if (prevData !== null) {
         var isDataChanged = JSON.stringify(filteredData) !== JSON.stringify(prevData);
+      }
         prevData = filteredData;
 
         filteredData.forEach((d) => {
@@ -131,7 +134,10 @@ function createPopup(polygon, location) {
         if (isDataChanged && prevData.length > 0) {
           polygon.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
           setTimeout(function () {
-	polygon.setStyle({ fillColor: polygon.options.fillColor, fillOpacity: polygon.options.fillOpacity });
+	polygon1.setStyle({ fillColor: polygon1.options.fillColor, fillOpacity: polygon.options.fillOpacity });
+  }, 500);
+	  setTimeout(function () {
+	polygon2.setStyle({ fillColor: polygon2.options.fillColor, fillOpacity: polygon.options.fillOpacity });
   }, 500);
         }
       })
