@@ -111,10 +111,10 @@ function createPopup(polygon, location) {
         // Convert Unix timestamp to normal time format
         var minTime = new Date(d.minTime * 1000).toLocaleString();
         var maxTime = new Date(d.maxTime * 1000).toLocaleString();
-          cell3.innerHTML = d.minTime;
-          cell4.innerHTML = d.maxTime;
+          cell3.innerHTML = minTime;
+          cell4.innerHTML = maxTime;
           cell5.innerHTML = d.calledLocation;
-		 // Replace the value of the location field with a word
+
         });
 
         // Add flashing effect to the polygon if the data has changed
