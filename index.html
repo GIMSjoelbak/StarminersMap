@@ -119,7 +119,7 @@ function createPopup(polygon, location) {
 	var now = Date.now();
         var relativeTime = Math.round((d.minTime * 1000 - now) / 60000);
         if (relativeTime < 0) {
-          relativeTime = -relativeTime;
+          relativeTime = "-" + relativeTime;
         } else {
           relativeTime = "+" + relativeTime;
         }
