@@ -132,16 +132,11 @@ function createPopup(polygon, location) {
 
 // Add flashing effect to the polygon if the data has changed
 if (isDataChanged && prevData.length > 0) {
-    if (polygon === polygon1) {
-        polygon1.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
-        setTimeout(function () {
-            polygon1.setStyle(polygon1.originalOptions);
-        }, 500);
-    } else if (polygon === polygon2) {
-        polygon2.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
-        setTimeout(function () {
-            polygon2.setStyle(polygon2.originalOptions);
-        }, 500);
+    if (polygon) {
+        polygon.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
+setTimeout(function () {
+  polygon.setStyle({ fillColor: polygon.originalOptions.fillColor, fillOpacity: polygon.originalOptions.fillOpacity });
+}, 500);
     }
 }
   })
