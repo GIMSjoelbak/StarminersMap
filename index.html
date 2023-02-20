@@ -107,7 +107,10 @@ function createPopup(polygon, location) {
     locationWord = d.location;
   }
           cell1.innerHTML = locationWord;
-          cell2.innerHTML = d.world;
+          cell2.innerHTML = d.world;	
+        // Convert Unix timestamp to normal time format
+        var minTime = new Date(d.minTime * 1000).toLocaleString();
+        var maxTime = new Date(d.maxTime * 1000).toLocaleString();
           cell3.innerHTML = d.minTime;
           cell4.innerHTML = d.maxTime;
           cell5.innerHTML = d.calledLocation;
