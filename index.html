@@ -129,16 +129,20 @@ function createPopup(polygon, location) {
           cell6.innerHTML = d.calledLocation;
 
         });
-// Add flashing effect to the polygon if the data has changed
-if (isDataChanged && prevData.length > 0) {
-  // Get the updated polygon based on the location
-  var updatedPolygon = (location === "location1") ? polygon1 : polygon2;
-  updatedPolygon.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
-  setTimeout(function () {
-    updatedPolygon.setStyle({ fillColor: updatedPolygon.originalOptions.fillColor, fillOpacity: updatedPolygon.originalOptions.fillOpacity });
+
+        // Add flashing effect to the polygon if the data has changed
+        if (isDataChanged && prevData.length > 0) {
+          polygon.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
+          setTimeout(function () {
+	polygon1.setStyle({ fillColor: polygon1.options.fillColor, fillOpacity: polygon1.options.fillOpacity });
   }, 500);
-}
-})
+	  setTimeout(function () {
+	polygon2.setStyle({ fillColor: polygon2.options.fillColor, fillOpacity: polygon2.options.fillOpacity });
+  }, 500);
+        }
+      })
+      .catch((error) => console.error(error));
+  }
 
   updateTable();
   setInterval(updateTable, 60000);
