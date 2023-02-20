@@ -80,14 +80,6 @@ function createPopup(polygon, location) {
     fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
-	    data = data.map((obj) => {
-      if (obj.location === 2) {
-        obj.location = "Location A";
-      } else if (obj.location === 3) {
-        obj.location = "Location B";
-      }
-      return obj;
-    });
 	    console.log(data); // log the retrieved data
         while (table.rows.length > 1) {
           table.deleteRow(-1);
@@ -106,11 +98,20 @@ function createPopup(polygon, location) {
           var cell3 = row.insertCell(2);
           var cell4 = row.insertCell(3);
           var cell5 = row.insertCell(4);
-          cell1.innerHTML = d.location;
+		  var locationWord;
+  if (d.location === 2) {
+    locationWord = "Location A";
+  } else if (d.location === 3) {
+    locationWord = "Location B";
+  } else {
+    locationWord = d.location;
+  }
+          cell1.innerHTML = locationWord;
           cell2.innerHTML = d.world;
           cell3.innerHTML = d.minTime;
           cell4.innerHTML = d.maxTime;
           cell5.innerHTML = d.calledLocation;
+		 // Replace the value of the location field with a word
         });
 
         // Add flashing effect to the polygon if the data has changed
