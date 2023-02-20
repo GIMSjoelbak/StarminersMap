@@ -116,7 +116,12 @@ function createPopup(polygon, location) {
         var maxTime = new Date(d.maxTime * 1000).toLocaleString();
           cell3.innerHTML = minTime;
           cell4.innerHTML = maxTime;
-	var relativeTime = Math.floor((Date.now() / 1000 - d.minTime) / 60);
+        var relativeTime = Math.round((d.minTime * 1000 - now) / 60000);
+        if (relativeTime < 0) {
+          relativeTime = -relativeTime;
+        } else {
+          relativeTime = "+" + relativeTime;
+        }
           cell5.innerHTML = relativeTime + " minutes";
           cell6.innerHTML = d.calledLocation;
 
