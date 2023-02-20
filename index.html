@@ -130,20 +130,20 @@ function createPopup(polygon, location) {
 		    });
 
 
-    // Add flashing effect to the polygon if the data has changed
-    if (isDataChanged && prevData.length > 0) {
-      if (polygon === polygon1) {
-        polygon.setStyle({ fillColor: "red", fillOpacity: 0.9 });
+// Add flashing effect to the polygon if the data has changed
+if (isDataChanged && prevData.length > 0) {
+    if (polygon === polygon1) {
+        polygon1.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
         setTimeout(function () {
-          polygon1.setStyle({ fillColor: polygon1.originalOptions.fillColor, fillOpacity: polygon1.originalOptions.fillOpacity });
+            polygon1.setStyle(polygon1.originalOptions);
         }, 500);
-      } else if (polygon === polygon2) {
-        polygon.setStyle({ fillColor: "blue", fillOpacity: 0.9 });
+    } else if (polygon === polygon2) {
+        polygon2.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
         setTimeout(function () {
-          polygon2.setStyle({ fillColor: polygon2.originalOptions.fillColor, fillOpacity: polygon2.originalOptions.fillOpacity });
+            polygon2.setStyle(polygon2.originalOptions);
         }, 500);
-      }
     }
+}
   })
       .catch((error) => console.error(error));
   }
