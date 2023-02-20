@@ -80,6 +80,14 @@ function createPopup(polygon, location) {
     fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
+	    data = data.map((obj) => {
+      if (obj.location === 2) {
+        obj.location = "Location A";
+      } else if (obj.location === 3) {
+        obj.location = "Location B";
+      }
+      return obj;
+    });
 	    console.log(data); // log the retrieved data
         while (table.rows.length > 1) {
           table.deleteRow(-1);
