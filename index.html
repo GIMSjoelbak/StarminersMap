@@ -136,7 +136,7 @@ if (isDataChanged && prevData.length > 0) {
         polygon.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
 setTimeout(function () {
 	 console.log("Changing back polygon style");
-  polygon.setStyle({ fillColor: polygon.originalOptions.fillColor, fillOpacity: polygon.originalOptions.fillOpacity });
+  polygon.setStyle({ fillColor: polygon.options.originalOptions.fillColor, fillOpacity: polygon.options.originalOptions.fillOpacity });
 }, 500);
     }
 }
