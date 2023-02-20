@@ -56,9 +56,9 @@ td:last-child {
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
 	  	  <script>
-		  var polygon1 = L.polygon([[1300,4855],[1215,4890],[1200,5530],[1855,5410],[2020,5425],[2130,5190],[2430,5180],[2485,5145],[2470,5085],[2292,4810],[2190,4705],[2020,4695],[1960,4805],[1915,4840]],{fillColor: 'DarkGreen',originalOptions: {fillColor: 'DarkGreen',fillOpacity: 0.4}}).addTo(map);
+		  var polygon3 = L.polygon([[1300,4855],[1215,4890],[1200,5530],[1855,5410],[2020,5425],[2130,5190],[2430,5180],[2485,5145],[2470,5085],[2292,4810],[2190,4705],[2020,4695],[1960,4805],[1915,4840]],{fillColor: 'DarkGreen',originalOptions: {fillColor: 'DarkGreen',fillOpacity: 0.4}}).addTo(map);
 		  var polygon2 = L.polygon([[1582,4502],[1565,2965],[1420,2865],[1135,2838],[900,3065],[855,3280],[1107,4394],[1435,4550],[1550,4538]],{fillColor: "#bada55",fillOpacity: 0.4,originalOptions: {fillColor: "#bada55",fillOpacity: 0.4}}).addTo(map);
- polygon1.originalOptions = polygon1.options; // store original style options
+ polygon3.originalOptions = polygon3.options; // store original style options
 polygon2.originalOptions = polygon2.options; // store original style options
 function createPopup(polygon, location) {
   var table = document.createElement("table");
@@ -109,7 +109,7 @@ function createPopup(polygon, location) {
   if (d.location === 2) {
     locationWord = "Feldip/Isle of Souls";
   } else if (d.location === 3) {
-    locationWord = "Location B";
+    locationWord = "Karamja/Crandor";
   } else {
     locationWord = d.location;
   }
@@ -152,7 +152,7 @@ setTimeout(function () {
 }
 
 // Add popup tables to each polygon
-createPopup(polygon1, 8);
+createPopup(polygon3, 3);
 createPopup(polygon2, 2);
 	  </script>
   </body>
