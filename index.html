@@ -60,9 +60,15 @@ td:last-child {
 fetch('./images/KaramjaTEST3.geojson')
     .then(response => response.json())
     .then(data => {
-        var polygon1 = L.geoJSON(data, {
-            fillColor: 'DarkGreen',
-            fillOpacity: 0.5
+  var polygon1 = L.geoJSON(data, {
+            style: {
+                fillColor: 'DarkGreen',
+                fillOpacity: 0.5
+            },
+            originalOptions: {
+                fillColor: 'DarkGreen',
+                fillOpacity: 0.5
+            }
         }).addTo(map);
     });
 		  var polygon2 = L.polygon([[1582,4502],[1565,2965],[1420,2865],[1135,2838],[900,3065],[855,3280],[1107,4394],[1435,4550],[1550,4538]],{fillColor: "#bada55",fillOpacity: 0.5,originalOptions: {fillColor: "#bada55",fillOpacity: 0.5}}).addTo(map);
