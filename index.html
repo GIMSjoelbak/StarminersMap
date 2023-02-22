@@ -199,9 +199,6 @@ function createPopup(polygon, location, data) {
           cell5.innerHTML = relativeTime + " min";
           cell6.innerHTML = d.calledLocation;
 		    });
-			updateTable();
-  setInterval(updateTable, 30000)
-	console.log();
 	}
 	  // Determine the type of the polygon argument and store it
   if (polygon instanceof L.Polygon) {
@@ -209,7 +206,10 @@ function createPopup(polygon, location, data) {
   } else if (polygon instanceof L.GeoJSON) {
     polygonType = "GeoJSON";
   }
-
+}			
+	updateTable();
+  setInterval(updateTable, 30000)
+	console.log();
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
 }
