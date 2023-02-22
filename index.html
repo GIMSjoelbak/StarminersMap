@@ -104,8 +104,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 
 
   // Keep track of the previous data
-  var prevData = null;
-  var polygonType = null;
+
 	   fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
@@ -115,6 +114,8 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	    console.log(data); // log the retrieved data
 	  });
 	});
+	  var prevData = null;
+  var polygonType = null;
 	
 function createPopup(polygon, location, data) {
   var table = document.createElement("table");
