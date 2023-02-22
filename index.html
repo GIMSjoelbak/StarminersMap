@@ -76,9 +76,20 @@ td:last-child {
   <body>	  			
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
-<script>
-		  var polygon0 = L.polygon([[2180,5345],[2110,5495],[2300,5765],[2544,5765],[3100,5765],[3100,5190],[2800,5190],[2600,5235]],{fillColor: "#6495ed",fillOpacity: 0.5,originalOptions: {fillColor: "#6495ed",fillOpacity: 0.5}}).addTo(map);	  
-var polygon1 = [];
+<script>  
+var polygon0 = [];
+fetch('./images/Asgarnia.geojson')
+  .then(response => response.json())
+  .then(data => {
+    polygon0 = L.geoJSON(data, {
+      style: {
+        fillColor: 'DarkGreen',
+        fillOpacity: 0.5
+      }
+    }).addTo(map);
+});
+			  console.log(polygon0); // Check the value of polygon1
+	var polygon1 = [];
 fetch('./images/Karamja.geojson')
   .then(response => response.json())
   .then(data => {
@@ -102,10 +113,7 @@ fetch('./images/Feldip.geojson')
       }
     }).addTo(map);
 });
-			  console.log(polygon1); // Check the value of polygon1
-
- polygon0.originalOptions = polygon0.options; // store original style options
-
+			  console.log(polygon2); // Check the value of polygon1
 
   // Keep track of the previous data
   var prevData = null;
