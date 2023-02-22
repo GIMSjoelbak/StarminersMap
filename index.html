@@ -212,7 +212,8 @@ function createPopup(polygon, location, data) {
   } else if (polygon instanceof L.GeoJSON) {
     polygonType = "GeoJSON";
   }
-			
+			updateTable();
+	console.log('complete');		
 
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
