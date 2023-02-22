@@ -91,9 +91,20 @@ fetch('./images/Karamja.geojson')
 });
 			  console.log(polygon1); // Check the value of polygon1
 
-		  var polygon2 = L.polygon([[1582,4502],[1565,2965],[1420,2865],[1135,2838],[900,3065],[855,3280],[1107,4394],[1435,4550],[1550,4538]],{fillColor: "#bada55",fillOpacity: 0.5,originalOptions: {fillColor: "#bada55",fillOpacity: 0.5}}).addTo(map);
+var polygon2 = [];
+fetch('./images/Feldip.geojson')
+  .then(response => response.json())
+  .then(data => {
+    polygon1 = L.geoJSON(data, {
+      style: {
+        fillColor: 'Brown',
+        fillOpacity: 0.5
+      }
+    }).addTo(map);
+});
+			  console.log(polygon1); // Check the value of polygon1
+
  polygon0.originalOptions = polygon0.options; // store original style options
-polygon2.originalOptions = polygon2.options; // store original style options
 
 
   // Keep track of the previous data
