@@ -57,10 +57,11 @@ td:last-child {
 	  <script src="coordinates.js"></script>
 	  	  <script>
 		  var polygon0 = L.polygon([[2180,5345],[2110,5495],[2300,5765],[2544,5765],[3100,5765],[3100,5190],[2800,5190],[2600,5235]],{fillColor: "#6495ed",fillOpacity: 0.5,originalOptions: {fillColor: "#6495ed",fillOpacity: 0.5}}).addTo(map);	  
-fetch('./images/KaramjaTEST4.geojson')
+var polygon1;
+			  fetch('./images/KaramjaTEST4.geojson')
     .then(response => response.json())
     .then(data => {
-  var polygon1 = L.geoJSON(data, {
+  polygon1 = L.geoJSON(data, {
             style: {
                 fillColor: 'DarkGreen',
                 fillOpacity: 0.5
