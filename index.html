@@ -102,9 +102,9 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     }
   }).addTo(map);
 
-  createPopup(polygon0, 0, data[0]);
-  createPopup(polygon1, 1, data[1]);
-  createPopup(polygon2, 2, data[2]);
+  createPopup(polygon0, 0);
+  createPopup(polygon1, 1);
+  createPopup(polygon2, 2);
 });
 
   // Keep track of the previous data
