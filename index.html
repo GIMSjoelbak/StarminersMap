@@ -208,7 +208,8 @@ function createPopup(polygon, location, data) {
   }
 
   updateTable();
-  setInterval(updateTable, 30000);
+  setInterval(updateTable, 30000)
+	console.log;
 
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
