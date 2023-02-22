@@ -125,6 +125,9 @@ fetch('./images/Feldip.geojson')
 	    console.log(data); // log the retrieved data
 	  });
 function createPopup(polygon, location, data) {
+	createPopup(polygon0, 0, data);
+	createPopup(polygon1, 1, data);
+	createPopup(polygon2, 2, data);
   var table = document.createElement("table");
   var headerRow = table.insertRow();
   var header1 = headerRow.insertCell(0);
@@ -232,9 +235,6 @@ function createPopup(polygon, location, data) {
 
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
-	createPopup(polygon0, 0, data);
-	createPopup(polygon1, 1, data);
-	createPopup(polygon2, 2, data);
 }
 	  </script>
   </body>
