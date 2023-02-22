@@ -77,43 +77,30 @@ td:last-child {
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
 <script>  
-var polygon0 = [];
-fetch('./images/Asgarnia.geojson')
-  .then(response => response.json())
-  .then(data => {
-    polygon0 = L.geoJSON(data, {
-      style: {
-        fillColor: 'DarkGreen',
-        fillOpacity: 0.5
-      }
-    }).addTo(map);
-});
-			  console.log(polygon0); // Check the value of polygon1
-	var polygon1 = [];
-fetch('./images/Karamja.geojson')
-  .then(response => response.json())
-  .then(data => {
-    polygon1 = L.geoJSON(data, {
-      style: {
-        fillColor: 'DarkGreen',
-        fillOpacity: 0.5
-      }
-    }).addTo(map);
-});
-			  console.log(polygon1); // Check the value of polygon1
-
-var polygon2 = [];
-fetch('./images/Feldip.geojson')
-  .then(response => response.json())
-  .then(data => {
-    polygon2 = L.geoJSON(data, {
-      style: {
-        fillColor: 'Brown',
-        fillOpacity: 0.5
-      }
-    }).addTo(map);
-});
-			  console.log(polygon2); // Check the value of polygon1
+var polygon0, polygon1, polygon2;
+Promise.all([
+  fetch('./images/Asgarnia.geojson').then(response => response.json()),
+  fetch('./images/Karamja.geojson').then(response => response.json()),
+  fetch('./images/Feldip.geojson').then(response => response.json())
+]).then(([data0, data1, data2]) => {
+  polygon0 = L.geoJSON(data0, {
+    style: {
+      fillColor: 'DarkGreen',
+      fillOpacity: 0.5
+    }
+  }).addTo(map);
+  polygon1 = L.geoJSON(data1, {
+    style: {
+      fillColor: 'DarkGreen',
+      fillOpacity: 0.5
+    }
+  }).addTo(map);
+  polygon2 = L.geoJSON(data2, {
+    style: {
+      fillColor: 'Brown',
+      fillOpacity: 0.5
+    }
+  }).addTo(map);
 
   // Keep track of the previous data
   var prevData = null;
@@ -121,11 +108,9 @@ fetch('./images/Feldip.geojson')
 	   fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
-	Promise.all([polygon0, polygon1, polygon2]).then(polygons => {
-	createPopup(polygons[0], 0, data);
-	createPopup(polygons[1], 1, data);
-	createPopup(polygons[2], 2, data);
-	});
+	createPopup(polygon0, 0, data);
+	createPopup(polygon1, 1, data);
+	createPopup(polygon2, 2, data);
 	    console.log(data); // log the retrieved data
 	  });
 function createPopup(polygon, location, data) {
