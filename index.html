@@ -85,7 +85,7 @@ td:last-child {
 
 
 	
-	function createPopup(polygon, location, data) {
+
   var table = document.createElement("table");
   var headerRow = table.insertRow();
   var header1 = headerRow.insertCell(0);
@@ -100,7 +100,8 @@ td:last-child {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
-  
+	
+ 	function createPopup(polygon, location, data) { 
 	function updateTable() {
          while (table.rows.length > 1) {
           table.deleteRow(-1);
