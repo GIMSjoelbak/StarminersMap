@@ -73,7 +73,6 @@ var polygon1;
 
 polygon2.originalOptions = polygon2.options; // store original style options
 function createPopup(polygon, location) {
-if (polygon && typeof polygon.bindPopup === 'function') {
   var table = document.createElement("table");
   var headerRow = table.insertRow();
   var header1 = headerRow.insertCell(0);
@@ -88,10 +87,7 @@ if (polygon && typeof polygon.bindPopup === 'function') {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
-	  } else {
-    console.error('polygon is not defined or does not have a bindPopup() method');
-  }
-}
+
 
   // Keep track of the previous data
   var prevData = null;
@@ -148,27 +144,6 @@ if (polygon && typeof polygon.bindPopup === 'function') {
           cell6.innerHTML = d.calledLocation;
 		    });
 
-			  polygon1.originalOptions = polygon1.options; // store original style options
-   // Add flashing effect to the polygon if the data has changed
-    if (isDataChanged && prevData.length > 0) {
-      if (polygon1) {
-        polygon1.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
-        setTimeout(function () {
-          console.log("Changing back polygon style");
-          polygon1.setStyle({ fillColor: polygon1.options.originalOptions.fillColor, fillOpacity: polygon1.options.originalOptions.fillOpacity });
-        }, 500);
-      }
-      if (polygon0) {
-        polygon0.setStyle({ fillColor: "#ff0000", fillOpacity: 0.9 });
-        setTimeout(function () {
-          console.log("Changing back polygon style");
-          polygon0.setStyle({ fillColor: polygon0.options.originalOptions.fillColor, fillOpacity: polygon0.options.originalOptions.fillOpacity });
-        }, 500);
-      }
-    }
-  })
-  .catch((error) => console.error(error));
-  }
 
   updateTable();
   setInterval(updateTable, 60000);
