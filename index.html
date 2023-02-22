@@ -58,7 +58,7 @@ td:last-child {
 	  	  <script>
 		  var polygon0 = L.polygon([[2180,5345],[2110,5495],[2300,5765],[2544,5765],[3100,5765],[3100,5190],[2800,5190],[2600,5235]],{fillColor: "#6495ed",fillOpacity: 0.5,originalOptions: {fillColor: "#6495ed",fillOpacity: 0.5}}).addTo(map);	  
 var polygon1;
-			  fetch('./images/KaramjaTEST4.geojson')
+fetch('./images/KaramjaTEST4.geojson')
   .then(response => response.json())
   .then(data => {
     polygon1 = L.geoJSON(data, {
@@ -67,10 +67,14 @@ var polygon1;
         fillOpacity: 0.5
       }
     }).addTo(map);
-})
-
+});
+			  console.log(polygon1); // Check the value of polygon1
+if (isDataChanged && prevData.length > 0) {
+  // Rest of the code
+}
 		  var polygon2 = L.polygon([[1582,4502],[1565,2965],[1420,2865],[1135,2838],[900,3065],[855,3280],[1107,4394],[1435,4550],[1550,4538]],{fillColor: "#bada55",fillOpacity: 0.5,originalOptions: {fillColor: "#bada55",fillOpacity: 0.5}}).addTo(map);
-
+ polygon0.originalOptions = polygon0.options; // store original style options
+			  polygon1.originalOptions = polygon1.options; // store original style options
 polygon2.originalOptions = polygon2.options; // store original style options
 function createPopup(polygon, location) {
   var table = document.createElement("table");
@@ -87,7 +91,6 @@ function createPopup(polygon, location) {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
-
 
   // Keep track of the previous data
   var prevData = null;
@@ -144,12 +147,16 @@ function createPopup(polygon, location) {
           cell6.innerHTML = d.calledLocation;
 		    });
 
+  })
+  .catch((error) => console.error(error));
+  }
 
   updateTable();
   setInterval(updateTable, 60000);
 
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
+}
 
 // Add popup tables to each polygon
 createPopup(polygon0, 0);
@@ -158,6 +165,9 @@ createPopup(polygon2, 2);
 	  </script>
   </body>
  </html>
+  
+      
+  
   
       
   
