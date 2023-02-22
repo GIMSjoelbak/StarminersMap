@@ -76,30 +76,9 @@ td:last-child {
   <body>	  			
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
+	  <script src="polygons.js"></script>
 <script>  
-var polygon0 = [];
-fetch('./images/Asgarnia.geojson')
-  .then(response => response.json())
-  .then(data => {
-    polygon0 = L.geoJSON(data).addTo(map);
-});
-console.log(polygon0);
 
-var polygon1 = [];
-fetch('./images/Karamja.geojson')
-  .then(response => response.json())
-  .then(data => {
-    polygon1 = L.geoJSON(data).addTo(map);
-});
-console.log(polygon1);
-
-var polygon2 = [];
-fetch('./images/Feldip.geojson')
-  .then(response => response.json())
-  .then(data => {
-    polygon2 = L.geoJSON(data).addTo(map);
-});
-console.log(polygon2);
 
   // Keep track of the previous data
   var prevData = null;
@@ -132,16 +111,7 @@ function createPopup(polygon, location, data) {
          while (table.rows.length > 1) {
           table.deleteRow(-1);
         }
-		 // Check if the polygon is a GeoJSON layer
-  if (polygon instanceof L.GeoJSON) {
-    // Bind the popup to each layer in the GeoJSON layer
-    polygon.eachLayer(function(layer) {
-      layer.bindPopup(table);
-    });
-  } else {
-    // Bind the popup to the polygon layer
-    polygon.bindPopup(table);
-  }
+
         var filteredData = data.filter((d) => d.location === location);
 	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
 
