@@ -99,7 +99,7 @@ polygon2.originalOptions = polygon2.options; // store original style options
   // Keep track of the previous data
   var prevData = null;
   var polygonType = null;
-	   fetch("stars.json?timestamp=" + Date.now())
+	   fetch("http://server.starminers.site/trusted?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
 	createPopup(polygon0, 0, data);
