@@ -73,6 +73,7 @@ var polygon1;
 
 polygon2.originalOptions = polygon2.options; // store original style options
 function createPopup(polygon, location) {
+if (polygon && typeof polygon.bindPopup === 'function') {
   var table = document.createElement("table");
   var headerRow = table.insertRow();
   var header1 = headerRow.insertCell(0);
@@ -87,6 +88,10 @@ function createPopup(polygon, location) {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
+	  } else {
+    console.error('polygon is not defined or does not have a bindPopup() method');
+  }
+}
 
   // Keep track of the previous data
   var prevData = null;
