@@ -87,6 +87,14 @@ fetch('./images/Asgarnia.geojson')
         fillOpacity: 0.5
       }
     }).addTo(map);
+	polygon0.eachLayer(function(layer) {
+      var polygon = L.polygon(layer.getLatLngs(), {
+        color: 'DarkGreen',
+        fillColor: 'DarkGreen',
+        fillOpacity: 0.5
+      }).addTo(map);
+      createPopup(polygon, 0, data);
+    });
 });
 			  console.log(polygon0); // Check the value of polygon1
 	var polygon1 = [];
