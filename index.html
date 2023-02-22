@@ -107,6 +107,7 @@ function createPopup(polygon, location) {
 
   // Keep track of the previous data
   var prevData = null;
+  var polygonType = null;
 
   function updateTable() {
     fetch("stars.json?timestamp=" + Date.now())
@@ -125,15 +126,22 @@ function createPopup(polygon, location) {
         isDataChanged = JSON.stringify(filteredData) !== JSON.stringify(prevData);
       }
         prevData = filteredData;
-	        if (isDataChanged) {
-      // Add a class to the polygon element
-      polygon.getElement().classList.add('flash');
-
-      // Remove the class after 0.5 seconds
-      setTimeout(function() {
-        polygon.getElement().classList.remove('flash');
-      }, 500);
-    }
+       // Flash the polygon if data has changed and polygon type is defined
+        if (isDataChanged && polygonType !== null) {
+          if (polygonType === "Polygon") {
+            polygon.getElement().classList.add("flash");
+            setTimeout(function () {
+              polygon.getElement().classList.remove("flash");
+            }, 500);
+          } else if (polygonType === "GeoJSON") {
+            polygon.eachLayer(function (layer) {
+              layer.getElement().classList.add("flash");
+              setTimeout(function () {
+                layer.getElement().classList.remove("flash");
+              }, 500);
+            });
+          }
+        }
 
         filteredData.forEach((d) => {
           var row = table.insertRow();
@@ -171,6 +179,12 @@ function createPopup(polygon, location) {
 
   })
   .catch((error) => console.error(error));
+  }
+	  // Determine the type of the polygon argument and store it
+  if (polygon instanceof L.Polygon) {
+    polygonType = "Polygon";
+  } else if (polygon instanceof L.GeoJSON) {
+    polygonType = "GeoJSON";
   }
 
   updateTable();
