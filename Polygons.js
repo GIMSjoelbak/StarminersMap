@@ -30,3 +30,5 @@ console.log(polygon2);
 		   createPopup(polygon2, 2, data);
 	    console.log(data); // log the retrieved data
 	  });
+  var popup = L.popup({ maxWidth: 700 }).setContent(table);
+  polygon.bindPopup(popup);
