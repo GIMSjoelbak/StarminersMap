@@ -112,9 +112,6 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	createPopup(polygon1, 1, data);
 	createPopup(polygon2, 2, data);
 	    console.log(data); // log the retrieved data
-updateTable();
-  setInterval(updateTable, 30000)
-	console.log();
 	  });
 	});
 	  // Keep track of the previous data
@@ -202,6 +199,9 @@ function createPopup(polygon, location, data) {
           cell5.innerHTML = relativeTime + " min";
           cell6.innerHTML = d.calledLocation;
 		    });
+			updateTable();
+  setInterval(updateTable, 30000)
+	console.log();
 	}
 	  // Determine the type of the polygon argument and store it
   if (polygon instanceof L.Polygon) {
