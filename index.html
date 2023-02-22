@@ -148,7 +148,7 @@ function createPopup(polygon, location, data) {
          while (table.rows.length > 1) {
           table.deleteRow(-1);
         }
-  // Check if the polygon is a GeoJSON layer
+		 // Check if the polygon is a GeoJSON layer
   if (polygon instanceof L.GeoJSON) {
     // Bind the popup to each layer in the GeoJSON layer
     polygon.eachLayer(function(layer) {
