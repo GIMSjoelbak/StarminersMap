@@ -95,7 +95,7 @@ var polygon2 = [];
 fetch('./images/Feldip.geojson')
   .then(response => response.json())
   .then(data => {
-    polygon1 = L.geoJSON(data, {
+    polygon2 = L.geoJSON(data, {
       style: {
         fillColor: 'Brown',
         fillOpacity: 0.5
