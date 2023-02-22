@@ -142,7 +142,7 @@ function createPopup(polygon, location, data) {
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
   
-	function updateTable(polygon, location) {
+	function updateTable() {
          while (table.rows.length > 1) {
           table.deleteRow(-1);
         }
@@ -213,20 +213,6 @@ function createPopup(polygon, location, data) {
     polygonType = "Polygon";
   } else if (polygon instanceof L.GeoJSON) {
     polygonType = "GeoJSON";
-  }
-	  // Bind the popup if the layer is a polygon
-  if (polygonType === "Polygon") {
-    polygon.bindPopup(table, {
-      minWidth: 500,
-      maxHeight: 300
-    });
-  } else if (polygonType === "GeoJSON") {
-    polygon.eachLayer(function (layer) {
-      layer.bindPopup(table, {
-        minWidth: 500,
-        maxHeight: 300
-      });
-    });
   }
 
   updateTable();
