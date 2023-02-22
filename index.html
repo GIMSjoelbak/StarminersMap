@@ -152,7 +152,9 @@ function createPopup(polygon, location, data) {
 	var isDataChanged = false;
       if (prevData !== null) {
          var prevData2 = prevData.filter((d) => d.calledLocation !== "");
-        isDataChanged = filteredData2.length > prevData2.length;
+      isDataChanged = 
+      (filteredData2.length > prevData2.length) || 
+      (filteredData2.some(d => d.calledLocation !== "" && !prevData2.find(p => p.id === d.id)));
       }
         prevData = filteredData;
        // Flash the polygon if data has changed and polygon type is defined
