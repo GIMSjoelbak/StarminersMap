@@ -102,7 +102,6 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     }
   }).addTo(map);
 
-});
 
   // Keep track of the previous data
   var prevData = null;
@@ -115,6 +114,8 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	createPopup(polygon2, 2, [data]);
 	    console.log(data); // log the retrieved data
 	  });
+	});
+	
 function createPopup(polygon, location, data) {
   var table = document.createElement("table");
   var headerRow = table.insertRow();
