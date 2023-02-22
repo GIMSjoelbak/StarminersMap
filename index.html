@@ -77,6 +77,7 @@ td:last-child {
     <div id="map"</div>
 	  <script src="coordinates.js"></script>
 <script>  
+	var polygon0, polygon1, polygon2;
 Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson')])
 .then(responses => Promise.all(responses.map(response => response.json())))
 .then(data => {
@@ -112,9 +113,9 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	   fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
-	createPopup(polygon0, 0, data);
-	createPopup(polygon1, 1, data);
-	createPopup(polygon2, 2, data);
+	createPopup(polygon0, 0, [data]);
+	createPopup(polygon1, 1, [data]);
+	createPopup(polygon2, 2, [data]);
 	    console.log(data); // log the retrieved data
 	  });
 function createPopup(polygon, location, data) {
