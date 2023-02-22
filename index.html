@@ -82,6 +82,7 @@ fetch('./images/Asgarnia.geojson')
   .then(response => response.json())
   .then(data => {
     polygon0 = L.geoJSON(data).addTo(map);
+	createPopup(polygon0, 0, data);
 });
 console.log(polygon0);
 
@@ -90,6 +91,7 @@ fetch('./images/Karamja.geojson')
   .then(response => response.json())
   .then(data => {
     polygon1 = L.geoJSON(data).addTo(map);
+	createPopup(polygon1, 1, data);
 });
 console.log(polygon1);
 
@@ -98,6 +100,7 @@ fetch('./images/Feldip.geojson')
   .then(response => response.json())
   .then(data => {
     polygon2 = L.geoJSON(data).addTo(map);
+	createPopup(polygon2, 2, data);
 });
 console.log(polygon2);
 
@@ -107,9 +110,6 @@ console.log(polygon2);
 	   fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
-	createPopup(polygon0, 0, data);
-	createPopup(polygon1, 1, data);
-	createPopup(polygon2, 2, data);
 	    console.log(data); // log the retrieved data
 	  });
 function createPopup(polygon, location, data) {
