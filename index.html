@@ -148,7 +148,16 @@ function createPopup(polygon, location, data) {
          while (table.rows.length > 1) {
           table.deleteRow(-1);
         }
-
+  // Check if the polygon is a GeoJSON layer
+  if (polygon instanceof L.GeoJSON) {
+    // Bind the popup to each layer in the GeoJSON layer
+    polygon.eachLayer(function(layer) {
+      layer.bindPopup(table);
+    });
+  } else {
+    // Bind the popup to the polygon layer
+    polygon.bindPopup(table);
+  }
         var filteredData = data.filter((d) => d.location === location);
 	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
 
