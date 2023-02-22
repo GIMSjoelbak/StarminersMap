@@ -103,9 +103,9 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   }).addTo(map);
 
 
-
-
-	   fetch("stars.json?timestamp=" + Date.now())
+// Define a separate function to fetch data and update table
+  function fetchDataAndUpdateTable() {
+ fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
 	createPopup(polygon0, 0, data);
@@ -113,7 +113,13 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	createPopup(polygon2, 2, data);
 	    console.log(data); // log the retrieved data
 	  });
-	});
+	}
+	 // Call the fetch data function initially
+  fetchDataAndUpdateTable();
+
+  // Call the fetch data function every 30 seconds using setInterval
+  setInterval(fetchDataAndUpdateTable, 30000);
+});
 	  // Keep track of the previous data
 	  var prevData = null;
   var polygonType = null;
