@@ -126,7 +126,7 @@ fetch('./images/Feldip.geojson')
 	createPopup(polygon2, 2, data);
 	    console.log(data); // log the retrieved data
 	  });
-function createPopup(polygon, location) {
+function createPopup(polygon, location, data) {
   var table = document.createElement("table");
   var headerRow = table.insertRow();
   var header1 = headerRow.insertCell(0);
@@ -142,7 +142,7 @@ function createPopup(polygon, location) {
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
   
-	function updateTable(polygon, location, data) {
+	function updateTable(polygon, location) {
          while (table.rows.length > 1) {
           table.deleteRow(-1);
         }
