@@ -21,3 +21,12 @@ fetch('./images/Feldip.geojson')
     polygon2 = L.geoJSON(data).addTo(map);
 });
 console.log(polygon2);
+
+	   fetch("stars.json?timestamp=" + Date.now())
+      .then((response) => response.json())
+      .then((data) => {
+		   createPopup(polygon0, 0, data);
+		   createPopup(polygon1, 1, data);
+		   createPopup(polygon2, 2, data);
+	    console.log(data); // log the retrieved data
+	  });
