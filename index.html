@@ -104,7 +104,7 @@ function createPopup(polygon, location) {
         // Compare the previous data with the new data
 	var isDataChanged = false;
       if (prevData !== null) {
-        var isDataChanged = JSON.stringify(filteredData) !== JSON.stringify(prevData);
+        isDataChanged = JSON.stringify(filteredData) !== JSON.stringify(prevData);
       }
         prevData = filteredData;
 
