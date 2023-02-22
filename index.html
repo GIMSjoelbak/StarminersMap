@@ -12,6 +12,21 @@
      crossorigin=""></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <style>
+.flash {
+  animation: flash 0.5s;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 body {
       padding: 0;
       margin: 0;
@@ -110,6 +125,15 @@ function createPopup(polygon, location) {
         isDataChanged = JSON.stringify(filteredData) !== JSON.stringify(prevData);
       }
         prevData = filteredData;
+	        if (isDataChanged) {
+      // Add a class to the polygon element
+      polygon.getElement().classList.add('flash');
+
+      // Remove the class after 0.5 seconds
+      setTimeout(function() {
+        polygon.getElement().classList.remove('flash');
+      }, 500);
+    }
 
         filteredData.forEach((d) => {
           var row = table.insertRow();
