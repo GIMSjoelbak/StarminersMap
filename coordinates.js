@@ -35,7 +35,7 @@ L.CursorHandler = L.Handler.extend({
 
       const map = L.map('map', {
         crs: L.CRS.Simple,
-        minZoom: -2
+        minZoom: -3
       });
 	  map.cursor.enable();
       const bounds = [[0,0], [4881,8337]];
