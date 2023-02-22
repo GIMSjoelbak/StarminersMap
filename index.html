@@ -120,8 +120,8 @@ fetch('./images/Feldip.geojson')
   var polygonType = null;
 	   fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
-      .then((jsonData) => {
-		   data = jsonData;
+      .then((data) => {
+
 	    console.log(data); // log the retrieved data
 	  });
 function createPopup(polygon, location, data) {
@@ -140,7 +140,7 @@ function createPopup(polygon, location, data) {
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
   
-	function updateTable() {
+	function updateTable(polygon, location, data) {
          while (table.rows.length > 1) {
           table.deleteRow(-1);
         }
