@@ -122,9 +122,9 @@ fetch('./images/Feldip.geojson')
       .then((response) => response.json())
       .then((data) => {
 	Promise.all([polygon0, polygon1, polygon2]).then(polygons => {
-	createPopup(polygon0, 0, data);
-	createPopup(polygon1, 1, data);
-	createPopup(polygon2, 2, data);
+	createPopup(polygons[0], 0, data);
+	createPopup(polygons[1], 1, data);
+	createPopup(polygons[2], 2, data);
 	});
 	    console.log(data); // log the retrieved data
 	  });
