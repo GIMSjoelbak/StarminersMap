@@ -209,7 +209,7 @@ function createPopup(polygon, location, data) {
 }			
 	updateTable();
   setInterval(updateTable, 30000)
-	console.log();
+	console.log('interval started');
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
 }
