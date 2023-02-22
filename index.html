@@ -125,12 +125,13 @@ function createPopup(polygon, location) {
         }
 
         var filteredData = data.filter((d) => d.location === location);
-	var filteredData2 = data.filter((d) => d.location === location && d.calledLocation !== "");
+	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
 
         // Compare the previous data with the new data
 	var isDataChanged = false;
       if (prevData !== null) {
-        isDataChanged = JSON.stringify(filteredData2) !== JSON.stringify(prevData) && filteredData2.length > 0;
+         var prevData2 = prevData.filter((d) => d.calledLocation !== "");
+        isDataChanged = filteredData2.length > prevData2.length;
       }
         prevData = filteredData;
        // Flash the polygon if data has changed and polygon type is defined
