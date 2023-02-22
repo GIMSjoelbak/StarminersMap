@@ -87,14 +87,6 @@ fetch('./images/Asgarnia.geojson')
         fillOpacity: 0.5
       }
     }).addTo(map);
-	polygon0.eachLayer(function(layer) {
-      var polygon = L.polygon(layer.getLatLngs(), {
-        color: 'DarkGreen',
-        fillColor: 'DarkGreen',
-        fillOpacity: 0.5
-      }).addTo(map);
-      createPopup(polygon, 0, data);
-    });
 });
 			  console.log(polygon0); // Check the value of polygon1
 	var polygon1 = [];
@@ -221,6 +213,20 @@ function createPopup(polygon, location, data) {
     polygonType = "Polygon";
   } else if (polygon instanceof L.GeoJSON) {
     polygonType = "GeoJSON";
+  }
+	  // Bind the popup if the layer is a polygon
+  if (polygonType === "Polygon") {
+    polygon.bindPopup(table, {
+      minWidth: 500,
+      maxHeight: 300
+    });
+  } else if (polygonType === "GeoJSON") {
+    polygon.eachLayer(function (layer) {
+      layer.bindPopup(table, {
+        minWidth: 500,
+        maxHeight: 300
+      });
+    });
   }
 
   updateTable();
