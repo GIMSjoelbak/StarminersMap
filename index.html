@@ -138,13 +138,13 @@ function createPopup(polygon, location) {
             polygon.getElement().classList.add("flash");
             setTimeout(function () {
               polygon.getElement().classList.remove("flash");
-            }, 500);
+            }, 2000);
           } else if (polygonType === "GeoJSON") {
             polygon.eachLayer(function (layer) {
               layer.getElement().classList.add("flash");
               setTimeout(function () {
                 layer.getElement().classList.remove("flash");
-              }, 500);
+              }, 2000);
             });
           }
         }
