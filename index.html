@@ -193,8 +193,9 @@ function createPopup(polygon, location, data) {
         setTimeout(() => {
           polygon.setStyle({ className: '' });
         }, 1000);
-	    
-	}
+};
+    }
+		
 	  // Determine the type of the polygon argument and store it
   if (polygon instanceof L.Polygon) {
     polygonType = "Polygon";
