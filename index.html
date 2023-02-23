@@ -137,12 +137,25 @@ function createPopup(polygon, location, data) {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
-  
+  var prevData = null;
 	function updateTable() {
-		var prevData = null;
-		var filteredData = data.filter((d) => d.location === location);
-		
-		
+		// filter the data for the current location
+    var filteredData = data.filter((d) => d.location === location);
+
+    // check if the conditions are met
+    var flashPolygon = filteredData.some((d) => (prevData === null && d.calledLocation !== "") || (prevData !== null && d.calledLocation !== prevData.calledLocation));
+
+    // add or remove the flash class depending on the condition
+    if (flashPolygon) {
+      polygon._path.classList.add("flash");
+      setTimeout(() => {
+        polygon._path.classList.remove("flash");
+      }, 1000);
+    }
+
+    // clear the table before updating it
+    table.innerHTML = "";
+
         filteredData.forEach((d) => {
           var row = table.insertRow();
           var cell1 = row.insertCell(0);
@@ -175,17 +188,9 @@ function createPopup(polygon, location, data) {
         }
           cell5.innerHTML = relativeTime + " min";
           cell6.innerHTML = d.calledLocation;
-		
-   // check if calledLocation has changed from empty to filled, or if it is filled for the first time
-      if ((prevData && prevData.calledLocation === "") && d.calledLocation !== "") {
-        polygon.getElement().classList.add("flash");
-	      console.log('flashing');
-      }
-	      
-      
-
-      prevData = d;
 		    });
+		  // set the prevData to the current data
+    prevData = filteredData.length > 0 ? filteredData[0] : null;
 	}
 	  // Determine the type of the polygon argument and store it
   if (polygon instanceof L.Polygon) {
