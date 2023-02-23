@@ -139,39 +139,6 @@ function createPopup(polygon, location, data) {
   header6.innerHTML = "<b>Called Location</b>";
   
 	function updateTable() {
-         while (table.rows.length > 1) {
-          table.deleteRow(-1);
-        }
-	 // Keep track of the previous data
-  var prevData = null;
-  var polygonType = null;
-
-        var filteredData = data.filter((d) => d.location === location);
-	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
-
-        // Compare the previous data with the new data
-	var isDataChanged = false;
-      if (prevData !== null) {
-         var prevData2 = prevData.filter((d) => d.calledLocation !== "");
-        isDataChanged = filteredData2.length > prevData2.length;
-      }
-        prevData = filteredData;
-       // Flash the polygon if data has changed and polygon type is defined
-        if (isDataChanged && polygonType !== null) {
-          if (polygonType === "Polygon") {
-            polygon.getElement().classList.add("flash");
-            setTimeout(function () {
-              polygon.getElement().classList.remove("flash");
-            }, 2000);
-          } else if (polygonType === "GeoJSON") {
-            polygon.eachLayer(function (layer) {
-              layer.getElement().classList.add("flash");
-              setTimeout(function () {
-                layer.getElement().classList.remove("flash");
-              }, 2000);
-            });
-          }
-        }
         filteredData.forEach((d) => {
           var row = table.insertRow();
           var cell1 = row.insertCell(0);
