@@ -137,8 +137,9 @@ function createPopup(polygon, location, data) {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
-  var prevData = null;
+  
 	function updateTable() {
+		var prevData = null;
 		// filter the data for the current location
     var filteredData = data.filter((d) => d.location === location);
 
