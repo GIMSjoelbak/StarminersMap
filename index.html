@@ -141,7 +141,7 @@ function createPopup(polygon, location, data) {
 	function updateTable() {
 		var prevData = null;
 		var filteredData = data.filter((d) => d.location === location);
-		prevData = filteredData;
+		
 		
         filteredData.forEach((d) => {
           var row = table.insertRow();
