@@ -183,7 +183,6 @@ function createPopup(polygon, location, data) {
         }
           cell5.innerHTML = relativeTime + " min";
           cell6.innerHTML = d.calledLocation;
-
 		    });
 	          // Add and remove flash class to the polygons
       var hasNewCalledLocation = filteredData.some(d => d.calledLocation && (!prevData || !prevData.some(pd => pd.id === d.id && pd.calledLocation === d.calledLocation)));
@@ -194,8 +193,11 @@ function createPopup(polygon, location, data) {
           polygon.setStyle({ className: '' });
         }, 1000);
 };
+	          // Update the previous data
+      prevData = filteredData;
     }
-		
+  }
+ 	
 	  // Determine the type of the polygon argument and store it
   if (polygon instanceof L.Polygon) {
     polygonType = "Polygon";
