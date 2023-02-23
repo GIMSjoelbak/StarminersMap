@@ -140,18 +140,17 @@ function createPopup(polygon, location, data) {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
-  
-	function updateTable() {
-		var prevData = null;
+	
+	var prevData = null;
+  	function updateTable() {
+		
 		var filteredData = data.filter((d) => d.location === location);
 		
-		// Add and remove flash class to the polygons
-  polygon.setStyle({className: 'flash'});
-  setTimeout(() => {
-    polygon.setStyle({className: ''});
-  }, 1000);
 		
-		
+		// Compare the filtered data to the previous data
+    if (!prevData || JSON.stringify(filteredData) !== JSON.stringify(prevData)) {
+	     // If the filtered data is different, update the table and flash the polygon
+      table.innerHTML = "";
         filteredData.forEach((d) => {
           var row = table.insertRow();
           var cell1 = row.insertCell(0);
@@ -186,6 +185,15 @@ function createPopup(polygon, location, data) {
           cell6.innerHTML = d.calledLocation;
 
 		    });
+	          // Add and remove flash class to the polygons
+      var hasNewCalledLocation = filteredData.some(d => d.calledLocation && (!prevData || !prevData.some(pd => pd.id === d.id && pd.calledLocation === d.calledLocation)));
+      var hasChangedCalledLocation = filteredData.some(d => d.calledLocation && prevData && prevData.some(pd => pd.id === d.id && pd.calledLocation !== d.calledLocation));
+      if (hasNewCalledLocation || hasChangedCalledLocation) {
+        polygon.setStyle({ className: 'flash' });
+        setTimeout(() => {
+          polygon.setStyle({ className: '' });
+        }, 1000);
+	    
 	}
 	  // Determine the type of the polygon argument and store it
   if (polygon instanceof L.Polygon) {
@@ -195,6 +203,8 @@ function createPopup(polygon, location, data) {
   }
 			updateTable();
 	console.log('complete');
+	      // Return the table as the content of the popup
+  return table;
 
 
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
