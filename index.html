@@ -178,14 +178,14 @@ function createPopup(polygon, location, data) {
         }
           cell5.innerHTML = relativeTime + " min";
           cell6.innerHTML = d.calledLocation;
-		   // Add flash class to polygon if calledlocation has changed from empty to non-empty
-      if (!prevData || (prevData && !prevData.calledlocation && d.calledlocation)) {
-        polygon.options.className = "flash";
+      // Check if calledlocation has changed from empty to non-empty
+      if (!prevData?.calledlocation && d.calledlocation) {
+        polygon.getElement().classList.add("flash");
       }
 
       prevData = d;
-		    });
-	          };
+    });
+  }
 
 	  // Determine the type of the polygon argument and store it
   if (polygon instanceof L.Polygon) {
