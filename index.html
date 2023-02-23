@@ -120,9 +120,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   // Call the fetch data function every 30 seconds using setInterval
   setInterval(fetchDataAndUpdateTable, 30000);
 });
-	  // Keep track of the previous data
-	  var prevData = null;
-  var polygonType = null;
+
 	
 function createPopup(polygon, location, data) {
   var table = document.createElement("table");
@@ -144,6 +142,9 @@ function createPopup(polygon, location, data) {
          while (table.rows.length > 1) {
           table.deleteRow(-1);
         }
+	 // Keep track of the previous data
+  var prevData = null;
+  var polygonType = null;
 
         var filteredData = data.filter((d) => d.location === location);
 	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
