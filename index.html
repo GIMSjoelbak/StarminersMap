@@ -113,41 +113,12 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	createPopup(polygon2, 2, data);
 	    console.log(data); // log the retrieved data
 	  });
-	}
-	 // Call the fetch data function initially
-  fetchDataAndUpdateTable();
-
-  // Call the fetch data function every 30 seconds using setInterval
-  setInterval(fetchDataAndUpdateTable, 30000);
-});
-
-	
-function createPopup(polygon, location, data) {
-  var table = document.createElement("table");
-  var headerRow = table.insertRow();
-  var header1 = headerRow.insertCell(0);
-  var header2 = headerRow.insertCell(1);
-  var header3 = headerRow.insertCell(2);
-  var header4 = headerRow.insertCell(3);
-  var header5 = headerRow.insertCell(4);
-  var header6 = headerRow.insertCell(5);
-  header1.innerHTML = "<b>Location</b>";
-  header2.innerHTML = "<b>World</b>";
-  header3.innerHTML = "<b>Min Time</b>";
-  header4.innerHTML = "<b>Max Time</b>";
-  header5.innerHTML = "<b>Time until</b>";	
-  header6.innerHTML = "<b>Called Location</b>";
-  
-	function updateTable() {
-         while (table.rows.length > 1) {
+	   // Keep track of the previous data
+  var prevData = null;
+  var polygonType = null;
+	         while (table.rows.length > 1) {
           table.deleteRow(-1);
         }
-	 // Keep track of the previous data
-  var prevData = null;
-  var polygonType = polygon.polygonType;
-  polygon0.polygonType = "GeoJSON";
-		polygon1.polygonType = "GeoJSON";
-		polygon2.polygonType = "GeoJSON";
 
         var filteredData = data.filter((d) => d.location === location);
 	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
@@ -175,6 +146,33 @@ function createPopup(polygon, location, data) {
             });
           }
         }
+	}
+	 // Call the fetch data function initially
+  fetchDataAndUpdateTable();
+
+  // Call the fetch data function every 30 seconds using setInterval
+  setInterval(fetchDataAndUpdateTable, 30000);
+});
+
+	
+function createPopup(polygon, location, data) {
+  var table = document.createElement("table");
+  var headerRow = table.insertRow();
+  var header1 = headerRow.insertCell(0);
+  var header2 = headerRow.insertCell(1);
+  var header3 = headerRow.insertCell(2);
+  var header4 = headerRow.insertCell(3);
+  var header5 = headerRow.insertCell(4);
+  var header6 = headerRow.insertCell(5);
+  header1.innerHTML = "<b>Location</b>";
+  header2.innerHTML = "<b>World</b>";
+  header3.innerHTML = "<b>Min Time</b>";
+  header4.innerHTML = "<b>Max Time</b>";
+  header5.innerHTML = "<b>Time until</b>";	
+  header6.innerHTML = "<b>Called Location</b>";
+  
+	function updateTable() {
+ 
         filteredData.forEach((d) => {
           var row = table.insertRow();
           var cell1 = row.insertCell(0);
