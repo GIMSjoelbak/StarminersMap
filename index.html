@@ -179,8 +179,9 @@ function createPopup(polygon, location, data) {
    // check if calledLocation has changed from empty to filled, or if it is filled for the first time
       if ((prevData && prevData.calledLocation === "") && d.calledLocation !== "") {
         polygon.getElement().classList.add("flash");
-      }
 	      console.log('flashing');
+      }
+	      
       
 
       prevData = d;
