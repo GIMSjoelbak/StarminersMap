@@ -146,12 +146,12 @@ function createPopup(polygon, location, data) {
     var flashPolygon = filteredData.some((d) => (prevData === null && d.calledLocation !== "") || (prevData !== null && d.calledLocation !== prevData.calledLocation));
 
     // add or remove the flash class depending on the condition
-    if (flashPolygon) {
-      polygon._path.classList.add("flash");
-      setTimeout(() => {
-        polygon._path.classList.remove("flash");
-      }, 1000);
-    }
+if (polygon && polygon._path) {
+polygon._path.classList.add("flash");
+setTimeout(() => {
+polygon._path.classList.remove("flash");
+}, 1000);
+}
 
     // clear the table before updating it
     table.innerHTML = "";
