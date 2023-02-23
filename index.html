@@ -140,9 +140,9 @@ function createPopup(polygon, location, data) {
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
   
-	var isFirstLoad = true;
-	
-	function updateTable() {
+var isFirstLoad = true;
+
+function updateTable() {
   while (table.rows.length > 1) {
     table.deleteRow(-1);
   }
@@ -161,7 +161,6 @@ function createPopup(polygon, location, data) {
   // Flash the polygon if data has changed and polygon type is defined and not null
   if (
     !isFirstLoad &&
-    isDataChanged &&
     polygonType !== null &&
     polygonType !== undefined &&
     polygonType.trim() !== ""
@@ -198,8 +197,12 @@ function createPopup(polygon, location, data) {
     var newRecordIds = filteredDataIds.filter(
       (id) => prevDataIds.indexOf(id) === -1
     );
+    
+    var newRecordWithCalledLocation = filteredData.filter((d) => 
+      newRecordIds.indexOf(d.id) !== -1 && d.calledLocation !== ""
+    );
 
-    if (newRecordIds.length > 0) {
+    if (newRecordWithCalledLocation.length > 0) {
       if (polygonType === "Polygon") {
         polygon.getElement().classList.add("flash");
         setTimeout(function () {
@@ -214,8 +217,11 @@ function createPopup(polygon, location, data) {
         });
       }
     }
-	   isFirstLoad = false;
   }
+
+  // Set isFirstLoad to false after the first load
+  isFirstLoad = false;
+}
 
 
         filteredData.forEach((d) => {
