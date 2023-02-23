@@ -140,88 +140,37 @@ function createPopup(polygon, location, data) {
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
   
-var isFirstLoad = true;
+	function updateTable() {
+         while (table.rows.length > 1) {
+          table.deleteRow(-1);
+        }
 
-function updateTable() {
-  while (table.rows.length > 1) {
-    table.deleteRow(-1);
-  }
+        var filteredData = data.filter((d) => d.location === location);
+	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
 
-  var filteredData = data.filter((d) => d.location === location);
-  var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
-
-  // Compare the previous data with the new data
-  var isDataChanged = false;
-  if (prevData !== null) {
-    var prevData2 = prevData.filter((d) => d.calledLocation !== "");
-    isDataChanged = filteredData2.length > prevData2.length;
-  }
-  prevData = filteredData;
-
-  // Flash the polygon if data has changed and polygon type is defined and not null
-  if (
-    !isFirstLoad &&
-    polygonType !== null &&
-    polygonType !== undefined &&
-    polygonType.trim() !== ""
-  ) {
-    // Flash the polygon only if data has changed from empty to non-empty
-    var prevDataCalledLocations = prevData2.map((d) => d.calledLocation);
-    var filteredDataCalledLocations = filteredData2.map((d) => d.calledLocation);
-
-    var isCalledLocationEmptyBefore =
-      prevDataCalledLocations.indexOf("") !== -1;
-    var isCalledLocationFilledNow =
-      filteredDataCalledLocations.indexOf("") === -1;
-
-    if (isCalledLocationEmptyBefore && isCalledLocationFilledNow) {
-      if (polygonType === "Polygon") {
-        polygon.getElement().classList.add("flash");
-        setTimeout(function () {
-          polygon.getElement().classList.remove("flash");
-        }, 2000);
-      } else if (polygonType === "GeoJSON") {
-        polygon.eachLayer(function (layer) {
-          layer.getElement().classList.add("flash");
-          setTimeout(function () {
-            layer.getElement().classList.remove("flash");
-          }, 2000);
-        });
+        // Compare the previous data with the new data
+	var isDataChanged = false;
+      if (prevData !== null) {
+         var prevData2 = prevData.filter((d) => d.calledLocation !== "");
+        isDataChanged = filteredData2.length > prevData2.length;
       }
-    }
-
-    // Flash the polygon if a new record with non-empty CalledLocation gets added
-    var prevDataIds = prevData2.map((d) => d.id);
-    var filteredDataIds = filteredData2.map((d) => d.id);
-
-    var newRecordIds = filteredDataIds.filter(
-      (id) => prevDataIds.indexOf(id) === -1
-    );
-    
-    var newRecordWithCalledLocation = filteredData.filter((d) => 
-      newRecordIds.indexOf(d.id) !== -1 && d.calledLocation !== ""
-    );
-
-    if (newRecordWithCalledLocation.length > 0) {
-      if (polygonType === "Polygon") {
-        polygon.getElement().classList.add("flash");
-        setTimeout(function () {
-          polygon.getElement().classList.remove("flash");
-        }, 2000);
-      } else if (polygonType === "GeoJSON") {
-        polygon.eachLayer(function (layer) {
-          layer.getElement().classList.add("flash");
-          setTimeout(function () {
-            layer.getElement().classList.remove("flash");
-          }, 2000);
-        });
-      }
-    }
-  // Set isFirstLoad to false after the first load
-  isFirstLoad = false;
-}
-
-
+        prevData = filteredData;
+       // Flash the polygon if data has changed and polygon type is defined
+        if (isDataChanged && polygonType !== null) {
+          if (polygonType === "Polygon") {
+            polygon.getElement().classList.add("flash");
+            setTimeout(function () {
+              polygon.getElement().classList.remove("flash");
+            }, 2000);
+          } else if (polygonType === "GeoJSON") {
+            polygon.eachLayer(function (layer) {
+              layer.getElement().classList.add("flash");
+              setTimeout(function () {
+                layer.getElement().classList.remove("flash");
+              }, 2000);
+            });
+          }
+        }
         filteredData.forEach((d) => {
           var row = table.insertRow();
           var cell1 = row.insertCell(0);
