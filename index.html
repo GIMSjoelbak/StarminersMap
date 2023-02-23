@@ -81,21 +81,21 @@ td:last-child {
 Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson')])
 .then(responses => Promise.all(responses.map(response => response.json())))
 .then(result => {
-  var polygon0 = L.geoJSON(result[0], {
+  polygon0 = L.geoJSON(result[0], {
     style: {
       fillColor: 'DarkGreen',
       fillOpacity: 0.5
     }
   }).addTo(map);
 
-  var polygon1 = L.geoJSON(result[1], {
+  polygon1 = L.geoJSON(result[1], {
     style: {
       fillColor: 'DarkGreen',
       fillOpacity: 0.5
     }
   }).addTo(map);
 
-  var polygon2 = L.geoJSON(result[2], {
+  polygon2 = L.geoJSON(result[2], {
     style: {
       fillColor: 'Brown',
       fillOpacity: 0.5
