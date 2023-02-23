@@ -84,21 +84,24 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   var polygon0 = L.geoJSON(result[0], {
     style: {
       fillColor: 'DarkGreen',
-      fillOpacity: 0.5
+      fillOpacity: 0.5,
+	    className: 'flash'
     }
   }).addTo(map);
 
   var polygon1 = L.geoJSON(result[1], {
     style: {
       fillColor: 'DarkGreen',
-      fillOpacity: 0.5
+      fillOpacity: 0.5,
+	    className: 'flash'
     }
   }).addTo(map);
 
   var polygon2 = L.geoJSON(result[2], {
     style: {
       fillColor: 'Brown',
-      fillOpacity: 0.5
+      fillOpacity: 0.5,
+	    className: 'flash'
     }
   }).addTo(map);
 
@@ -141,6 +144,12 @@ function createPopup(polygon, location, data) {
 	function updateTable() {
 		var prevData = null;
 		var filteredData = data.filter((d) => d.location === location);
+		
+		// Add and remove flash class to the polygons
+  polygon.setStyle({className: 'flash'});
+  setTimeout(() => {
+    polygon.setStyle({className: ''});
+  }, 1000);
 		
 		
         filteredData.forEach((d) => {
