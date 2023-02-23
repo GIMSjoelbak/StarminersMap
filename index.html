@@ -176,13 +176,12 @@ function createPopup(polygon, location, data) {
           cell5.innerHTML = relativeTime + " min";
           cell6.innerHTML = d.calledLocation;
 		
-		      // Check if calledLocation changed from empty to filled
-      if (prevData && prevData.calledLocation === "" && d.calledLocation !== "") {
-        polygon.setStyle({
-          className: "flash",
-        });
-	      console.log('flashing');
+   // check if calledLocation has changed from empty to filled, or if it is filled for the first time
+      if ((prevData && prevData.calledLocation === "") && d.calledLocation !== "") {
+        polygon.getElement().classList.add("flash");
       }
+	      console.log('flashing');
+      
 
       prevData = d;
 		    });
@@ -194,7 +193,9 @@ function createPopup(polygon, location, data) {
     polygonType = "GeoJSON";
   }
 			updateTable();
-	console.log('complete');		
+	console.log('complete');
+	// Call the updateTable function every 30 seconds using setInterval
+  setInterval(updateTable, 30000);
 
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
