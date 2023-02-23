@@ -139,6 +139,8 @@ function createPopup(polygon, location, data) {
   header6.innerHTML = "<b>Called Location</b>";
   
 	function updateTable() {
+		var prevData = null;
+		prevData = filteredData;
         filteredData.forEach((d) => {
           var row = table.insertRow();
           var cell1 = row.insertCell(0);
