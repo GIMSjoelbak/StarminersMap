@@ -195,8 +195,7 @@ function createPopup(polygon, location, data) {
   }
 			updateTable();
 	console.log('complete');
-	// Call the updateTable function every 30 seconds using setInterval
-  setInterval(updateTable, 30000);
+
 
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
