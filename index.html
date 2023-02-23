@@ -180,6 +180,7 @@ function createPopup(polygon, location, data) {
       if (prevData && prevData.calledLocation === "" && d.calledLocation !== "") {
         polygon.setStyle({
           className: "flash",
+		console.log('flashing');
         });
       }
 
