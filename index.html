@@ -156,7 +156,7 @@ function createPopup(polygon, location, data) {
       }
         prevData = filteredData;
        // Flash the polygon if data has changed and polygon type is defined
-        if (isDataChanged && polygonType !== null) {
+        if (isDataChanged && polygonType !== null && filteredData2.length > 0) {
           if (polygonType === "Polygon") {
             polygon.getElement().classList.add("flash");
             setTimeout(function () {
