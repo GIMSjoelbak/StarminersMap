@@ -175,6 +175,15 @@ function createPopup(polygon, location, data) {
         }
           cell5.innerHTML = relativeTime + " min";
           cell6.innerHTML = d.calledLocation;
+		
+		      // Check if calledLocation changed from empty to filled
+      if (prevData && prevData.calledLocation === "" && d.calledLocation !== "") {
+        polygon.setStyle({
+          className: "flash",
+        });
+      }
+
+      prevData = d;
 		    });
 	}
 	  // Determine the type of the polygon argument and store it
