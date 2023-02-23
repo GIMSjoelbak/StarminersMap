@@ -144,7 +144,9 @@ function createPopup(polygon, location, data) {
         }
 	 // Keep track of the previous data
   var prevData = null;
-  var polygonType = null;
+  polygon0.polygonType = "GeoJSON";
+		polygon1.polygonType = "GeoJSON";
+		polygon2.polygonType = "GeoJSON";
 
         var filteredData = data.filter((d) => d.location === location);
 	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
