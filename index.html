@@ -124,6 +124,8 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	
 function createPopup(polygon, location, data) {
   var table = document.createElement("table");
+	  // clear the table before updating it
+    table.innerHTML = "";
   var headerRow = table.insertRow();
   var header1 = headerRow.insertCell(0);
   var header2 = headerRow.insertCell(1);
@@ -137,9 +139,8 @@ function createPopup(polygon, location, data) {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
-  
+  var prevData = null;
 	function updateTable() {
-		var prevData = null;
 		// filter the data for the current location
     var filteredData = data.filter((d) => d.location === location);
 
@@ -154,8 +155,7 @@ polygon._path.classList.remove("flash");
 }, 1000);
 }
 
-    // clear the table before updating it
-    table.innerHTML = "";
+  
 
         filteredData.forEach((d) => {
           var row = table.insertRow();
