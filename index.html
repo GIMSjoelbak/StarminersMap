@@ -112,8 +112,11 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
       .then((response) => response.json())
       .then((data) => {
 	createPopup(polygon0, 0, data);
+	 polygon0.setStyle({ className: 'flash'})
 	createPopup(polygon1, 1, data);
+	 polygon1.setStyle({ className: 'flash'})
 	createPopup(polygon2, 2, data);
+	 polygon2.setStyle({ className: 'flash'})
 	    console.log(data); // log the retrieved data
 	  });
 	}
@@ -125,6 +128,13 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 });
 
 	var prevData = null;
+	// Create a function to handle the flashing effect
+function flashPolygon(polygon) {
+  polygon.setStyle({className: 'flash'}); // add the flash class
+  setTimeout(function() {
+    polygon.setStyle({className: ''}); // remove the flash class after 1s
+  }, 1000);
+}
 function createPopup(polygon, location, data) {
   var table = document.createElement("table");
   var headerRow = table.insertRow();
@@ -178,12 +188,12 @@ function createPopup(polygon, location, data) {
         }
           cell5.innerHTML = relativeTime + " min";
           cell6.innerHTML = d.calledLocation;
-      // Check if calledlocation has changed from empty to non-empty
-      if (!prevData?.calledlocation && d.calledlocation) {
-        polygon.getElement().classList.add("flash");
+ // Check if calledLocation has a value and if it's different from the previous value
+      if (d.calledLocation && d.calledLocation !== prevData?.calledLocation) {
+        flashPolygon(polygon); // flash the polygon
       }
 
-      prevData = d;
+      prevData = filteredData;
     });
   }
 
