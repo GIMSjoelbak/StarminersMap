@@ -140,6 +140,8 @@ function createPopup(polygon, location, data) {
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
   
+	var isFirstLoad = true;
+	
 	function updateTable() {
   while (table.rows.length > 1) {
     table.deleteRow(-1);
@@ -158,6 +160,7 @@ function createPopup(polygon, location, data) {
 
   // Flash the polygon if data has changed and polygon type is defined and not null
   if (
+    !isFirstLoad &&
     isDataChanged &&
     polygonType !== null &&
     polygonType !== undefined &&
@@ -211,6 +214,7 @@ function createPopup(polygon, location, data) {
         });
       }
     }
+	   isFirstLoad = false;
   }
 
 
