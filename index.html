@@ -78,7 +78,7 @@ td:last-child {
 	  <script src="coordinates.js"></script>
 <script>  
 	var polygon0, polygon1, polygon2;
-Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson'), fetch('./images/Fossil.geojson'])
+Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson'), fetch('./images/Fossil.geojson')])
 .then(responses => Promise.all(responses.map(response => response.json())))
 .then(result => {
   var polygon0 = L.geoJSON(result[0], {
