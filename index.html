@@ -78,7 +78,7 @@ td:last-child {
 	  <script src="coordinates.js"></script>
 <script>  
 	var polygon0, polygon1, polygon2;
-Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson')])
+Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson'), fetch('./images/Fossil.geojson'])
 .then(responses => Promise.all(responses.map(response => response.json())))
 .then(result => {
   var polygon0 = L.geoJSON(result[0], {
@@ -101,6 +101,12 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
       fillOpacity: 0.5,
     }
   }).addTo(map);
+  var polygon3 = L.geoJSON(result[3], {
+    style: {
+      fillColor: 'Brown',
+      fillOpacity: 0.5,
+    }
+  }).addTo(map);
 
 
 // Define a separate function to fetch data and update table
@@ -111,6 +117,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	createPopup(polygon0, 0, data);
 	createPopup(polygon1, 1, data);
 	createPopup(polygon2, 2, data);
+	createPopup(polygon3, 3, data);
 	    console.log(data); // log the retrieved data
 	  });
 	}
@@ -166,13 +173,16 @@ prevData[location] = filteredData;
 	  var cell5 = row.insertCell(4);
           var cell6 = row.insertCell(5);
 		  var locationWord;
-  if (d.location === 2) {
-    locationWord = "Feldip/Isle of Souls";
+  if (d.location === 0) {
+    locationWord = "Asgarnia";
   } else if (d.location === 1) {
     locationWord = "Karamja/Crandor";
-} else if (d.location === 0) {
-    locationWord = "Asgarnia";
-  } else {
+} else if (d.location === 2) {
+    locationWord = "Feldip/Isle of Souls";
+  } else if (d.location === 3) {
+    locationWord = "Fossil Island/Mos le'";
+  }
+else {
     locationWord = d.location;
   }
           cell1.innerHTML = locationWord;
