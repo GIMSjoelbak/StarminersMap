@@ -123,7 +123,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   // Call the fetch data function every 30 seconds using setInterval
   setInterval(fetchDataAndUpdateTable, 30000);
 });
-
+	var prevData = null;
 function createPopup(polygon, location, data) {
   var table = document.createElement("table");
   var headerRow = table.insertRow();
@@ -139,8 +139,6 @@ function createPopup(polygon, location, data) {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
-	
-	var prevData = null;
 	
   	function updateTable() {
 		
