@@ -120,7 +120,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   // Call the fetch data function every 30 seconds using setInterval
   setInterval(fetchDataAndUpdateTable, 30000);
 });
-	var prevData = null;
+	var prevData = {};
 function createPopup(polygon, location, data) {
   var table = document.createElement("table");
   var headerRow = table.insertRow();
@@ -143,11 +143,11 @@ function createPopup(polygon, location, data) {
 		var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
 		        // Compare the previous data with the new data
 	var isDataChanged = false;
-      if (prevData !== null) {
-         var prevData2 = prevData.filter((d) => d.calledLocation !== "");
+      if (prevData[location] !== undefined) {
+         var prevData2 = prevData[location].filter((d) => d.calledLocation !== "");
         isDataChanged = filteredData2.length > prevData2.length;
       }
-prevData = filteredData;
+prevData[location] = filteredData;
 	// Flash the polygon if data has changed and polygon type is defined
         if (isDataChanged) {
 		 polygon.eachLayer(function (layer) {
