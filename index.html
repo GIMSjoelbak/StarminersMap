@@ -150,9 +150,9 @@ function createPopup(polygon, location, data) {
 prevData = filteredData;
 	// Flash the polygon if data has changed and polygon type is defined
         if (isDataChanged) {
-		 polygon.setStyle({className: 'flash'}); // add the flash class
+		 polygon.getElement().classList.add("flash");
 		setTimeout(function () {
-           polygon.setStyle({className: ''}); // remove the flash class after 1s
+                   polygon.getElement().classList.remove("flash");
             }, 2000);
           }
         filteredData.forEach((d) => {
