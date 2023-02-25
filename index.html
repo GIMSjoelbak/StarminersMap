@@ -129,7 +129,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 
 // Define a separate function to fetch data and update table
   function fetchDataAndUpdateTable() {
- fetch("http://server.starminers.site/trusted?timestamp=" + Date.now())
+ fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
 	createPopup(polygon0, 0, data);
