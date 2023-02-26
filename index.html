@@ -78,7 +78,7 @@ td:last-child {
 	  <script src="coordinates.js"></script>
 <script>  
 	var polygon0, polygon1, polygon2;
-Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson'), fetch('./images/Fossil.geojson'), fetch('./images/Fremennik.geojson'), fetch('./images/Great Kourend.geojson'), fetch('./images/Kandarin.geojson'), fetch('./images/Kebos.geojson')])
+Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson'), fetch('./images/Fossil.geojson'), fetch('./images/Fremennik.geojson'), fetch('./images/Great Kourend.geojson'), fetch('./images/Kandarin.geojson'), fetch('./images/Kebos.geojson'), fetch('./images/Desert.geojson')])
 .then(responses => Promise.all(responses.map(response => response.json())))
 .then(result => {
   var polygon0 = L.geoJSON(result[0], {
@@ -131,6 +131,12 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
       fillOpacity: 0.5,
     }
   }).addTo(map);
+  var polygon8 = L.geoJSON(result[8], {
+    style: {
+      fillColor: 'Maroon',
+      fillOpacity: 0.5,
+    }
+  }).addTo(map);
 
 
 // Define a separate function to fetch data and update table
@@ -146,6 +152,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	createPopup(polygon5, 5, data);
 	createPopup(polygon6, 6, data);
 	createPopup(polygon7, 7, data);
+	createPopup(polygon8, 8, data);
 	    console.log(data); // log the retrieved data
 	  });
 	}
@@ -217,6 +224,8 @@ prevData[location] = filteredData;
     locationWord = "Kandarin";
   } else if (d.location === 7) {
     locationWord = "Kebos Lowlands";
+  } else if (d.location === 8) {
+    locationWord = "Kharidian Desert";
   }
 else {
     locationWord = d.location;
