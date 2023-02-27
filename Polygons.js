@@ -256,7 +256,7 @@ else {
   polygon.bindPopup(popup);
 }
 var prevData = {};
- var defaultOpacity = 0.5;
+ var defaultOpacity = 0;
 function addMarkers(map, data) {
 	
   var markers = [];
