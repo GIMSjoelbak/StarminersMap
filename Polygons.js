@@ -267,7 +267,7 @@ function updateTable(marker, data) {
     var prevData2 = prevData[marker.options.calledLocation].filter((d) => d.calledLocation !== "");
         isDataChanged = filteredData2.length > prevData2.length;
   }
-  marker.prevData[calledLocation] = filteredData;
+  prevData[calledLocation] = filteredData;
 
   // Flash the marker if data has changed
   if (isDataChanged) {
