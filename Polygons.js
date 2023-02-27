@@ -260,10 +260,6 @@ var prevData = {};
 function addMarkers(map, data) {
 	
   var markers = [];
-var MisthalinMarkers, DesertMarkers;	
-	  // Clear the markers from the layer groups
-  MisthalinMarkers.clearLayers();
-  DesertMarkers.clearLayers();
  	
  var markerData = [
 	 //Desert
@@ -285,6 +281,9 @@ var MisthalinMarkers, DesertMarkers;
 
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
+		  // Clear the markers from the layer groups
+  MisthalinMarkers.clearLayers();
+  DesertMarkers.clearLayers();
 
   markerData.forEach((d) => {
     var markerOptions = {
