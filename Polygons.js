@@ -348,7 +348,15 @@ function addMarkers(map, data) {
 { latlng: [2025, 3390], calledLocation: "Isafdar runite rocks", color: "green" },
 { latlng: [2449, 3343], calledLocation: "Prifddinas Zalcano entrance", color: "green" },
 { latlng: [2360, 3537], calledLocation: "Arandar mine north of Lleyta", color: "green" },
-{ latlng: [2780, 3103], calledLocation: "Mynydd nw of Prifddinas", color: "green" },	 
+{ latlng: [2780, 3103], calledLocation: "Mynydd nw of Prifddinas", color: "green" },
+	 //Wilderness
+{ latlng: [3260, 5908], calledLocation: "Mage of Zamorak mine (lvl 7 Wildy)", color: "black" },
+{ latlng: [3331, 5638], calledLocation: "Skeleton mine (lvl 10 Wildy)", color: "black" },
+{ latlng: [3820, 5864], calledLocation: "Hobgoblin mine (lvl 30 Wildy)", color: "black" },
+{ latlng: [4214, 5755], calledLocation: "Lava maze runite mine (lvl 46 Wildy)", color: "black" },
+{ latlng: [4371, 5731], calledLocation: "Pirates' Hideout (lvl 53 Wildy)", color: "black" },
+{ latlng: [4438, 5857], calledLocation: "Mage Arena bank (lvl 56 Wildy)", color: "black" },
+{ latlng: [4348, 6148], calledLocation: "Wilderness Resource Area", color: "black" },	 
   ];
 
 	var AsgarniaMarkers = L.layerGroup().addTo(map);
@@ -364,6 +372,7 @@ function addMarkers(map, data) {
 	var MorytaniaMarkers = L.layerGroup().addTo(map);
 	var PiscatorisMarkers = L.layerGroup().addTo(map);
 	var TirannwnMarkers = L.layerGroup().addTo(map);
+	var WildernessMarkers = L.layerGroup().addTo()map;
   
 
 	// Clear the markers from the layer groups and from the map from previous update
@@ -380,6 +389,7 @@ function addMarkers(map, data) {
 	MorytaniaMarkers.clearLayers();
 	PiscatorisMarkers.clearLayers();
 	TirannwnMarkers.clearLayers();
+	WildernessMarkers.clearLayers();
   map.eachLayer(function(layer) {
     if (layer instanceof L.Marker) {
       map.removeLayer(layer);
@@ -433,6 +443,11 @@ function addMarkers(map, data) {
       marker.addTo(TirannwnMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-green.png"
+	    }));
+    } else if (d.color === "black") {
+      marker.addTo(TirannwnMarkers);
+	    marker.setIcon(L.icon({
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-black.png"
 	    }));
     }
     updateTable(marker, data);
