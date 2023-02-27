@@ -256,17 +256,71 @@ else {
   polygon.bindPopup(popup);
 }
 //Create markers for each location
-function createMarker(map, latlng, calledLocation) {
+function createMarker(map, latlng, calledLocation, location, data) {
 	var marker = L.marker(latlng).addTo(map);
-	marker.bindPopup(calledLocation);
+	marker.on("click", function (e) {
+    var table = document.createElement("table");
+    var headerRow = table.insertRow();
+    var header1 = headerRow.insertCell(0);
+    var header2 = headerRow.insertCell(1);
+    var header3 = headerRow.insertCell(2);
+    var header4 = headerRow.insertCell(3);
+    var header5 = headerRow.insertCell(4);
+    var header6 = headerRow.insertCell(5);
+    header1.innerHTML = "<b>Location</b>";
+    header2.innerHTML = "<b>World</b>";
+    header3.innerHTML = "<b>Min Time</b>";
+    header4.innerHTML = "<b>Max Time</b>";
+    header5.innerHTML = "<b>Time until</b>";
+    header6.innerHTML = "<b>Called Location</b>";
+
+    var filteredData = data.filter((d) => d.calledLocation === calledLocation && d.location === location);
+    filteredData.forEach((d) => {
+      var row = table.insertRow();
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      var cell6 = row.insertCell(5);
+      var locationWord;
+      if (d.location === 0) {
+        locationWord = "Asgarnia";
+      } else if (d.location === 1) {
+        locationWord = "Karamja/Crandor";
+      } else if (d.location === 2) {
+        locationWord = "Feldip/Isle of Souls";
+      } else {
+        locationWord = d.location;
+      }
+      cell1.innerHTML = locationWord;
+      cell2.innerHTML = d.world;
+      // Convert Unix timestamp to normal time format
+      var minTime = new Date(d.minTime * 1000).toLocaleString();
+      var maxTime = new Date(d.maxTime * 1000).toLocaleString();
+      cell3.innerHTML = minTime;
+      cell4.innerHTML = maxTime;
+      var now = Date.now();
+      var relativeTime = Math.round((d.minTime * 1000 - now) / 60000);
+      if (relativeTime > 0) {
+        relativeTime = -relativeTime;
+      }
+      cell5.innerHTML = relativeTime + " min";
+      cell6.innerHTML = d.calledLocation;
+    });
+
+    var popup = L.popup({ maxWidth: 700 }).setContent(table);
+    e.target.bindPopup(popup).openPopup();
+  });
+}
 }
 
-function addMarkers(map) {
+function addMarkers(map, data) {
 	var markersData = [
-		{ latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
-		{ latlng: [2445, 6472], calledLocation: "Al Kharid mine"}, ];
+		{ latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", location: 8 },
+		{ latlng: [2445, 6472], calledLocation: "Al Kharid mine"}, location: 8 ];
 	
 	markersData.forEach(function (data) {
-		createMarker(map, data.latlng, data.calledLocation);
+		createMarker(map, data.latlng, data.calledLocation, data.location, data);
 	});
 }
