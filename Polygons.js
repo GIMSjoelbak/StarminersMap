@@ -317,7 +317,7 @@ function createMarker(map, latlng, calledLocation, location, data) {
 function addMarkers(map, data) {
 	var markersData = [
 		{ latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", location: 8 },
-		{ latlng: [2445, 6472], calledLocation: "Al Kharid mine"}, location: 8 ];
+		{ latlng: [2445, 6472], calledLocation: "Al Kharid mine", location: 8 } ];
 	
 	markersData.forEach(function (data) {
 		createMarker(map, data.latlng, data.calledLocation, data.location, data);
