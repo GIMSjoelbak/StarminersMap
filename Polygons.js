@@ -226,3 +226,78 @@ else {
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
 }
+//Create markers for each location
+var markers = [ { location: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
+	       { location: [2445, 6472], calledLocation: "Al Kharid mine"} ]
+function createPopupForMarker(marker, calledLocation, data) {
+	var table = document.createElement("table");
+  var headerRow = table.insertRow();
+  var header1 = headerRow.insertCell(0);
+  var header2 = headerRow.insertCell(1);
+  var header3 = headerRow.insertCell(2);
+  var header4 = headerRow.insertCell(3);
+  var header5 = headerRow.insertCell(4);
+  var header6 = headerRow.insertCell(5);
+  header1.innerHTML = "<b>Location</b>";
+  header2.innerHTML = "<b>World</b>";
+  header3.innerHTML = "<b>Min Time</b>";
+  header4.innerHTML = "<b>Max Time</b>";
+  header5.innerHTML = "<b>Time until</b>";
+  header6.innerHTML = "<b>Called Location</b>";
+	var filteredData = data.filter((d) => d.calledLocation === calledLocation);
+  filteredData.forEach((d) => {
+    var row = table.insertRow();
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var locationWord;
+    if (d.location === 0) {
+      locationWord = "Asgarnia";
+    } else if (d.location === 1) {
+      locationWord = "Karamja/Crandor";
+    } else if (d.location === 2) {
+      locationWord = "Feldip/Isle of Souls";
+    } else if (d.location === 3) {
+      locationWord = "Fossil Island/Mos le'";
+    } else if (d.location === 4) {
+      locationWord = "Fremennik/Lunar Isle";
+    } else if (d.location === 5) {
+      locationWord = "Great Kourend";
+    } else if (d.location === 6) {
+      locationWord = "Kandarin";
+    } else if (d.location === 7) {
+      locationWord = "Kebos Lowlands";
+    } else if (d.location === 8) {
+      locationWord = "Kharidian Desert";
+    } else if (d.location === 9) {
+      locationWord = "Misthalin";
+    } else if (d.location === 10) {
+      locationWord = "Morytania";
+    } else if (d.location === 11) {
+      locationWord = "Piscatoris/Gnome Str.";
+    } else if (d.location === 12) {
+      locationWord = "Tirannwn";
+    } else if (d.location === 13) {
+      locationWord = "Wilderness";
+    } else {
+      locationWord = d.location;
+    }
+    cell1.innerHTML = locationWord;
+    cell2.innerHTML = d.world;
+cell3.innerHTML = d.minTime;
+cell4.innerHTML = d.maxTime;
+cell5.innerHTML = d.timeUntil;
+cell6.innerHTML = d.calledLocation;
+});
+
+var markerPopup = new mapboxgl.Popup().setDOMContent(table);
+marker.setPopup(markerPopup);
+
+markers.forEach((m) => {
+var marker = new mapboxgl.Marker().setLngLat(m.location).addTo(map);
+createPopupForMarker(marker, m.calledLocation, data);
+});
+}
