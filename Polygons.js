@@ -330,6 +330,12 @@ function updateTable(marker, data) {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";
   header6.innerHTML = "<b>Called Location</b>";
+	
+	if (filteredData2.length === 0) {
+    marker.setOpacity(0.5);
+  } else {
+    marker.setOpacity(1.0);
+  }
 
   filteredData.forEach((d) => {
     var row = table.insertRow();
