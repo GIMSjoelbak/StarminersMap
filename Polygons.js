@@ -263,7 +263,7 @@ var markerData = [ { latlng: [2395, 6636], calledLocation: "North of Al Kharid P
 // Create markers and add to map
 markerData.forEach(function(data) {
   var marker = L.marker(data.latlng).addTo(map);
-  marker.bindPopup(createPopup(data.calledLocation));
+  marker.bindPopup(createMarkerPopup(data.calledLocation));
   markers.push(marker);
 });
 function createMarkerPopup(calledLocation) {
