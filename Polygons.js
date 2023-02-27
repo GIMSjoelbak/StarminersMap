@@ -283,12 +283,14 @@ function updateTable(marker, data) {
   var header3 = headerRow.insertCell(2);
   var header4 = headerRow.insertCell(3);
   var header5 = headerRow.insertCell(4);
+  var header6 = headerRow.insertCell(5);
 
   header1.innerHTML = "<b>Location</b>";
   header2.innerHTML = "<b>World</b>";
   header3.innerHTML = "<b>Min Time</b>";
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";
+  header6.innerHTML = "<b>Called Location</b>";
 
   filteredData.forEach((d) => {
     var row = table.insertRow();
