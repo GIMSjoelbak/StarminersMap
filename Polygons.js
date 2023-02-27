@@ -307,12 +307,12 @@ function addMarkers(map, data) {
 { latlng: [4072, 894], calledLocation: "Lovakite mine", color: "blue" },
 { latlng: [4111, 1865], calledLocation: "Arceuus dense essence mine", color: "blue" },
 	 //Kandarin
-{ latlng: [1811, 4390], calledLocation: "Yanille bank", color: "black" },
-{ latlng: [1975, 4455], calledLocation: "Port Khazard mine", color: "black" },
-{ latlng: [2252, 4408], calledLocation: "Ardougne Monastary", color: "black" },
-{ latlng: [2550, 4698], calledLocation: "South of Legends' Guild", color: "black" },
-{ latlng: [2855, 4996], calledLocation: "Catherby bank", color: "black" },
-{ latlng: [2986, 4350], calledLocation: "Coal Trucks west of Seers'", color: "black" },
+{ latlng: [1811, 4390], calledLocation: "Yanille bank", color: "grey" },
+{ latlng: [1975, 4455], calledLocation: "Port Khazard mine", color: "grey" },
+{ latlng: [2252, 4408], calledLocation: "Ardougne Monastary", color: "grey" },
+{ latlng: [2550, 4698], calledLocation: "South of Legends' Guild", color: "grey" },
+{ latlng: [2855, 4996], calledLocation: "Catherby bank", color: "grey" },
+{ latlng: [2986, 4350], calledLocation: "Coal Trucks west of Seers'", color: "grey" },
 	 //Kebos Lowlands
 { latlng: [4000, 548], calledLocation: "Mount Karuulm bank", color: "orange" },
 { latlng: [4003, 422], calledLocation: "Mount Karuulm mine", color: "orange" },
@@ -403,12 +403,12 @@ function addMarkers(map, data) {
     } else if (d.color === "yellow") {
       marker.addTo(DesertMarkers);
 	    marker.setIcon(L.icon({
-		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png"
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-yellow.png"
 	    }));
-    } else if (d.color === "black") {
+    } else if (d.color === "grey") {
       marker.addTo(KandarinMarkers);
 	    marker.setIcon(L.icon({
-		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-black.png"
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-grey.png"
 	    }));
     } else if (d.color === "violet") {
       marker.addTo(MorytaniaMarkers);
