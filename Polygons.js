@@ -277,9 +277,9 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
     var markerOptions = {
       calledLocation: d.calledLocation,
       shadow: false,
-    if (d.color === "red") {
+    if (color === "red") {
 		  markerOptions.iconUrl = "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-red.png";
-	  } else if (d.color === "gold") {
+	  } else if (color === "gold") {
 		  markerOptions.iconUrl = "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png";
 	  }
   };
