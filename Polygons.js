@@ -306,6 +306,13 @@ function addMarkers(map, data) {
 { latlng: [3792, 1186], calledLocation: "South Lovakengj bank", color: "blue" },
 { latlng: [4072, 894], calledLocation: "Lovakite mine", color: "blue" },
 { latlng: [4111, 1865], calledLocation: "Arceuus dense essence mine", color: "blue" },
+	 //Kandarin
+{ latlng: [1811, 4390], calledLocation: "Yanille bank", color: "black" },
+{ latlng: [1975, 4455], calledLocation: "Port Khazard mine", color: "black" },
+{ latlng: [2252, 4408], calledLocation: "Ardougne Monastary", color: "black" },
+{ latlng: [2550, 4698], calledLocation: "South of Legends' Guild", color: "black" },
+{ latlng: [2855, 4996], calledLocation: "Catherby bank", color: "black" },
+{ latlng: [2986, 4350], calledLocation: "Coal Trucks west of Seers'", color: "black" },
 	 //Kebos Lowlands
 { latlng: [4000, 548], calledLocation: "Mount Karuulm bank", color: "orange" },
 { latlng: [4003, 422], calledLocation: "Mount Karuulm mine", color: "orange" },
@@ -334,6 +341,7 @@ function addMarkers(map, data) {
 	var FossilMarkers = L.layerGroup().addTo(map);
 	var FremennikMarkers = L.layerGroup().addTo(map);
 	var KourendMarkers = L.layerGroup().addTo(map);
+	var KandarinMarkers = L.layerGroup().addTo(map);
 	var KebosMarkers = L.layerGroup().addTo(map);
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
@@ -345,6 +353,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 	FossilMarkers.clearLayers();
 	FremennikMarkers.clearLayers();
 	KourendMarkers.clearLayers();
+	KandarinMarkers.clearLayers();
 	KebosMarkers.clearLayers();
   MisthalinMarkers.clearLayers();
   DesertMarkers.clearLayers();
@@ -386,6 +395,11 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
       marker.addTo(DesertMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png"
+	    }));
+    } else if (d.color === "black") {
+      marker.addTo(KandarinMarkers);
+	    marker.setIcon(L.icon({
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-black.png"
 	    }));
     }
     updateTable(marker, data);
