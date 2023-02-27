@@ -259,6 +259,7 @@ var prevData = {};
 function addMarkers(map, data) {
 	
   var markers = [];
+  var defaultOpacity = 0.5;
 	
  var markerData = [
 	 //Desert
@@ -285,6 +286,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
     var markerOptions = {
       calledLocation: d.calledLocation,
       shadow: false,
+      opacity: defaultOpacity
     };
   
     var marker = L.marker(d.latlng, markerOptions);
@@ -340,7 +342,7 @@ function updateTable(marker, data) {
   header6.innerHTML = "<b>Called Location</b>";
 	
 	//opacity set when marker tables are empty
-  var currentOpacity = marker.getOpacity();
+  var currentOpacity = marker.options.opacity !== undefined ? marker.options.opacity : defaultOpacity;
   if (filteredData2.length === 0 && currentOpacity !== 0.5) {
     marker.setOpacity(0.5);
   } else if (filteredData2.length !== 0 && currentOpacity !== 1.0) {
