@@ -262,6 +262,13 @@ function addMarkers(map, data) {
   var markers = [];
  	
  var markerData = [
+	 //Asgarnia
+{ latlng: [2276, 5506], calledLocation: "Rimmington mine", color: "blue" },
+{ latlng: [2391, 5404], calledLocation: "Crafting guild", color: "blue" },
+{ latlng: [2617, 5302], calledLocation: "West Falador mine", color: "blue" },
+{ latlng: [2597, 5673], calledLocation: "East Falador bank", color: "blue" },
+{ latlng: [2882, 5637], calledLocation: "North Dwarven Mine entrance", color: "blue" },
+{ latlng: [2974, 5229], calledLocation: "Taverley house portal", color: "blue" },
 	 //Desert
 { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "gold" },
 { latlng: [2445, 6472], calledLocation: "Al Kharid mine", color: "gold" },
@@ -279,10 +286,12 @@ function addMarkers(map, data) {
 { latlng: [2017, 6276], calledLocation: "East Lumbridge Swamp mine", color: "red" },
   ];
 
+	var AsgarniaMarkers = L.layerGroup().addTo(map);
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
 
-	// Clear the markers from the layer groups and from the map
+	// Clear the markers from the layer groups and from the map from previous update
+	AsgarniaMarkers.clearLayers();
   MisthalinMarkers.clearLayers();
   DesertMarkers.clearLayers();
   map.eachLayer(function(layer) {
@@ -309,7 +318,11 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png"
 	    }));
-    }
+    } else if (d.color === "blue") {
+      marker.addTo(DesertMarkers);
+	    marker.setIcon(L.icon({
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-blue.png"
+	    }));
     updateTable(marker, data);
   });
 
