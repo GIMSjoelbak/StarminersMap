@@ -255,43 +255,59 @@ else {
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
 }
-//Create markers for each location
+var markerData = [
+  { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
+  { latlng: [2445, 6472], calledLocation: "Al Kharid mine" }
+];
+
 var markers = [];
 
-var markerData = [ { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena"},
-		{ latlng: [2445, 6472], calledLocation: "Al Kharid mine"} ];
-// Create markers and add to map
-markerData.forEach(function(data) {
-  var marker = L.marker(data.latlng).addTo(map);
-  marker.bindPopup(createMarkerPopup(data.calledLocation));
-  markers.push(marker);
-});
-function createMarkerPopup(calledLocation) {
-  // Filter data for the specified calledLocation
-  var filteredData = data.filter(function(e) {
-    return e.calledLocation === calledLocation;
+/// Function to add markers to map
+function addMarkers(map, data) {
+  // Clear previous markers
+  markers.forEach((marker) => marker.remove());
+  markers = [];
+
+  // Create markers for each data point
+  data.forEach((d) => {
+    var marker = L.marker(d.latlng).addTo(map);
+    markers.push(marker);
+
+    // Create table for the marker
+    var table = document.createElement("table");
+    var headerRow = table.insertRow();
+    var header1 = headerRow.insertCell(0);
+    var header2 = headerRow.insertCell(1);
+    var header3 = headerRow.insertCell(2);
+    var header4 = headerRow.insertCell(3);
+    var header5 = headerRow.insertCell(4);
+    header1.innerHTML = "<b>Location</b>";
+    header2.innerHTML = "<b>World</b>";
+    header3.innerHTML = "<b>Min Time</b>";
+    header4.innerHTML = "<b>Max Time</b>";
+    header5.innerHTML = "<b>Time until</b>";
+
+    // Add rows to the table
+    var filteredData = data.filter((d2) => d2.calledLocation === d.calledLocation);
+    filteredData.forEach((d2) => {
+      var row = table.insertRow();
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      cell1.innerHTML = d.calledLocation;
+      cell2.innerHTML = d2.world;
+      // Convert Unix timestamp to normal time format
+      var minTime = new Date(d2.minTime * 1000).toLocaleString();
+      var maxTime = new Date(d2.maxTime * 1000).toLocaleString();
+      var timeUntil = getTimeUntil(d2.maxTime);
+      cell3.innerHTML = minTime;
+      cell4.innerHTML = maxTime;
+      cell5.innerHTML = timeUntil;
+    });
+
+    // Add table to the marker popup
+    marker.bindPopup(table);
   });
-
-  // Create table and header row
-  var table = document.createElement("table");
-  var headerRow = table.insertRow();
-  var header1 = headerRow.insertCell(0);
-  var header2 = headerRow.insertCell(1);
-  var header3 = headerRow.insertCell(2);
-  header1.innerHTML = "<b>Location</b>";
-  header2.innerHTML = "<b>World</b>";
-  header3.innerHTML = "<b>Time</b>";
-
-  // Add rows for each record
-  filteredData.forEach(function(e) {
-    var row = table.insertRow();
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    cell1.innerHTML = e.location;
-    cell2.innerHTML = e.world;
-    cell3.innerHTML = new Date(e.time).toLocaleString();
-  });
-
-  return table;
 }
