@@ -5,7 +5,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   var polygon0 = L.geoJSON(result[0], {
     style: {
       fillColor: 'DodgerBlue',
-	    Color: 'DodgerBlue',
+	    color: 'DodgerBlue',
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -13,7 +13,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   var polygon1 = L.geoJSON(result[1], {
     style: {
       fillColor: 'Chocolate',
-	    Color: 'Chocolate',
+	    color: 'Chocolate',
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -21,84 +21,84 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   var polygon2 = L.geoJSON(result[2], {
     style: {
       fillColor: 'Brown',
-	    Color: 'Brown',
+	    color: 'Brown',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon3 = L.geoJSON(result[3], {
     style: {
       fillColor: 'Brown',
-	    Color: 'Brown',
+	    color: 'Brown',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon4 = L.geoJSON(result[4], {
     style: {
       fillColor: 'Gold',
-	    Color: 'Gold',
+	    color: 'Gold',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon5 = L.geoJSON(result[5], {
     style: {
       fillColor: 'SpringGreen',
-	    Color: 'SpringGreen',
+	    color: 'SpringGreen',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon6 = L.geoJSON(result[6], {
     style: {
       fillColor: 'Plum',
-	    Color: 'Plum',
+	    color: 'Plum',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon7 = L.geoJSON(result[7], {
     style: {
       fillColor: 'DarkOrange',
-	    Color: 'DarkOrange',
+	    color: 'DarkOrange',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon8 = L.geoJSON(result[8], {
     style: {
       fillColor: 'MediumSeaGreen',
-	    Color: 'MediumSeaGreen',
+	    color: 'MediumSeaGreen',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon9 = L.geoJSON(result[9], {
     style: {
       fillColor: 'Red',
-	    Color: 'Red',
+	    color: 'Red',
       fillOpacity: 0.4,
     }
   }).addTo(map);
 	  var polygon10 = L.geoJSON(result[10], {
     style: {
       fillColor: 'Purple',
-	    Color: 'Purple',
+	    color: 'Purple',
       fillOpacity: 0.4,
     }
   }).addTo(map);
 	  var polygon11 = L.geoJSON(result[11], {
     style: {
       fillColor: 'Purple',
-	    Color: 'Purple',
+	    color: 'Purple',
       fillOpacity: 0.4,
     }
   }).addTo(map);
 	  var polygon12 = L.geoJSON(result[12], {
     style: {
       fillColor: 'Olive',
-	    Color: 'Olive',
+	    color: 'Olive',
       fillOpacity: 0.4,
     }
   }).addTo(map);
 	  var polygon13 = L.geoJSON(result[13], {
     style: {
       fillColor: 'Grey',
-	    Color: 'Grey',
+	    color: 'Grey',
       fillOpacity: 0.4,
     }
   }).addTo(map);
