@@ -261,8 +261,13 @@ function addMarkers(map, data) {
   var markers = [];
 
   var markerData = [
-    { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
-    { latlng: [2445, 6472], calledLocation: "Al Kharid mine" },
+{ latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
+{ latlng: [2445, 6472], calledLocation: "Al Kharid mine" },
+{ latlng: [2042, 6412], calledLocation: "Al Kharid bank" },
+{ latlng: [2030, 6850], calledLocation: "Nw of Uzer (Eagle's Eyrie)" },
+{ latlng: [1219, 6886], calledLocation: "Nardah bank" },
+{ latlng: [1150, 6528], calledLocation: "Agility Pyramid mine" },
+{ latlng: [1282, 6097], calledLocation: "Desert Quarry mine" },
   ];
 
   markerData.forEach((d) => {
