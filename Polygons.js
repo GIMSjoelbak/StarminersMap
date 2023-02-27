@@ -263,7 +263,7 @@ function updateTable(marker, data) {
 
   // Compare the previous data with the new data
   var isDataChanged = false;
-  if (marker.prevData[marker.options.calledLocation] !== undefined) {
+  if (prevData[marker.options.calledLocation] !== undefined) {
     var prevData2 = prevData[marker.options.calledLocation].filter((d) => d.calledLocation !== "");
         isDataChanged = filteredData2.length > prevData2.length;
   }
