@@ -255,8 +255,9 @@ else {
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
 }
+var prevData = {};
 function addMarkers(map, data) {
-	var prevData = {};
+	
   var markers = [];
 
   var markerData = [
