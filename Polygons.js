@@ -275,7 +275,9 @@ L.marker([1150, 6528], { icon: yellowIcon, calledLocation: "Agility Pyramid mine
 L.marker([1282, 6097], { icon: yellowIcon, calledLocation: "Desert Quarry mine" })
   ];
 
-  var DesertMarkerGroup = L.layerGroup(DesertMarkers).addTo(map);
+  DesertMarkers.forEach((d) => {
+    var marker = L.layerGroup(d.latlng, { calledLocation: d.calledLocation }).addTo(map);
+  });
 
   markers.forEach((marker) => {
     updateTable(marker, data);
