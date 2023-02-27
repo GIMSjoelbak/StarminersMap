@@ -274,10 +274,14 @@ function addMarkers(map, data) {
     var marker = L.marker(d.latlng, { calledLocation: d.calledLocation, color: d.color }).addTo(map);
     markers.push(marker);
   });
-
   markers.forEach((marker) => {
-    updateTable(marker, data);
-  });
+  var icon = marker.options.color === "red" ? L.icon({ iconUrl: "red-marker.png", shadowUrl: null }) :
+                                               L.icon({ iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png", shadowUrl: null });
+  marker.setIcon(icon);
+  updateTable(marker, data);
+});
+
+
 function updateTable(marker, data) {
 	
   var filteredData = data.filter((d) => d.calledLocation === marker.options.calledLocation);
