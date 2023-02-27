@@ -313,7 +313,6 @@ function createMarker(map, latlng, calledLocation, location, data) {
     e.target.bindPopup(popup).openPopup();
   });
 }
-}
 
 function addMarkers(map, data) {
 	var markersData = [
