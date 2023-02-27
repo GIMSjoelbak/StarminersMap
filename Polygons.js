@@ -306,6 +306,11 @@ function addMarkers(map, data) {
 { latlng: [3792, 1186], calledLocation: "South Lovakengj bank", color: "blue" },
 { latlng: [4072, 894], calledLocation: "Lovakite mine", color: "blue" },
 { latlng: [4111, 1865], calledLocation: "Arceuus dense essence mine", color: "blue" },
+	 //Kebos Lowlands
+{ latlng: [4000, 548], calledLocation: "Mount Karuulm bank", color: "orange" },
+{ latlng: [4003, 422], calledLocation: "Mount Karuulm mine", color: "orange" },
+{ latlng: [3505, 215], calledLocation: "Kebos Swamp mine", color: "orange" },
+{ latlng: [3244, 358], calledLocation: "Chambers of Xeric bank", color: "orange" },
 	 //Desert
 { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "yellow" },
 { latlng: [2445, 6472], calledLocation: "Al Kharid mine", color: "yellow" },
@@ -329,6 +334,7 @@ function addMarkers(map, data) {
 	var FossilMarkers = L.layerGroup().addTo(map);
 	var FremennikMarkers = L.layerGroup().addTo(map);
 	var KourendMarkers = L.layerGroup().addTo(map);
+	var KebosMarkers = L.layerGroup().addTo(map);
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
 
@@ -339,6 +345,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 	FossilMarkers.clearLayers();
 	FremennikMarkers.clearLayers();
 	KourendMarkers.clearLayers();
+	KebosMarkers.clearLayers();
   MisthalinMarkers.clearLayers();
   DesertMarkers.clearLayers();
   map.eachLayer(function(layer) {
@@ -361,7 +368,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-blue.png"
 	    }));
     } else if (d.color === "orange") {
-      marker.addTo(KaramjaMarkers, FossilMarkers);
+      marker.addTo(KaramjaMarkers, FossilMarkers, KebosMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-orange.png"
 	    }));
