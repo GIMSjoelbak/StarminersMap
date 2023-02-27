@@ -431,9 +431,9 @@ function updateTable(marker, data) {
 	
 //opacity set when marker tables are empty
   var currentOpacity = marker.options.opacity !== undefined ? marker.options.opacity : defaultOpacity;
-  if (filteredData2.length === 0 && currentOpacity !== 0.5) {
+  if (filteredData2.length === 0 && currentOpacity !== 0.4) {
     marker.setOpacity(0.5);
-    marker.options.opacity = 0.5; // Set new opacity value
+    marker.options.opacity = 0.4; // Set new opacity value
   } else if (filteredData2.length !== 0 && currentOpacity !== 1.0) {
     marker.setOpacity(1.0);
     marker.options.opacity = 1.0; // Set new opacity value
