@@ -339,6 +339,10 @@ function addMarkers(map, data) {
 { latlng: [3007, 7098], calledLocation: "Canifis bank", color: "violet" },
 { latlng: [2208, 7084], calledLocation: "Burgh de Rott bank", color: "violet" },
 { latlng: [2253, 6938], calledLocation: "Abandoned Mine west of Burgh", color: "violet" },
+	 //Piscatoris/Gnome Stronghold
+{ latlng: [3022, 3916], calledLocation: "West of Grand Tree", color: "violet" },
+{ latlng: [2859, 3928], calledLocation: "Gnome Stronghold spirit tree", color: "violet" },
+{ latlng: [3457, 3606], calledLocation: "Piscatoris (akq fairy ring)", color: "violet" },	 
   ];
 
 	var AsgarniaMarkers = L.layerGroup().addTo(map);
@@ -352,6 +356,7 @@ function addMarkers(map, data) {
 	var DesertMarkers = L.layerGroup().addTo(map);
 	var MisthalinMarkers = L.layerGroup().addTo(map);
 	var MorytaniaMarkers = L.layerGroup().addTo(map);
+	var PiscatorisMarkers = L.layerGroup().addTo(map);
   
 
 	// Clear the markers from the layer groups and from the map from previous update
@@ -366,6 +371,7 @@ function addMarkers(map, data) {
 	DesertMarkers.clearLayers();
   	MisthalinMarkers.clearLayers();
 	MorytaniaMarkers.clearLayers();
+	PiscatorisMarkers.clearLayers();
   map.eachLayer(function(layer) {
     if (layer instanceof L.Marker) {
       map.removeLayer(layer);
@@ -411,7 +417,7 @@ function addMarkers(map, data) {
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-grey.png"
 	    }));
     } else if (d.color === "violet") {
-      marker.addTo(MorytaniaMarkers);
+      marker.addTo(MorytaniaMarkers, PiscatorisMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-violet.png"
 	    }));
