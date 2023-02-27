@@ -255,23 +255,7 @@ else {
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
 }
-function addMarkers(map, data) {
-  var markers = [];
 
-  var markerData = [
-    { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
-    { latlng: [2445, 6472], calledLocation: "Al Kharid mine" },
-  ];
-
-  markerData.forEach((d) => {
-    var marker = L.marker(d.latlng, { calledLocation: d.calledLocation }).addTo(map);
-    markers.push(marker);
-  });
-
-  markers.forEach((marker) => {
-    updateTable(marker, data);
-  });
-}
 function updateTable(marker, data) {
   var filteredData = data.filter((d) => d.calledLocation === marker.options.calledLocation);
 
@@ -329,4 +313,22 @@ function updateTable(marker, data) {
   // Create the popup and add the table to it
   var popup = L.popup().setContent(table);
   marker.bindPopup(popup);
+}
+
+function addMarkers(map, data) {
+  var markers = [];
+
+  var markerData = [
+    { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
+    { latlng: [2445, 6472], calledLocation: "Al Kharid mine" },
+  ];
+
+  markerData.forEach((d) => {
+    var marker = L.marker(d.latlng, { calledLocation: d.calledLocation }).addTo(map);
+    markers.push(marker);
+  });
+
+  markers.forEach((marker) => {
+    updateTable(marker, data);
+  });
 }
