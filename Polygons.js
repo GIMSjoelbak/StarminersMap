@@ -288,9 +288,9 @@ function updateTable(marker, data) {
 
   // Flash the marker if data has changed
   if (isDataChanged) {
-    marker.getElement().classList.add("flash");
+    marker.getElement().classList.add("white-glow");
     setTimeout(function () {
-      marker.getElement().classList.remove("flash");
+      marker.getElement().classList.remove("white-glow");
     }, 2000);
   }
 
