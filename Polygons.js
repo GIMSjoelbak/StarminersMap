@@ -288,18 +288,25 @@ function addMarkers(map, data) {
 { latlng: [1444, 4297], calledLocation: "Feldip Hills (aks fairy ring)", color: "red" },
 { latlng: [1532, 4473], calledLocation: "Rantz cave", color: "red" },
 { latlng: [928, 3184], calledLocation: "Soul Wars south mine", color: "red" },
-	 //Fossil Island/Mos le
+	 //Fossil Island/Mos le harmless
 { latlng: [3956, 8038], calledLocation: "Fossil Island Volcanic Mine entrance", color: "orange" },
 { latlng: [3995, 7906], calledLocation: "Fossil Island rune rocks", color: "orange" },
-{ latlng: [1459, 7642], calledLocation: "Mos Le'Harmless west bank", color: "orange" },	 
+{ latlng: [1459, 7642], calledLocation: "Mos Le'Harmless west bank", color: "orange" },	
+	 //Fremennik/Lunar Isle
+{ latlng: [3600, 4764], calledLocation: "Keldagrim entrance mine", color: "gold" },
+{ latlng: [3650, 4633], calledLocation: "Rellekka mine", color: "gold" },
+{ latlng: [3994, 3763], calledLocation: "Jatizso mine entrance", color: "gold" },
+{ latlng: [4048, 3706], calledLocation: "Neitiznot south of rune rock", color: "gold" },
+{ latlng: [4214, 4168], calledLocation: "Miscellania mine (cip fairy ring)", color: "gold" },
+{ latlng: [4366, 3001], calledLocation: "Lunar Isle mine entrance", color: "gold" },
 	 //Desert
-{ latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "gold" },
-{ latlng: [2445, 6472], calledLocation: "Al Kharid mine", color: "gold" },
-{ latlng: [2042, 6412], calledLocation: "Al Kharid bank", color: "gold" },
-{ latlng: [2030, 6850], calledLocation: "Nw of Uzer (Eagle's Eyrie)", color: "gold" },
-{ latlng: [1219, 6886], calledLocation: "Nardah bank", color: "gold" },
-{ latlng: [1150, 6528], calledLocation: "Agility Pyramid mine", color: "gold" },
-{ latlng: [1282, 6097], calledLocation: "Desert Quarry mine", color: "gold" },
+{ latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "yellow" },
+{ latlng: [2445, 6472], calledLocation: "Al Kharid mine", color: "yellow" },
+{ latlng: [2042, 6412], calledLocation: "Al Kharid bank", color: "yellow" },
+{ latlng: [2030, 6850], calledLocation: "Nw of Uzer (Eagle's Eyrie)", color: "yellow" },
+{ latlng: [1219, 6886], calledLocation: "Nardah bank", color: "yellow" },
+{ latlng: [1150, 6528], calledLocation: "Agility Pyramid mine", color: "yellow" },
+{ latlng: [1282, 6097], calledLocation: "Desert Quarry mine", color: "yellow" },
 	 //Misthalin
 { latlng: [2777, 6357], calledLocation: "Varrock east bank", color: "red" },
 { latlng: [2612, 6453], calledLocation: "Southeast Varrock mine", color: "red" },
@@ -313,6 +320,7 @@ function addMarkers(map, data) {
 	var KaramjaMarkers = L.layerGroup().addTo(map);
 	var FeldipMarkers = L.layerGroup().addTo(map);
 	var FossilMarkers = L.layerGroup().addTo(map);
+	var FremennikMarkers = L.layerGroup().addTo(map);
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
 
@@ -321,6 +329,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
   KaramjaMarkers.clearLayers();
 	FeldipMarkers.clearLayers();
 	FossilMarkers.clearLayers();
+	FremennikMarkers.clearLayers();
   MisthalinMarkers.clearLayers();
   DesertMarkers.clearLayers();
   map.eachLayer(function(layer) {
@@ -353,6 +362,11 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-red.png"
 	    }));
     } else if (d.color === "gold") {
+      marker.addTo(FremennikMarkers);
+	    marker.setIcon(L.icon({
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png"
+	    }));
+    } else if (d.color === "yellow") {
       marker.addTo(DesertMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png"
