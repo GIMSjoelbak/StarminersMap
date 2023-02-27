@@ -255,59 +255,78 @@ else {
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
 }
-var markerData = [
-  { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
-  { latlng: [2445, 6472], calledLocation: "Al Kharid mine" }
-];
-
-var markers = [];
-
-/// Function to add markers to map
 function addMarkers(map, data) {
-  // Clear previous markers
-  markers.forEach((marker) => marker.remove());
-  markers = [];
+  var markers = [];
 
-  // Create markers for each data point
-  data.forEach((d) => {
-    var marker = L.marker(d.latlng).addTo(map);
+  var markerData = [
+    { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
+    { latlng: [2445, 6472], calledLocation: "Al Kharid mine" },
+  ];
+
+  markerData.forEach((d) => {
+    var marker = L.marker(d.latlng, { calledLocation: d.calledLocation }).addTo(map);
     markers.push(marker);
-
-    // Create table for the marker
-    var table = document.createElement("table");
-    var headerRow = table.insertRow();
-    var header1 = headerRow.insertCell(0);
-    var header2 = headerRow.insertCell(1);
-    var header3 = headerRow.insertCell(2);
-    var header4 = headerRow.insertCell(3);
-    var header5 = headerRow.insertCell(4);
-    header1.innerHTML = "<b>Location</b>";
-    header2.innerHTML = "<b>World</b>";
-    header3.innerHTML = "<b>Min Time</b>";
-    header4.innerHTML = "<b>Max Time</b>";
-    header5.innerHTML = "<b>Time until</b>";
-
-    // Add rows to the table
-    var filteredData = data.filter((d2) => d2.calledLocation === d.calledLocation);
-    filteredData.forEach((d2) => {
-      var row = table.insertRow();
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      var cell3 = row.insertCell(2);
-      var cell4 = row.insertCell(3);
-      var cell5 = row.insertCell(4);
-      cell1.innerHTML = d.calledLocation;
-      cell2.innerHTML = d2.world;
-      // Convert Unix timestamp to normal time format
-      var minTime = new Date(d2.minTime * 1000).toLocaleString();
-      var maxTime = new Date(d2.maxTime * 1000).toLocaleString();
-      var timeUntil = getTimeUntil(d2.maxTime);
-      cell3.innerHTML = minTime;
-      cell4.innerHTML = maxTime;
-      cell5.innerHTML = timeUntil;
-    });
-
-    // Add table to the marker popup
-    marker.bindPopup(table);
   });
+
+  markers.forEach((marker) => {
+    updateTable(marker, data);
+  });
+}
+function updateTable(marker, data) {
+  var filteredData = data.filter((d) => d.calledLocation === marker.options.calledLocation);
+
+  // Compare the previous data with the new data
+  var isDataChanged = false;
+  if (marker.prevData !== undefined) {
+    var prevData2 = marker.prevData;
+    isDataChanged = filteredData.length > prevData2.length;
+  }
+  marker.prevData = filteredData;
+
+  // Flash the marker if data has changed
+  if (isDataChanged) {
+    marker.getElement().classList.add("flash");
+    setTimeout(function () {
+      marker.getElement().classList.remove("flash");
+    }, 2000);
+  }
+
+  // Create the table
+  var table = document.createElement("table");
+  var headerRow = table.insertRow();
+  var header1 = headerRow.insertCell(0);
+  var header2 = headerRow.insertCell(1);
+  var header3 = headerRow.insertCell(2);
+  var header4 = headerRow.insertCell(3);
+  var header5 = headerRow.insertCell(4);
+
+  header1.innerHTML = "<b>Location</b>";
+  header2.innerHTML = "<b>World</b>";
+  header3.innerHTML = "<b>Min Time</b>";
+  header4.innerHTML = "<b>Max Time</b>";
+  header5.innerHTML = "<b>Time until</b>";
+
+  filteredData.forEach((d) => {
+    var row = table.insertRow();
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+
+    cell1.innerHTML = d.location;
+    cell2.innerHTML = d.world;
+
+    // Convert Unix timestamp to normal time format
+    var minTime = new Date(d.minTime * 1000);
+    var maxTime = new Date(d.maxTime * 1000);
+    var timeUntil = new Date(d.timeUntil * 1000);
+    cell3.innerHTML = minTime.toLocaleString();
+    cell4.innerHTML = maxTime.toLocaleString();
+    cell5.innerHTML = timeUntil.toLocaleString();
+  });
+
+  // Create the popup and add the table to it
+  var popup = L.popup().setContent(table);
+  marker.bindPopup(popup);
 }
