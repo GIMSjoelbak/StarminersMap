@@ -342,7 +342,13 @@ function addMarkers(map, data) {
 	 //Piscatoris/Gnome Stronghold
 { latlng: [3022, 3916], calledLocation: "West of Grand Tree", color: "violet" },
 { latlng: [2859, 3928], calledLocation: "Gnome Stronghold spirit tree", color: "violet" },
-{ latlng: [3457, 3606], calledLocation: "Piscatoris (akq fairy ring)", color: "violet" },	 
+{ latlng: [3457, 3606], calledLocation: "Piscatoris (akq fairy ring)", color: "violet" },
+	 //Tirannwn
+{ latlng: [2041, 3570], calledLocation: "Lletya", color: "green" },
+{ latlng: [2025, 3390], calledLocation: "Isafdar runite rocks", color: "green" },
+{ latlng: [2449, 3343], calledLocation: "Prifddinas Zalcano entrance", color: "green" },
+{ latlng: [2360, 3537], calledLocation: "Arandar mine north of Lleyta", color: "green" },
+{ latlng: [2780, 3103], calledLocation: "Mynydd nw of Prifddinas", color: "green" },	 
   ];
 
 	var AsgarniaMarkers = L.layerGroup().addTo(map);
@@ -357,6 +363,7 @@ function addMarkers(map, data) {
 	var MisthalinMarkers = L.layerGroup().addTo(map);
 	var MorytaniaMarkers = L.layerGroup().addTo(map);
 	var PiscatorisMarkers = L.layerGroup().addTo(map);
+	var TirannwnMarkers = L.layerGroup().addTo(map);
   
 
 	// Clear the markers from the layer groups and from the map from previous update
@@ -372,6 +379,7 @@ function addMarkers(map, data) {
   	MisthalinMarkers.clearLayers();
 	MorytaniaMarkers.clearLayers();
 	PiscatorisMarkers.clearLayers();
+	TirannwnMarkers.clearLayers();
   map.eachLayer(function(layer) {
     if (layer instanceof L.Marker) {
       map.removeLayer(layer);
@@ -420,6 +428,11 @@ function addMarkers(map, data) {
       marker.addTo(MorytaniaMarkers, PiscatorisMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-violet.png"
+	    }));
+    } else if (d.color === "green") {
+      marker.addTo(TirannwnMarkers);
+	    marker.setIcon(L.icon({
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-green.png"
 	    }));
     }
     updateTable(marker, data);
