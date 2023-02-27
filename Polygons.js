@@ -299,6 +299,13 @@ function addMarkers(map, data) {
 { latlng: [4048, 3706], calledLocation: "Neitiznot south of rune rock", color: "gold" },
 { latlng: [4214, 4168], calledLocation: "Miscellania mine (cip fairy ring)", color: "gold" },
 { latlng: [4366, 3001], calledLocation: "Lunar Isle mine entrance", color: "gold" },
+	 //Great Kourend
+{ latlng: [3031, 1918], calledLocation: "Hosidius mine", color: "blue" },
+{ latlng: [3678, 1891], calledLocation: "Port Piscarilius mine in Kourend", color: "blue" },
+{ latlng: [3496, 1375], calledLocation: "Shayzien mine south of Kourend Castle", color: "blue" },
+{ latlng: [3792, 1186], calledLocation: "South Lovakengj bank", color: "blue" },
+{ latlng: [4072, 894], calledLocation: "Lovakite mine", color: "blue" },
+{ latlng: [4111, 1865], calledLocation: "Arceuus dense essence mine", color: "blue" },
 	 //Desert
 { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "yellow" },
 { latlng: [2445, 6472], calledLocation: "Al Kharid mine", color: "yellow" },
@@ -321,6 +328,7 @@ function addMarkers(map, data) {
 	var FeldipMarkers = L.layerGroup().addTo(map);
 	var FossilMarkers = L.layerGroup().addTo(map);
 	var FremennikMarkers = L.layerGroup().addTo(map);
+	var KourendMarkers = L.layerGroup().addTo(map);
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
 
@@ -330,6 +338,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 	FeldipMarkers.clearLayers();
 	FossilMarkers.clearLayers();
 	FremennikMarkers.clearLayers();
+	KourendMarkers.clearLayers();
   MisthalinMarkers.clearLayers();
   DesertMarkers.clearLayers();
   map.eachLayer(function(layer) {
@@ -347,7 +356,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
   
     var marker = L.marker(d.latlng, markerOptions);
 	  if (d.color === "blue") {
-      marker.addTo(AsgarniaMarkers);
+      marker.addTo(AsgarniaMarkers, KourendMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-blue.png"
 	    }));
