@@ -325,7 +325,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 	    }));
     }
     updateTable(marker, data);
-  };
+  });
 
 function updateTable(marker, data) {
 	
