@@ -377,6 +377,6 @@ else {
 
   // Create the popup and add the table to it
   var popup = L.popup({maxWidth: 700}).setContent(table);
-  marker.bindPopup(popup);
+  DesertMarkerGroup.bindPopup(popup);
 }
 }
