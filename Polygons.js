@@ -339,9 +339,11 @@ function updateTable(marker, data) {
   header5.innerHTML = "<b>Time until</b>";
   header6.innerHTML = "<b>Called Location</b>";
 	
-	if (filteredData2.length === 0) {
+	//opacity set when marker tables are empty
+  var currentOpacity = marker.getOpacity();
+  if (filteredData2.length === 0 && currentOpacity !== 0.5) {
     marker.setOpacity(0.5);
-  } else {
+  } else if (filteredData2.length !== 0 && currentOpacity !== 1.0) {
     marker.setOpacity(1.0);
   }
 
