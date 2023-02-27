@@ -6,7 +6,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'DodgerBlue',
 	    color: 'DodgerBlue',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -15,7 +15,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Chocolate',
 	    color: 'Chocolate',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -24,7 +24,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Brown',
 	    color: 'Brown',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -32,7 +32,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Brown',
 	    color: 'Brown',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -40,7 +40,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Gold',
 	    color: 'Gold',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -48,7 +48,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'SpringGreen',
 	    color: 'SpringGreen',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -56,7 +56,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Plum',
 	    color: 'Plum',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -64,7 +64,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'DarkOrange',
 	    color: 'DarkOrange',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -72,7 +72,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'MediumSeaGreen',
 	    color: 'MediumSeaGreen',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -80,7 +80,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Red',
 	    color: 'Red',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -88,7 +88,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Purple',
 	    color: 'Purple',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -96,7 +96,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Purple',
 	    color: 'Purple',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -104,7 +104,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Olive',
 	    color: 'Olive',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -112,7 +112,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'Grey',
 	    color: 'Grey',
-	    weight: 0.6,
+	    weight: 1,
       fillOpacity: 0.4,
     }
   }).addTo(map);
