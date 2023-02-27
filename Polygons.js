@@ -269,6 +269,13 @@ function addMarkers(map, data) {
 { latlng: [2597, 5673], calledLocation: "East Falador bank", color: "blue" },
 { latlng: [2882, 5637], calledLocation: "North Dwarven Mine entrance", color: "blue" },
 { latlng: [2974, 5229], calledLocation: "Taverley house portal", color: "blue" },
+	 //Karamja
+{ latlng: [2215, 4791], calledLocation: "Brimhaven northwest gold mine", color: "orange" },
+{ latlng: [1981, 4811], calledLocation: "Southwest of Brimhaven Poh", color: "orange" },
+{ latlng: [1663, 5120], calledLocation: "Nature Altar mine north of Shilo", color: "orange" },
+{ latlng: [1549, 5064], calledLocation: "Shilo Village gem mine", color: "orange" },
+{ latlng: [2441, 5091], calledLocation: "North Crandor", color: "orange" },
+{ latlng: [2267, 5050], calledLocation: "South Crandor", color: "orange" },
 	 //Desert
 { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "gold" },
 { latlng: [2445, 6472], calledLocation: "Al Kharid mine", color: "gold" },
@@ -287,11 +294,13 @@ function addMarkers(map, data) {
   ];
 
 	var AsgarniaMarkers = L.layerGroup().addTo(map);
+	var KaramjaMarkers = L.layerGroup().addTo(map);
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
 
 	// Clear the markers from the layer groups and from the map from previous update
-	AsgarniaMarkers.clearLayers();
+  AsgarniaMarkers.clearLayers();
+  KaramjaMarkers.clearLayers();
   MisthalinMarkers.clearLayers();
   DesertMarkers.clearLayers();
   map.eachLayer(function(layer) {
@@ -308,7 +317,17 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
     };
   
     var marker = L.marker(d.latlng, markerOptions);
-    if (d.color === "red") {
+	  if (d.color === "blue") {
+      marker.addTo(AsgarniaMarkers);
+	    marker.setIcon(L.icon({
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-blue.png"
+	    }));
+    } else if (d.color === "orange") {
+      marker.addTo(KaramjaMarkers);
+	    marker.setIcon(L.icon({
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-orange.png"
+	    }));
+    } else if (d.color === "red") {
       marker.addTo(MisthalinMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-red.png"
@@ -317,11 +336,6 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
       marker.addTo(DesertMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png"
-	    }));
-    } else if (d.color === "blue") {
-      marker.addTo(DesertMarkers);
-	    marker.setIcon(L.icon({
-		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-blue.png"
 	    }));
     }
     updateTable(marker, data);
