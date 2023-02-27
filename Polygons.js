@@ -324,7 +324,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-blue.png"
 	    }));
     updateTable(marker, data);
-  });
+  };
 
 function updateTable(marker, data) {
 	
