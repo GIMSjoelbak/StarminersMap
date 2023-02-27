@@ -270,16 +270,23 @@ function addMarkers(map, data) {
 { latlng: [1282, 6097], calledLocation: "Desert Quarry mine", color: "gold" },
   ];
 
+var MisthalinMarkers = L.layerGroup().addTo(map);
+  var DesertMarkers = L.layerGroup().addTo(map);
+
   markerData.forEach((d) => {
-    var marker = L.marker(d.latlng, { calledLocation: d.calledLocation, color: d.color }).addTo(map);
-    markers.push(marker);
+    var markerOptions = {
+      calledLocation: d.calledLocation,
+      shadow: false,
+    };
+    var marker = L.marker(d.latlng, markerOptions);
+    if (d.color === "red") {
+      marker.addTo(MisthalinMarkers);
+    } else if (d.color === "gold") {
+      marker.addTo(DesertMarkers);
+    }
+    updateTable(marker, data);
   });
-  markers.forEach((marker) => {
-  var icon = marker.options.color === "red" ? L.icon({ iconUrl: "red-marker.png", shadowUrl: null }) :
-                                               L.icon({ iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png", shadowUrl: null });
-  marker.setIcon(icon);
-  updateTable(marker, data);
-});
+
 
 
 function updateTable(marker, data) {
