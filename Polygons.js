@@ -288,6 +288,10 @@ function addMarkers(map, data) {
 { latlng: [1444, 4297], calledLocation: "Feldip Hills (aks fairy ring)", color: "red" },
 { latlng: [1532, 4473], calledLocation: "Rantz cave", color: "red" },
 { latlng: [928, 3184], calledLocation: "Soul Wars south mine", color: "red" },
+	 //Fossil Island/Mos le
+{ latlng: [3956, 8038], calledLocation: "Fossil Island Volcanic Mine entrance", color: "orange" },
+{ latlng: [3995, 7906], calledLocation: "Fossil Island rune rocks", color: "orange" },
+{ latlng: [1459, 7642], calledLocation: "Mos Le'Harmless west bank", color: "orange" },	 
 	 //Desert
 { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "gold" },
 { latlng: [2445, 6472], calledLocation: "Al Kharid mine", color: "gold" },
@@ -308,6 +312,7 @@ function addMarkers(map, data) {
 	var AsgarniaMarkers = L.layerGroup().addTo(map);
 	var KaramjaMarkers = L.layerGroup().addTo(map);
 	var FeldipMarkers = L.layerGroup().addTo(map);
+	var FossilMarkers = L.layerGroup().addTo(map);
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
 
@@ -315,6 +320,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
   AsgarniaMarkers.clearLayers();
   KaramjaMarkers.clearLayers();
 	FeldipMarkers.clearLayers();
+	FossilMarkers.clearLayers();
   MisthalinMarkers.clearLayers();
   DesertMarkers.clearLayers();
   map.eachLayer(function(layer) {
@@ -337,7 +343,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-blue.png"
 	    }));
     } else if (d.color === "orange") {
-      marker.addTo(KaramjaMarkers);
+      marker.addTo(KaramjaMarkers, FossilMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-orange.png"
 	    }));
