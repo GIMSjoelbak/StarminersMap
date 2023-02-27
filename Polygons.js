@@ -259,21 +259,23 @@ var prevData = {};
 function addMarkers(map, data) {
 	
   var markers = [];
+	
+	var yellowIcon = L.icon({
+		iconUrl: 'https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-gold.png',
+		shadowUrl: null
+	});
 
-  var markerData = [
-{ latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena" },
-{ latlng: [2445, 6472], calledLocation: "Al Kharid mine" },
-{ latlng: [2042, 6412], calledLocation: "Al Kharid bank" },
-{ latlng: [2030, 6850], calledLocation: "Nw of Uzer (Eagle's Eyrie)" },
-{ latlng: [1219, 6886], calledLocation: "Nardah bank" },
-{ latlng: [1150, 6528], calledLocation: "Agility Pyramid mine" },
-{ latlng: [1282, 6097], calledLocation: "Desert Quarry mine" },
+  var DesertMarkers = [
+L.marker([2395, 6636], { icon: yellowIcon, calledLocation: "North of Al Kharid PvP Arena" }),
+L.marker([2445, 6472], { icon: yellowIcon, calledLocation: "Al Kharid mine" },
+L.marker([2042, 6412], { icon: yellowIcon, calledLocation: "Al Kharid bank" },
+L.marker([2030, 6850], { icon: yellowIcon, calledLocation: "Nw of Uzer (Eagle's Eyrie)" },
+L.marker([1219, 6886], { icon: yellowIcon, calledLocation: "Nardah bank" },
+L.marker([1150, 6528], { icon: yellowIcon, calledLocation: "Agility Pyramid mine" },
+L.marker([1282, 6097], { icon: yellowIcon, calledLocation: "Desert Quarry mine" },
   ];
 
-  markerData.forEach((d) => {
-    var marker = L.marker(d.latlng, { calledLocation: d.calledLocation }).addTo(map);
-    markers.push(marker);
-  });
+  var DesertMarkerGroup = L.layergroup(DesertMarkers).addTo(map);
 
   markers.forEach((marker) => {
     updateTable(marker, data);
