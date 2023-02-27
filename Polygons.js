@@ -256,7 +256,7 @@ else {
   polygon.bindPopup(popup);
 }
 
-function updateTable(marker, data) {
+function updateTable(marker, calledLocation, data) {
 	var prevData = {};
   var filteredData = data.filter((d) => d.calledLocation === calledLocation);
 	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
