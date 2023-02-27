@@ -174,20 +174,9 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
  fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
-	createPopup(polygon0, 0, data);
-	createPopup(polygon1, 1, data);
-	createPopup(polygon2, 2, data);
-	createPopup(polygon3, 3, data);
-	createPopup(polygon4, 4, data);
-	createPopup(polygon5, 5, data);
-	createPopup(polygon6, 6, data);
-	createPopup(polygon7, 7, data);
-	createPopup(polygon8, 8, data);
-	createPopup(polygon9, 9, data);
-	createPopup(polygon10, 10, data);
-	createPopup(polygon11, 11, data);
-	createPopup(polygon12, 12, data);
-	createPopup(polygon13, 13, data);
+	 for (let i = 0; i < 14; i++) {
+        const polygon = window[`polygon${i}`];
+        createPopup(polygon, i, data);
 	    console.log(data); // log the retrieved data
 	  });
 	}
