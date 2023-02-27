@@ -261,6 +261,7 @@ function addMarkers(map, data) {
   var markers = [];
 	
  var markerData = [
+	 //Desert
 { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "gold" },
 { latlng: [2445, 6472], calledLocation: "Al Kharid mine", color: "gold" },
 { latlng: [2042, 6412], calledLocation: "Al Kharid bank", color: "gold" },
@@ -268,6 +269,13 @@ function addMarkers(map, data) {
 { latlng: [1219, 6886], calledLocation: "Nardah bank", color: "gold" },
 { latlng: [1150, 6528], calledLocation: "Agility Pyramid mine", color: "gold" },
 { latlng: [1282, 6097], calledLocation: "Desert Quarry mine", color: "gold" },
+	 //Misthalin
+{ latlng: [2777, 6357], calledLocation: "Varrock east bank", color: "red" },
+{ latlng: [2612, 6453], calledLocation: "Southeast Varrock mine", color: "red" },
+{ latlng: [2637, 6108], calledLocation: "Champions' Guild mine", color: "red" },
+{ latlng: [2257, 5865], calledLocation: "Draynor Village", color: "red" },
+{ latlng: [2007, 6045], calledLocation: "West Lumbridge Swamp mine", color: "red" },
+{ latlng: [2017, 6276], calledLocation: "East Lumbridge Swamp mine", color: "red" },
   ];
 
 var MisthalinMarkers = L.layerGroup().addTo(map);
