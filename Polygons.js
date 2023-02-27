@@ -348,6 +348,7 @@ if (filteredData2.length !== 0) {
     } else if (marker.options.opacity !== 0.5) {
       marker.setOpacity(0.5);
     }
+}
 	
   filteredData.forEach((d) => {
     var row = table.insertRow();
