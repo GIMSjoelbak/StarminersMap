@@ -292,26 +292,63 @@ function updateTable(marker, data) {
 
   filteredData.forEach((d) => {
     var row = table.insertRow();
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
-    var cell5 = row.insertCell(4);
-
-    cell1.innerHTML = d.location;
-    cell2.innerHTML = d.world;
-
-    // Convert Unix timestamp to normal time format
-    var minTime = new Date(d.minTime * 1000);
-    var maxTime = new Date(d.maxTime * 1000);
-    var timeUntil = new Date(d.timeUntil * 1000);
-    cell3.innerHTML = minTime.toLocaleString();
-    cell4.innerHTML = maxTime.toLocaleString();
-    cell5.innerHTML = timeUntil.toLocaleString();
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+	  var cell5 = row.insertCell(4);
+          var cell6 = row.insertCell(5);
+		  var locationWord;
+  if (d.location === 0) {
+    locationWord = "Asgarnia";
+  } else if (d.location === 1) {
+    locationWord = "Karamja/Crandor";
+  } else if (d.location === 2) {
+    locationWord = "Feldip/Isle of Souls";
+  } else if (d.location === 3) {
+    locationWord = "Fossil Island/Mos le'";
+  } else if (d.location === 4) {
+    locationWord = "Fremennik/Lunar Isle";
+  } else if (d.location === 5) {
+    locationWord = "Great Kourend";
+  } else if (d.location === 6) {
+    locationWord = "Kandarin";
+  } else if (d.location === 7) {
+    locationWord = "Kebos Lowlands";
+  } else if (d.location === 8) {
+    locationWord = "Kharidian Desert";
+  } else if (d.location === 9) {
+    locationWord = "Misthalin";
+  } else if (d.location === 10) {
+    locationWord = "Morytania";
+  } else if (d.location === 11) {
+    locationWord = "Piscatoris/Gnome Str.";
+  } else if (d.location === 12) {
+    locationWord = "Tirannwn";
+  } else if (d.location === 13) {
+    locationWord = "Wilderness";
+  }
+else {
+    locationWord = d.location;
+  }
+          cell1.innerHTML = locationWord;
+          cell2.innerHTML = d.world;	
+        // Convert Unix timestamp to normal time format
+        var minTime = new Date(d.minTime * 1000).toLocaleString();
+        var maxTime = new Date(d.maxTime * 1000).toLocaleString();
+          cell3.innerHTML = minTime;
+          cell4.innerHTML = maxTime;
+	var now = Date.now();
+        var relativeTime = Math.round((d.minTime * 1000 - now) / 60000);
+        if (relativeTime > 0) {
+          relativeTime = -relativeTime;
+        }
+          cell5.innerHTML = relativeTime + " min";
+          cell6.innerHTML = d.calledLocation;
   });
 
   // Create the popup and add the table to it
-  var popup = L.popup().setContent(table);
+  var popup = L.popup({maxWidth: 700}).setContent(table);
   marker.bindPopup(popup);
 }
 
