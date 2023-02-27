@@ -5,6 +5,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   var polygon0 = L.geoJSON(result[0], {
     style: {
       fillColor: 'DodgerBlue',
+	    Color: 'DodgerBlue',
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -12,6 +13,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   var polygon1 = L.geoJSON(result[1], {
     style: {
       fillColor: 'Chocolate',
+	    Color: 'Chocolate',
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -19,72 +21,84 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   var polygon2 = L.geoJSON(result[2], {
     style: {
       fillColor: 'Brown',
+	    Color: 'Brown',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon3 = L.geoJSON(result[3], {
     style: {
       fillColor: 'Brown',
+	    Color: 'Brown',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon4 = L.geoJSON(result[4], {
     style: {
       fillColor: 'Gold',
+	    Color: 'Gold',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon5 = L.geoJSON(result[5], {
     style: {
       fillColor: 'SpringGreen',
+	    Color: 'SpringGreen',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon6 = L.geoJSON(result[6], {
     style: {
       fillColor: 'Plum',
+	    Color: 'Plum',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon7 = L.geoJSON(result[7], {
     style: {
       fillColor: 'DarkOrange',
+	    Color: 'DarkOrange',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon8 = L.geoJSON(result[8], {
     style: {
       fillColor: 'MediumSeaGreen',
+	    Color: 'MediumSeaGreen',
       fillOpacity: 0.4,
     }
   }).addTo(map);
   var polygon9 = L.geoJSON(result[9], {
     style: {
       fillColor: 'Red',
+	    Color: 'Red',
       fillOpacity: 0.4,
     }
   }).addTo(map);
 	  var polygon10 = L.geoJSON(result[10], {
     style: {
       fillColor: 'Purple',
+	    Color: 'Purple',
       fillOpacity: 0.4,
     }
   }).addTo(map);
 	  var polygon11 = L.geoJSON(result[11], {
     style: {
       fillColor: 'Purple',
+	    Color: 'Purple',
       fillOpacity: 0.4,
     }
   }).addTo(map);
 	  var polygon12 = L.geoJSON(result[12], {
     style: {
       fillColor: 'Olive',
+	    Color: 'Olive',
       fillOpacity: 0.4,
     }
   }).addTo(map);
 	  var polygon13 = L.geoJSON(result[13], {
     style: {
       fillColor: 'Grey',
+	    Color: 'Grey',
       fillOpacity: 0.4,
     }
   }).addTo(map);
@@ -239,6 +253,6 @@ function addMarkers(map) {
 		{ latlng: [2445, 6472], calledLocation: "Al Kharid mine"}, ];
 	
 	markersData.forEach(function (data) {
-		createMarker(mar, data.latlng, data.calledLocation);
+		createMarker(map, data.latlng, data.calledLocation);
 	});
 }
