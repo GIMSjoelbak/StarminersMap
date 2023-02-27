@@ -303,7 +303,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
       marker.addTo(MisthalinMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-red.png"
-	    });
+	    }));
     } else if (d.color === "gold") {
       marker.addTo(DesertMarkers);
 	    marker.setIcon(L.icon({
