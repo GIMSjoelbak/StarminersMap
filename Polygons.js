@@ -260,8 +260,11 @@ var prevData = {};
 function addMarkers(map, data) {
 	
   var markers = [];
- 
 	
+	  // Clear the markers from the layer groups
+  MisthalinMarkers.clearLayers();
+  DesertMarkers.clearLayers();
+ 	
  var markerData = [
 	 //Desert
 { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "gold" },
