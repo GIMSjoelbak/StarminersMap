@@ -291,7 +291,7 @@ function addMarkers(map, data) {
 	 //Fossil Island/Mos le harmless
 { latlng: [3956, 8038], calledLocation: "Fossil Island Volcanic Mine entrance", color: "orange" },
 { latlng: [3995, 7906], calledLocation: "Fossil Island rune rocks", color: "orange" },
-{ latlng: [1459, 7642], calledLocation: "Mos Le'Harmless west bank", color: "orange" },	
+{ latlng: [1459, 7642], calledLocation: "Mos Le'Harmless west bank", color: "orange" },
 	 //Fremennik/Lunar Isle
 { latlng: [3600, 4764], calledLocation: "Keldagrim entrance mine", color: "gold" },
 { latlng: [3650, 4633], calledLocation: "Rellekka mine", color: "gold" },
@@ -333,6 +333,12 @@ function addMarkers(map, data) {
 { latlng: [2257, 5865], calledLocation: "Draynor Village", color: "red" },
 { latlng: [2007, 6045], calledLocation: "West Lumbridge Swamp mine", color: "red" },
 { latlng: [2017, 6276], calledLocation: "East Lumbridge Swamp mine", color: "red" },
+	 //Morytania
+{ latlng: [2572, 7489], calledLocation: "Darkmeyer ess. mine entrance", color: "violet" },
+{ latlng: [2194, 7535], calledLocation: "Theatre of Blood bank", color: "violet" },
+{ latlng: [3007, 7098], calledLocation: "Canifis bank", color: "violet" },
+{ latlng: [2208, 7084], calledLocation: "Burgh de Rott bank", color: "violet" },
+{ latlng: [2253, 6938], calledLocation: "Abandoned Mine west of Burgh", color: "violet" },
   ];
 
 	var AsgarniaMarkers = L.layerGroup().addTo(map);
@@ -343,20 +349,23 @@ function addMarkers(map, data) {
 	var KourendMarkers = L.layerGroup().addTo(map);
 	var KandarinMarkers = L.layerGroup().addTo(map);
 	var KebosMarkers = L.layerGroup().addTo(map);
-var MisthalinMarkers = L.layerGroup().addTo(map);
-  var DesertMarkers = L.layerGroup().addTo(map);
+	var DesertMarkers = L.layerGroup().addTo(map);
+	var MisthalinMarkers = L.layerGroup().addTo(map);
+	var MorytaniaMarkers = L.layerGroup().addTo(map);
+  
 
 	// Clear the markers from the layer groups and from the map from previous update
-  AsgarniaMarkers.clearLayers();
-  KaramjaMarkers.clearLayers();
+  	AsgarniaMarkers.clearLayers();
+  	KaramjaMarkers.clearLayers();
 	FeldipMarkers.clearLayers();
 	FossilMarkers.clearLayers();
 	FremennikMarkers.clearLayers();
 	KourendMarkers.clearLayers();
 	KandarinMarkers.clearLayers();
 	KebosMarkers.clearLayers();
-  MisthalinMarkers.clearLayers();
-  DesertMarkers.clearLayers();
+	DesertMarkers.clearLayers();
+  	MisthalinMarkers.clearLayers();
+	MorytaniaMarkers.clearLayers();
   map.eachLayer(function(layer) {
     if (layer instanceof L.Marker) {
       map.removeLayer(layer);
@@ -400,6 +409,11 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
       marker.addTo(KandarinMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-black.png"
+	    }));
+    } else if (d.color === "violet") {
+      marker.addTo(MorytaniaMarkers);
+	    marker.setIcon(L.icon({
+		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-violet.png"
 	    }));
     }
     updateTable(marker, data);
