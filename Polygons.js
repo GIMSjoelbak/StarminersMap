@@ -372,7 +372,7 @@ function addMarkers(map, data) {
 	var MorytaniaMarkers = L.layerGroup().addTo(map);
 	var PiscatorisMarkers = L.layerGroup().addTo(map);
 	var TirannwnMarkers = L.layerGroup().addTo(map);
-	var WildernessMarkers = L.layerGroup().addTo()map;
+	var WildernessMarkers = L.layerGroup().addTo(map);
   
 
 	// Clear the markers from the layer groups and from the map from previous update
