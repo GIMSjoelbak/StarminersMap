@@ -177,6 +177,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	 for (let i = 0; i < 14; i++) {
         const polygon = window[`polygon${i}`];
         createPopup(polygon, i, data);
+	 }
 	    console.log(data); // log the retrieved data
 	  });
 	}
