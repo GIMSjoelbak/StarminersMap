@@ -341,14 +341,14 @@ function updateTable(marker, data) {
   header5.innerHTML = "<b>Time until</b>";
   header6.innerHTML = "<b>Called Location</b>";
 	
-	//opacity set when marker tables are empty
-  var currentOpacity = marker.options.opacity !== undefined ? marker.options.opacity : defaultOpacity;
-  if (filteredData2.length === 0 && currentOpacity !== 0.5) {
-    marker.setOpacity(0.5);
-  } else if (filteredData2.length !== 0 && currentOpacity !== 1.0) {
-    marker.setOpacity(1.0);
-  }
-
+if (filteredData2.length !== 0) {
+    // Update the opacity of the marker
+    if (marker.options.opacity !== undefined && marker.options.opacity !== 1.0) {
+      marker.setOpacity(1.0);
+    } else if (marker.options.opacity !== 0.5) {
+      marker.setOpacity(0.5);
+    }
+	
   filteredData.forEach((d) => {
     var row = table.insertRow();
           var cell1 = row.insertCell(0);
