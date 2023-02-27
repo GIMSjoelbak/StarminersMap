@@ -255,6 +255,11 @@ else {
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
 }
+
+/* 
+Start of marker data
+*/
+
 var prevData = {};
  var defaultOpacity = 0;
 function addMarkers(map, data) {
@@ -276,6 +281,13 @@ function addMarkers(map, data) {
 { latlng: [1549, 5064], calledLocation: "Shilo Village gem mine", color: "orange" },
 { latlng: [2441, 5091], calledLocation: "North Crandor", color: "orange" },
 { latlng: [2267, 5050], calledLocation: "South Crandor", color: "orange" },
+	 //Feldip
+{ latlng: [1126, 4285], calledLocation: "Corsair Cove bank", color: "red" },
+{ latlng: [1210, 4033], calledLocation: "Corsair Resource Area", color: "red" },
+{ latlng: [1078, 3987], calledLocation: "Myths' Guild", color: "red" },
+{ latlng: [1444, 4297], calledLocation: "Feldip Hills (aks fairy ring)", color: "red" },
+{ latlng: [1532, 4473], calledLocation: "Rantz cave", color: "red" },
+{ latlng: [928, 3184], calledLocation: "Soul Wars south mine", color: "red" },
 	 //Desert
 { latlng: [2395, 6636], calledLocation: "North of Al Kharid PvP Arena", color: "gold" },
 { latlng: [2445, 6472], calledLocation: "Al Kharid mine", color: "gold" },
@@ -295,12 +307,14 @@ function addMarkers(map, data) {
 
 	var AsgarniaMarkers = L.layerGroup().addTo(map);
 	var KaramjaMarkers = L.layerGroup().addTo(map);
+	var FeldipMarkers = L.layerGroup().addTo(map);
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
 
 	// Clear the markers from the layer groups and from the map from previous update
   AsgarniaMarkers.clearLayers();
   KaramjaMarkers.clearLayers();
+	FeldipMarkers.clearLayers();
   MisthalinMarkers.clearLayers();
   DesertMarkers.clearLayers();
   map.eachLayer(function(layer) {
@@ -328,7 +342,7 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-orange.png"
 	    }));
     } else if (d.color === "red") {
-      marker.addTo(MisthalinMarkers);
+      marker.addTo(MisthalinMarkers, FeldipMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-red.png"
 	    }));
