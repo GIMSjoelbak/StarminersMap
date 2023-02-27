@@ -138,7 +138,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	createPopup(polygon12, 12, data);
 	createPopup(polygon13, 13, data);
 	    console.log(data); // log the retrieved data
-	 addMarkers(map);
+	 addMarkers(map, data);
 	  });
 	}
 	 // Call the fetch data function for the 1st time
@@ -258,9 +258,10 @@ else {
 //Create markers for each location
 function createMarker(map, latlng, calledLocation, location, data) {
 	var marker = L.marker(latlng).addTo(map);
-	marker.on("click", function (e) {
-    var table = document.createElement("table");
-    var headerRow = table.insertRow();
+	var filteredData = data.filter((d) => d.calledLocation === calledLocation);
+	
+    var table2 = document.getElementById(calledLocation);
+    var headerRow = table2.insertRow();
     var header1 = headerRow.insertCell(0);
     var header2 = headerRow.insertCell(1);
     var header3 = headerRow.insertCell(2);
@@ -274,9 +275,8 @@ function createMarker(map, latlng, calledLocation, location, data) {
     header5.innerHTML = "<b>Time until</b>";
     header6.innerHTML = "<b>Called Location</b>";
 
-    var filteredData = data.filter((d) => d.calledLocation === calledLocation && d.location === location);
     filteredData.forEach((d) => {
-      var row = table.insertRow();
+      var row = table2.insertRow();
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
       var cell3 = row.insertCell(2);
@@ -309,9 +309,8 @@ function createMarker(map, latlng, calledLocation, location, data) {
       cell6.innerHTML = d.calledLocation;
     });
 
-    var popup = L.popup({ maxWidth: 700 }).setContent(table);
-    e.target.bindPopup(popup).openPopup();
-  });
+    var popup = L.popup({ maxWidth: 700 }).setContent(table2);
+    marker.bindPopup(calledLocation);
 }
 
 function addMarkers(map, data) {
