@@ -271,7 +271,7 @@ function addMarkers(map, data) {
   ];
 
   markerData.forEach((d) => {
-    var marker = L.marker(d.latlng, { calledLocation: d.calledLocation }).addTo(map);
+    var marker = L.marker(d.latlng, { calledLocation: d.calledLocation, color: d.color }).addTo(map);
     markers.push(marker);
   });
 
