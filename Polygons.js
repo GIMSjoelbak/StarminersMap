@@ -256,6 +256,7 @@ else {
   polygon.bindPopup(popup);
 }
 function addMarkers(map, data) {
+	var prevData = {};
   var markers = [];
 
   var markerData = [
@@ -272,7 +273,7 @@ function addMarkers(map, data) {
     updateTable(marker, data);
   });
 function updateTable(marker, data) {
-	var prevData = {};
+	
   var filteredData = data.filter((d) => d.calledLocation === marker.options.calledLocation);
 	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
 
