@@ -282,13 +282,20 @@ function addMarkers(map, data) {
 var MisthalinMarkers = L.layerGroup().addTo(map);
   var DesertMarkers = L.layerGroup().addTo(map);
 
+	// Clear the markers from the layer groups and from the map
+  MisthalinMarkers.clearLayers();
+  DesertMarkers.clearLayers();
+  map.eachLayer(function(layer) {
+    if (layer instanceof L.Marker) {
+      map.removeLayer(layer);
+    }
+  });
 
   markerData.forEach((d) => {
     var markerOptions = {
       calledLocation: d.calledLocation,
       shadow: false,
-      opacity: defaultOpacity,
-	    iconOpacity: defaultOpacity
+      opacity: defaultOpacity
     };
   
     var marker = L.marker(d.latlng, markerOptions);
@@ -302,19 +309,6 @@ var MisthalinMarkers = L.layerGroup().addTo(map);
     }
     updateTable(marker, data);
   });
-	L.Marker.include({
-  setIconOpacity: function (opacity) {
-    if (this._icon && this._icon.style) {
-      this._icon.style.opacity = opacity;
-    }
-    if (this._shadow && this._shadow.style) {
-      this._shadow.style.opacity = opacity;
-    }
-    this.options.iconOpacity = opacity;
-  }
-});
-
-
 
 function updateTable(marker, data) {
 	
@@ -357,11 +351,11 @@ function updateTable(marker, data) {
 //opacity set when marker tables are empty
   var currentOpacity = marker.options.opacity !== undefined ? marker.options.opacity : defaultOpacity;
   if (filteredData2.length === 0 && currentOpacity !== 0.5) {
-    marker.setIconOpacity(0.5);
-    marker.options.iconOpacity = 0.5; // Set new opacity value
+    marker.setOpacity(0.5);
+    marker.options.opacity = 0.5; // Set new opacity value
   } else if (filteredData2.length !== 0 && currentOpacity !== 1.0) {
-    marker.setIconOpacity(1.0);
-    marker.options.iconOpacity = 1.0; // Set new opacity value
+    marker.setOpacity(1.0);
+    marker.options.opacity = 1.0; // Set new opacity value
   }
 	
   filteredData.forEach((d) => {
