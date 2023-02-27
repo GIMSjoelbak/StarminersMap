@@ -1,4 +1,4 @@
-	var polygon0, polygon1, polygon2;
+	var polygon0, polygon1, polygon2, polygon3, polygon4, polygon5, polygon6, polygon7, polygon8, polygon9, polygon10, polygon11, polygon12, polygon13;
 Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson'), fetch('./images/Fossil.geojson'), fetch('./images/Fremennik.geojson'), fetch('./images/Great Kourend.geojson'), fetch('./images/Kandarin.geojson'), fetch('./images/Kebos.geojson'), fetch('./images/Desert.geojson'), fetch('./images/Misthalin.geojson'), fetch('./images/Morytania.geojson'), fetch('./images/PiscGnome.geojson'), fetch('./images/Tirannwn.geojson'), fetch('./images/Wilderness.geojson')])
 .then(responses => Promise.all(responses.map(response => response.json())))
 .then(result => {
