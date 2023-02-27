@@ -258,13 +258,13 @@ else {
 
 function updateTable(marker, calledLocation, data) {
 	var prevData = {};
-  var filteredData = data.filter((d) => d.calledLocation === calledLocation);
+  var filteredData = data.filter((d) => d.calledLocation === marker.options.calledLocation);
 	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
 
   // Compare the previous data with the new data
   var isDataChanged = false;
-  if (marker.prevData[calledLocation] !== undefined) {
-    var prevData2 = prevData[calledLocation].filter((d) => d.calledLocation !== "");
+  if (marker.prevData[marker.options.calledLocation] !== undefined) {
+    var prevData2 = prevData[marker.options.calledLocation].filter((d) => d.calledLocation !== "");
         isDataChanged = filteredData2.length > prevData2.length;
   }
   marker.prevData[calledLocation] = filteredData;
