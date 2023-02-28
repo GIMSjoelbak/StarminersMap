@@ -1,4 +1,6 @@
-	var polygon0, polygon1, polygon2, polygon3, polygon4, polygon5, polygon6, polygon7, polygon8, polygon9, polygon10, polygon11, polygon12, polygon13;
+//Set polygons initially for functions	
+var polygon0, polygon1, polygon2, polygon3, polygon4, polygon5, polygon6, polygon7, polygon8, polygon9, polygon10, polygon11, polygon12, polygon13;
+//promise to make sure all popups load into polygons on initial load
 Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geojson'),  fetch('./images/Feldip.geojson'), fetch('./images/Fossil.geojson'), fetch('./images/Fremennik.geojson'), fetch('./images/Great Kourend.geojson'), fetch('./images/Kandarin.geojson'), fetch('./images/Kebos.geojson'), fetch('./images/Desert.geojson'), fetch('./images/Misthalin.geojson'), fetch('./images/Morytania.geojson'), fetch('./images/PiscGnome.geojson'), fetch('./images/Tirannwn.geojson'), fetch('./images/Wilderness.geojson')])
 .then(responses => Promise.all(responses.map(response => response.json())))
 .then(result => {
@@ -6,6 +8,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
     style: {
       fillColor: 'DodgerBlue',
 	    color: 'DodgerBlue',
+	    //weight = outline thickness
 	    weight: 1,
       fillOpacity: 0.4,
     }
@@ -118,7 +121,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   }).addTo(map);
 
 
-// Function to fetch data and update table
+// Function to fetch data from endpoint and update tables
   function fetchDataAndUpdateTable() {
  fetch("stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
@@ -141,12 +144,13 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 	 addMarkers(map, data);
 	  });
 	}
-	 // Call the fetch data function for the 1st time
+	 // Call the fetch data function for the initial time
   fetchDataAndUpdateTable();
 
   // Call the fetch data function every 60 seconds
-  setInterval(fetchDataAndUpdateTable, 30000);
+  setInterval(fetchDataAndUpdateTable, 60000);
 });
+//creating table header and setting initial prevdata to nothing
 	var prevData = {};
 function createPopup(polygon, location, data) {
   var table = document.createElement("table");
@@ -163,19 +167,25 @@ function createPopup(polygon, location, data) {
   header4.innerHTML = "<b>Max Time</b>";
   header5.innerHTML = "<b>Time until</b>";	
   header6.innerHTML = "<b>Called Location</b>";
-	
+	// updater to fill table content
   	function updateTable() {
-		
+		//filtered data for each region
 		var filteredData = data.filter((d) => d.location === location);
+		//filtered data where calledLocation is not empty
 		var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
 		        // Compare the previous data with the new data
+		//set initial data change to false
 	var isDataChanged = false;
+		//if statement for data after initial load
       if (prevData[location] !== undefined) {
+	      //filter data where prevdata calledlocation is not empty
          var prevData2 = prevData[location].filter((d) => d.calledLocation !== "");
+	      //check if new filteredData has more calledLocation records than prevData
         isDataChanged = filteredData2.length > prevData2.length;
       }
+		//set PrevData for next update
 prevData[location] = filteredData;
-	// Flash the polygon if data has changed and polygon type is defined
+	// Flash the polygon if data has changed
         if (isDataChanged) {
 		 polygon.eachLayer(function (layer) {
               layer.getElement().classList.add("flash");
@@ -184,6 +194,7 @@ prevData[location] = filteredData;
             }, 2000);
 		 });
           }
+		//create table rows
         filteredData.forEach((d) => {
           var row = table.insertRow();
           var cell1 = row.insertCell(0);
@@ -248,10 +259,11 @@ else {
   } else if (polygon instanceof L.GeoJSON) {
     polygonType = "GeoJSON";
   }
+	//call updateTable to fire after headers are created
 			updateTable();
 	console.log('complete');
 
-
+//set maxwidth to make table fit in white outline and bind to corresponding polygon
   var popup = L.popup({ maxWidth: 700 }).setContent(table);
   polygon.bindPopup(popup);
 }
@@ -259,11 +271,12 @@ else {
 /* 
 Start of marker data
 */
-
+//set initial prevData and initial marker opacity
 var prevData = {};
  var defaultOpacity = 0;
+//add markers to the map
 function addMarkers(map, data) {
-	
+	//set initial empty markers
   var markers = [];
  	
  var markerData = [
@@ -358,7 +371,7 @@ function addMarkers(map, data) {
 { latlng: [4438, 5857], calledLocation: "Mage Arena bank (lvl 56 Wildy)", color: "black" },
 { latlng: [4348, 6148], calledLocation: "Wilderness Resource Area", color: "black" },	 
   ];
-
+//Add layergroups (needed for marker opacity)
 	var AsgarniaMarkers = L.layerGroup().addTo(map);
 	var KaramjaMarkers = L.layerGroup().addTo(map);
 	var FeldipMarkers = L.layerGroup().addTo(map);
@@ -375,7 +388,7 @@ function addMarkers(map, data) {
 	var WildernessMarkers = L.layerGroup().addTo(map);
   
 
-	// Clear the markers from the layer groups and from the map from previous update
+	// Clear the markers from the layer groups and from the map from previous update (also needed for marker opacity, to not overlay markers after updates
   	AsgarniaMarkers.clearLayers();
   	KaramjaMarkers.clearLayers();
 	FeldipMarkers.clearLayers();
@@ -395,14 +408,14 @@ function addMarkers(map, data) {
       map.removeLayer(layer);
     }
   });
-
+//Remove shadow from all markers and set defaultOpacity
   markerData.forEach((d) => {
     var markerOptions = {
       calledLocation: d.calledLocation,
       shadow: false,
       opacity: defaultOpacity
     };
-  
+  //set colors for marker Layergroups
     var marker = L.marker(d.latlng, markerOptions);
 	  if (d.color === "blue") {
       marker.addTo(AsgarniaMarkers, KourendMarkers);
@@ -450,20 +463,26 @@ function addMarkers(map, data) {
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-black.png"
 	    }));
     }
+	  //call the updatetable for markers
     updateTable(marker, data);
   });
-
+//define updatetable for markers
 function updateTable(marker, data) {
-	
+	//filtered data where calledLocation strings are equal
   var filteredData = data.filter((d) => d.calledLocation === marker.options.calledLocation);
+	//filtered data where calledLocation string is not empty
 	var filteredData2 = filteredData.filter((d) => d.calledLocation !== "");
 
-  // Compare the previous data with the new data
+  // set initial datachange to false
   var isDataChanged = false;
+	//if old data marker.options.calledLocation is not undefined
   if (prevData[marker.options.calledLocation] !== undefined) {
+	  //filter prevdata amount with corresponding calledlocation string where it is not empty
     var prevData2 = prevData[marker.options.calledLocation].filter((d) => d.calledLocation !== "");
+	  //check if more calls are added to marker compared to previous data
         isDataChanged = filteredData2.length > prevData2.length;
   }
+	//set new prevData for next update
   prevData[marker.options.calledLocation] = filteredData;
 
   // Flash the marker if data has changed
@@ -474,7 +493,7 @@ function updateTable(marker, data) {
     }, 2000);
   }
 
-  // Create the table
+  // Create the table header
   var table = document.createElement("table");
   var headerRow = table.insertRow();
   var header1 = headerRow.insertCell(0);
@@ -493,14 +512,16 @@ function updateTable(marker, data) {
 	
 //opacity set when marker tables are empty
   var currentOpacity = marker.options.opacity !== undefined ? marker.options.opacity : defaultOpacity;
+	//if filtered data has no calls for marker, and marker was previously filled
   if (filteredData2.length === 0 && currentOpacity !== 0.4) {
     marker.setOpacity(0.4);
-    marker.options.opacity = 0.4; // Set new opacity value
+    marker.options.opacity = 0.4;
+	  //if filtered data has calls for marker, and marker was previously empty
   } else if (filteredData2.length !== 0 && currentOpacity !== 1.0) {
     marker.setOpacity(1.0);
-    marker.options.opacity = 1.0; // Set new opacity value
+    marker.options.opacity = 1.0;
   }
-	
+	//create table contents for markers
   filteredData.forEach((d) => {
     var row = table.insertRow();
           var cell1 = row.insertCell(0);
@@ -558,7 +579,7 @@ else {
           cell6.innerHTML = d.calledLocation;
   });
 
-  // Create the popup and add the table to it
+  // Create the popup for markers and add the table to it, set width to fit white outline
   var popup = L.popup({maxWidth: 700}).setContent(table);
   marker.bindPopup(popup);
 }
