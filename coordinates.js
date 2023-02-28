@@ -19,7 +19,9 @@ L.CursorHandler = L.Handler.extend({
 
         _close: function () {
             this._map.closePopup(this._popup);
-        }
+        },
+	
+	       _update: function (e) {}
 
     });
 
