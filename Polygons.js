@@ -562,7 +562,7 @@ else {
         var maxTime = new Date(d.maxTime * 1000).toLocaleString();
 	var now = Date.now();
         var relativeTime = Math.round((now - d.maxTime * 1000) / 60000);
-          cell3.innerHTML = relativeTime + " min";
+          cell3.innerHTML = relativeTime + " min ago";
           cell4.innerHTML = d.calledLocation;
 	  cell5.innerHTML = d.calledBy;
   });
