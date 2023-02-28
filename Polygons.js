@@ -123,7 +123,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 
 // Function to fetch data from endpoint and update tables
   function fetchDataAndUpdateTable() {
- fetch("/data?timestamp=" + Date.now())
+ fetch("./stars.json?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
 	createPopup(polygon0, 0, data);
