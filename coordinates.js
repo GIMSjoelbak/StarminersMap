@@ -13,7 +13,6 @@ L.CursorHandler = L.Handler.extend({
         },
 
         _open: function (e) {
-            this._update(e);
             this._popup.openOn(this._map);
         },
 
