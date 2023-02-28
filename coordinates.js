@@ -21,13 +21,7 @@ L.CursorHandler = L.Handler.extend({
 
         _close: function () {
             this._map.closePopup(this._popup);
-        },
-
-        _update: function (e) {
-            this._popup.setLatLng(e.latlng)
-                .setContent(e.latlng.toString());
         }
-
 
     });
 
@@ -35,7 +29,7 @@ L.CursorHandler = L.Handler.extend({
 
       const map = L.map('map', {
         crs: L.CRS.Simple,
-        minZoom: -3
+        minZoom: -2.5
       });
 	  map.cursor.enable();
       const bounds = [[0,0], [4881,8337]];
