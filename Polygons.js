@@ -123,7 +123,7 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
 
 // Function to fetch data from endpoint and update tables
   function fetchDataAndUpdateTable() {
- fetch("stars.json?timestamp=" + Date.now())
+ fetch("/data?timestamp=" + Date.now())
       .then((response) => response.json())
       .then((data) => {
 	createPopup(polygon0, 0, data);
@@ -455,7 +455,7 @@ function addMarkers(map, data) {
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-green.png"
 	    }));
     } else if (d.color === "black") {
-      marker.addTo(TirannwnMarkers);
+      marker.addTo(WildernessMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-black.png"
 	    }));
@@ -498,14 +498,12 @@ function updateTable(marker, data) {
   var header3 = headerRow.insertCell(2);
   var header4 = headerRow.insertCell(3);
   var header5 = headerRow.insertCell(4);
-  var header6 = headerRow.insertCell(5);
 
   header1.innerHTML = "<b>Location</b>";
   header2.innerHTML = "<b>World</b>";
-  header3.innerHTML = "<b>Min Time</b>";
-  header4.innerHTML = "<b>Max Time</b>";
-  header5.innerHTML = "<b>Time until</b>";
-  header6.innerHTML = "<b>Called Location</b>";
+  header3.innerHTML = "<b>Landingtime</b>";
+  header4.innerHTML = "<b>Called Location</b>";
+  header5.innerHTML = "<b>Called By</b>";
 	
 //opacity set when marker tables are empty
   var currentOpacity = marker.options.opacity !== undefined ? marker.options.opacity : defaultOpacity;
@@ -526,7 +524,6 @@ function updateTable(marker, data) {
           var cell3 = row.insertCell(2);
           var cell4 = row.insertCell(3);
 	  var cell5 = row.insertCell(4);
-          var cell6 = row.insertCell(5);
 		  var locationWord;
   if (d.location === 0) {
     locationWord = "Asgarnia";
@@ -562,18 +559,12 @@ else {
   }
           cell1.innerHTML = locationWord;
           cell2.innerHTML = d.world;	
-        // Convert Unix timestamp to normal time format
-        var minTime = new Date(d.minTime * 1000).toLocaleString();
         var maxTime = new Date(d.maxTime * 1000).toLocaleString();
-          cell3.innerHTML = minTime;
-          cell4.innerHTML = maxTime;
 	var now = Date.now();
-        var relativeTime = Math.round((d.minTime * 1000 - now) / 60000);
-        if (relativeTime > 0) {
-          relativeTime = -relativeTime;
-        }
-          cell5.innerHTML = relativeTime + " min";
-          cell6.innerHTML = d.calledLocation;
+        var relativeTime = Math.round((now - d.maxTime * 1000) / 60000);
+          cell3.innerHTML = relativeTime + " min";
+          cell4.innerHTML = d.calledLocation;
+	  cell5.innerHTML = d.calledBy;
   });
 
   // Create the popup for markers and add the table to it, set width to fit white outline
