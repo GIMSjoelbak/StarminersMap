@@ -1,0 +1,62 @@
+	  .white-glow {
+  filter: brightness(300%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
+}
+.flash {
+  animation: flash 1s;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+	}
+50% {
+	opacity: 1;
+	}
+75% {
+	opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+body {
+      padding: 0;
+      margin: 0;
+    }
+html, body, #map {
+      height: 100%;
+      width: 100%;
+    }
+/* Make the table cells have padding */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  padding: 3px;
+font-size: 12px;
+border: 1px solid black;
+}
+
+/* Set a fixed width for the table cells */
+th, td {
+  width: 20%;
+  max-width: 250px;
+}
+
+/* Prevent text from wrapping */
+td {
+  white-space: nowrap;
+  overflow: hidden;
+}
+td:last-child {
+  width: 30%;
+}
+.leaflet-popup-content-wrapper {
+  width: auto !important;
+  max-width: 100% !important;
+}
