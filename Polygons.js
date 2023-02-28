@@ -245,9 +245,6 @@ else {
           cell4.innerHTML = maxTime;
 	var now = Date.now();
         var relativeTime = Math.round((d.minTime * 1000 - now) / 60000);
-        if (relativeTime > 0) {
-          relativeTime = -relativeTime;
-        }
           cell5.innerHTML = relativeTime + " min";
           cell6.innerHTML = d.calledLocation;
     });
