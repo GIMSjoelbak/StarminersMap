@@ -5,14 +5,32 @@
 	0% {
 filter: brightness(100%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
 	}
-	25% {
-filter: brightness(200%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
+	10% {
+filter: brightness(140%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
+	}
+		20% {
+filter: brightness(180%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
+	}
+		30% {
+filter: brightness(220%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
+	}
+		40% {
+filter: brightness(260%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
 	}
 	50% {
 filter: brightness(300%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
 	}
-	75% {
-filter: brightness(200%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
+		60% {
+filter: brightness(260%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
+	}
+	70% {
+filter: brightness(220%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
+	}
+		80% {
+filter: brightness(180%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
+	}
+		90% {
+filter: brightness(140%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
 	}
 	100% {
 filter: brightness(100%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
