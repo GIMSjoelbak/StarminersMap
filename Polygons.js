@@ -442,7 +442,7 @@ function addMarkers(map, data) {
     } else if (d.color === "grey") {
       marker.addTo(KandarinMarkers);
 	    marker.setIcon(L.icon({
-		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-grey.png"
+		    iconUrl: "./images/marker-icon-pink.png"
 	    }));
     } else if (d.color === "violet") {
       marker.addTo(MorytaniaMarkers, PiscatorisMarkers);
