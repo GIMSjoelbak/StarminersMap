@@ -161,7 +161,7 @@ function createPopup(polygon, location, data) {
   var header4 = headerRow.insertCell(3);
   var header5 = headerRow.insertCell(4);
   var header6 = headerRow.insertCell(5);
-  header1.innerHTML = "<b>Calltime</b>";
+  header1.innerHTML = "<b>Called</b>";
   header2.innerHTML = "<b>Tier</b>";
   header3.innerHTML = "<b>World</b>";
   header4.innerHTML = "<b>Called Location</b>";
@@ -238,7 +238,7 @@ else {
   }
 		var now = Date.now();
 	var relativeTime = Math.round((now - d.calledAt * 1000) / 60000);  
-          cell1.innerHTML = relativeTime;
+          cell1.innerHTML = relativeTime + " min ago";
           cell2.innerHTML = d.tier;	
         // Convert Unix timestamp to normal time format
         var minTime = new Date(d.minTime * 1000).toLocaleString();
@@ -318,12 +318,12 @@ function addMarkers(map, data) {
 { latlng: [4072, 894], calledLocation: "Lovakite mine", color: "blue" },
 { latlng: [4111, 1865], calledLocation: "Arceuus dense essence mine", color: "blue" },
 	 //Kandarin
-{ latlng: [1811, 4390], calledLocation: "Yanille bank", color: "grey" },
-{ latlng: [1975, 4455], calledLocation: "Port Khazard mine", color: "grey" },
-{ latlng: [2252, 4408], calledLocation: "Ardougne Monastary", color: "grey" },
-{ latlng: [2550, 4698], calledLocation: "South of Legends' Guild", color: "grey" },
-{ latlng: [2855, 4996], calledLocation: "Catherby bank", color: "grey" },
-{ latlng: [2986, 4350], calledLocation: "Coal Trucks west of Seers'", color: "grey" },
+{ latlng: [1811, 4390], calledLocation: "Yanille bank", color: "darkgreen" },
+{ latlng: [1975, 4455], calledLocation: "Port Khazard mine", color: "darkgreen" },
+{ latlng: [2252, 4408], calledLocation: "Ardougne Monastary", color: "darkgreen" },
+{ latlng: [2550, 4698], calledLocation: "South of Legends' Guild", color: "darkgreen" },
+{ latlng: [2855, 4996], calledLocation: "Catherby bank", color: "darkgreen" },
+{ latlng: [2986, 4350], calledLocation: "Coal Trucks west of Seers'", color: "darkgreen" },
 	 //Kebos Lowlands
 { latlng: [4000, 548], calledLocation: "Mount Karuulm bank", color: "orange" },
 { latlng: [4003, 422], calledLocation: "Mount Karuulm mine", color: "orange" },
@@ -440,7 +440,7 @@ function addMarkers(map, data) {
 	    marker.setIcon(L.icon({
 		    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-yellow.png"
 	    }));
-    } else if (d.color === "grey") {
+    } else if (d.color === "darkgreen") {
       marker.addTo(KandarinMarkers);
 	    marker.setIcon(L.icon({
 		    iconUrl: "./images/marker-icon-dark-green.png"
@@ -501,7 +501,7 @@ function updateTable(marker, data) {
   var header5 = headerRow.insertCell(4);
   var header6 = headerRow.insertCell(5);
 
-  header1.innerHTML = "<b>Calltime</b>";
+  header1.innerHTML = "<b>Called</b>";
   header2.innerHTML = "<b>Tier</b>";
   header3.innerHTML = "<b>World</b>";
   header4.innerHTML = "<b>Called Location</b>";
@@ -563,7 +563,7 @@ else {
   }
 	var now = Date.now();
 	var relativeTime = Math.round((now - d.calledAt * 1000) / 60000);  
-          cell1.innerHTML = relativeTime;
+          cell1.innerHTML = relativeTime + " min ago";
           cell2.innerHTML = d.tier;
 	  cell3.innerHTML = d.world;
         var maxTime = new Date(d.maxTime * 1000).toLocaleString();
