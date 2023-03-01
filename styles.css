@@ -1,5 +1,5 @@
 	  .white-glow {
-	animation: heartglow 1s;
+	animation: heartglow 1s infinite normal;
 }
 @keyframes heartglow {
 	0% {
