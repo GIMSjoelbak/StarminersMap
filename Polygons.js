@@ -236,6 +236,7 @@ prevData[location] = filteredData;
 else {
     locationWord = d.location;
   }
+		var now = Date.now();
 	var relativeTime = Math.round((now - d.calledAt * 1000) / 60000);  
           cell1.innerHTML = relativeTime;
           cell2.innerHTML = d.tier;	
@@ -244,8 +245,7 @@ else {
         var maxTime = new Date(d.maxTime * 1000).toLocaleString();
           cell3.innerHTML = d.world;
           cell4.innerHTML = d.calledLocation;
-	var now = Date.now();
-        var relativeTime2 = Math.round((d.maxTime * 1000 - now) / 60000);
+        var relativeTime2 = Math.round((now - d.maxTime * 1000) / 60000);
           cell5.innerHTML = relativeTime2 + " min ago";
           cell6.innerHTML = d.calledBy;
     });
@@ -561,12 +561,12 @@ function updateTable(marker, data) {
 else {
     locationWord = d.location;
   }
+	var now = Date.now();
 	var relativeTime = Math.round((now - d.calledAt * 1000) / 60000);  
           cell1.innerHTML = relativeTime;
           cell2.innerHTML = d.tier;
 	  cell3.innerHTML = d.world;
         var maxTime = new Date(d.maxTime * 1000).toLocaleString();
-	var now = Date.now();
         var relativeTime2 = Math.round((now - d.maxTime * 1000) / 60000);
 	  cell4.innerHTML = d.calledLocation;
           cell5.innerHTML = relativeTime2 + " min ago";
