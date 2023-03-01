@@ -57,8 +57,8 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   }).addTo(map);
   var polygon6 = L.geoJSON(result[6], {
     style: {
-      fillColor: 'DarkGreen',
-	    color: 'DarkGreen',
+      fillColor: '#004d00',
+	    color: '#004d00',
 	    weight: 1,
       fillOpacity: 0.4,
     }
