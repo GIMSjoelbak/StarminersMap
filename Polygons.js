@@ -57,8 +57,8 @@ Promise.all([  fetch('./images/Asgarnia.geojson'),  fetch('./images/Karamja.geoj
   }).addTo(map);
   var polygon6 = L.geoJSON(result[6], {
     style: {
-      fillColor: 'Plum',
-	    color: 'Plum',
+      fillColor: 'DarkGreen',
+	    color: 'DarkGreen',
 	    weight: 1,
       fillOpacity: 0.4,
     }
@@ -442,7 +442,7 @@ function addMarkers(map, data) {
     } else if (d.color === "grey") {
       marker.addTo(KandarinMarkers);
 	    marker.setIcon(L.icon({
-		    iconUrl: "./images/marker-icon-pink.png"
+		    iconUrl: "./images/marker-icon-dark-green.png"
 	    }));
     } else if (d.color === "violet") {
       marker.addTo(MorytaniaMarkers, PiscatorisMarkers);
