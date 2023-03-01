@@ -191,7 +191,7 @@ prevData[location] = filteredData;
               layer.getElement().classList.add("flash");
 		setTimeout(function () {
                    layer.getElement().classList.remove("flash");
-            }, 2000);
+            }, 10000);
 		 });
           }
 		//create table rows
@@ -487,7 +487,7 @@ function updateTable(marker, data) {
     marker.getElement().classList.add("white-glow");
     setTimeout(function () {
       marker.getElement().classList.remove("white-glow");
-    }, 2000);
+    }, 30000);
   }
 
   // Create the table header
