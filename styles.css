@@ -37,7 +37,7 @@ filter: brightness(100%) drop-shadow(0 0 2px white) drop-shadow(0 0 10px white);
 	}
 }
 .flash {
-  animation: flash 1s infinite normal;
+  animation: flash 2s infinite normal;
 }
 
 @keyframes flash {
