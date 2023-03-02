@@ -195,6 +195,9 @@ prevData[location] = filteredData;
 		 });
           }
 		//create table rows
+	filteredData.sort(function(a, b) {
+		return b.calledAt - a.calledAt;
+	});
         filteredData.forEach((d) => {
           var row = table.insertRow();
           var cell1 = row.insertCell(0);
@@ -521,7 +524,7 @@ function updateTable(marker, data) {
   }
 	//create table contents for markers
 	filteredData.sort(function(a, b) {
-		return a.calledAt - b.calledAt;
+		return b.calledAt - a.calledAt;
 	});
   filteredData.forEach((d) => {
     var row = table.insertRow();
