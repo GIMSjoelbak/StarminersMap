@@ -520,6 +520,9 @@ function updateTable(marker, data) {
     marker.options.opacity = 1.0;
   }
 	//create table contents for markers
+	filteredData.sort(function(a, b) {
+		return a.calledAt - b.calledAt;
+	});
   filteredData.forEach((d) => {
     var row = table.insertRow();
           var cell1 = row.insertCell(0);
