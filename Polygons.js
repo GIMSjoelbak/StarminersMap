@@ -165,7 +165,7 @@ function createPopup(polygon, location, data) {
   header2.innerHTML = "<b>Tier</b>";
   header3.innerHTML = "<b>World</b>";
   header4.innerHTML = "<b>Called Location</b>";
-  header5.innerHTML = "<b>Landing time</b>";	
+  header5.innerHTML = "<b>Landing Time</b>";	
   header6.innerHTML = "<b>Called By</b>";
 	// updater to fill table content
   	function updateTable() {
