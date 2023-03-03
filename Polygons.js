@@ -272,12 +272,6 @@ else {
 /* 
 Start of marker data
 */
-var logo = L.divIcon({
-	iconUrl: './images/logo.gif',
-	iconSize: L.point(312,263)
-});
-    var logomarker = L.marker([1364,1268], { icon: logo }).addTo(map);
-logomarker.bindPopup('<a href="https://discord.gg/starminers">Click here to join the Discord');
 //set initial prevData and initial marker opacity
 var prevData = {};
  var defaultOpacity = 0;
