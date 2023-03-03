@@ -274,8 +274,8 @@ Start of marker data
 */
 var logo = L.icon({
 	iconUrl: './images/logo.gif',
-	iconSize: [312, 263],
-	iconAnchor: [156, 132]
+	iconSize: [624, 526],
+	iconAnchor: [312, 263]
 });
     var logomarker = L.marker([1364,1268], { icon: logo }).addTo(map);
 logomarker.bindPopup('<a href="https://discord.gg/starminers">Click here to join the Discord');
