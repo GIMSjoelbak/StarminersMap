@@ -272,7 +272,7 @@ else {
 /* 
 Start of marker data
 */
-var logo = L.icon({
+var logo = L.divIcon({
 	iconUrl: './images/logo.gif',
 	iconSize: L.point(312,263)
 });
